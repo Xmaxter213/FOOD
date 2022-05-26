@@ -1,0 +1,475 @@
+<?php
+
+session_start();
+
+require_once('../Connection.php');
+
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Check out</title>  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </head>
+
+    <style>
+      .button{
+    background-color: skyblue; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.container{
+    padding-top: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 1rem;
+}
+
+.cartBox{
+  width: 600px;
+  padding: 3%;
+  margin: 20px;
+  background-color: lightcyan;
+}
+
+.Cart{
+  padding-bottom: 50px;
+}
+
+
+.SubscriptionType ul{
+  padding-top: 3%;
+}
+
+.SubscriptionType ul li{
+  padding-left: 20%;
+}
+
+.Payment{
+  align-items: l;
+  padding-top: 5%;
+}
+
+.PaymentContainer{
+  padding-top: 5%;
+}
+
+#Payment{
+  float: right;
+}
+
+.container{
+}
+
+#Cancel{
+  background-color: lightcoral;
+  float: right;
+  width: 150px;
+  margin-right: 2%;
+}
+
+#Payment{
+  background-color: lightgreen;
+  width: 150px;
+  margin-left: 2%;
+}
+
+.Cart ul li{
+  background-color: white;
+  border: 1px black solid;
+}
+
+.container-sm{
+  padding-top: 3%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  border-radius: 1rem;
+}
+
+.fruitFact{
+  font-size: 20px;
+  text-align: justify;
+}
+
+body{
+  background:  #D4F1F4;                    
+}
+      
+.shop{
+  font-size: 10px;
+}
+
+.space{
+  letter-spacing: 0.8px !important;
+}
+
+.second a:hover {
+  color: rgb(92, 92, 92) ;
+}
+
+.active-2 {
+  color: rgb(92, 92, 92) 
+}
+
+
+.breadcrumb>li+li:before {
+  content: "" !important
+}
+
+.breadcrumb {
+  padding: 0px;
+  font-size: 10px;
+  color: #aaa !important;
+}
+
+.first {
+  background-color: white ;
+}
+
+a {
+  text-decoration: none !important;
+  color: #aaa ;
+}
+
+.btn-lg,.form-control-sm:focus,
+.form-control-sm:active,
+a:focus,a:active {
+  outline: none !important;
+  box-shadow: none !important
+}
+
+.form-control-sm:focus{
+  border:1.5px solid #4bb8a9 ; 
+}
+
+.btn-group-lg>.btn, .btn-lg {
+  padding: .5rem 0.1rem;
+  font-size: 1rem;
+  border-radius: 0;
+  color: white !important;
+  background-color: #4bb8a9;
+  height: 2.8rem !important;
+  border-radius: 0.2rem !important;
+}
+
+.btn-group-lg>.btn:hover, .btn-lg:hover {
+  background-color: #26A69A;
+}
+
+.btn-outline-primary{
+  background-color: #fff !important;
+  color:#4bb8a9 !important;
+  border-radius: 0.2rem !important;   
+  border:1px solid #4bb8a9;
+}
+
+.btn-outline-primary:hover{
+  background-color:#4bb8a9  !important;
+  color:#fff !important;
+  border:1px solid #4bb8a9;
+}
+
+.card-2{
+  margin-top: 40px !important;
+}
+
+.card-header{
+  background-color: #fff;
+  border-bottom:0px solid #aaaa !important;
+}
+
+p{
+  font-size: 13px ;
+}
+      
+.small{
+  font-size: 9px !important;
+}
+
+.form-control-sm {
+  height: calc(2.2em + .5rem + 2px);
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: 0;   
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.boxed {
+  padding: 0px 8px 0 8px ;
+  background-color: #4bb8a9;
+  color: white;
+}
+
+.boxed-1{
+  padding: 0px 8px 0 8px ;
+  color: black !important;
+  border: 1px solid #aaaa;
+}
+
+.bell{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .breadcrumb-item+.breadcrumb-item {
+      padding-left: 0
+  }
+}
+
+.checkBoxForms{
+  padding-top: 50px;
+} 
+
+
+#cart{            
+            background-color: rgb(63, 63, 63);
+            position: absolute;
+            float: left;
+            width: 652px;
+            height: 380px;
+            margin-top: 100px;
+            margin-left: 300px;
+            border-bottom: 5px solid white;
+           
+        }
+    </style>
+
+
+    <script>
+      function RandomText() {
+
+        var randomFacts = [
+          "Bananas may have been the world's first cultivated fruit. Archaeologists have found evidence of banana cultivation in New Guinea as far back as 8000 B.C. ",
+          "A bunch of bananas is called a hand; a single banana is a finger.",
+          "Wild bananas grow throughout Southeast Asia, but most are inedible for humans, as they are studded with hard seeds.",
+          "Banana can help prevent kidney stones.",
+          "Improve yeast and urinary tract infections (UTIs).",
+        ]
+
+        randomIndex = Math.ceil((Math.random() * randomFacts.length - 1));
+        newText = randomFacts[randomIndex];
+
+        document.getElementById("FruitFactsText").innerHTML = newText;
+      }
+    </script>
+
+    <body onload="RandomText()" >
+    <nav class="navbar navbar-expand-lg navbar-dark  sticky-top" style="background-color: #0E86D4;">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#" ><img class="float-end" src="FinalLogo.png" height="50" width="50"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="../../Home Page/index.php" style="font-size: 20px;">Home
+                    </a>
+                  </li>
+                  
+                </ul>
+                <a   href="../view cart.php" style=" margin-left: 1350px;  color: black;margin-right: 50px;"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></a></li>
+                <a class="button" href="#" style="font-size: 20px;">Log-In</a>
+              </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="SubscriptionType">
+                      <h3>ACCOUNT INFORMATION</h3>
+                      <div class="row mt-3">
+                          <div class="col-md-6">
+                            <label>FIRST NAME:</label>
+                            <input type="text" name="first_name" class="form-control" value="" />
+                          </div>
+                            <div class="col-md-6">
+                              <label>LAST NAME:</label>
+                              <input type="text" name="last_name" class="form-control" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                          <label>E-MAIL</label>
+                          <input type="text" name="e_mail" class="form-control" value="" />
+                        </div>
+                        <div><p></p></div>
+                        <div class="col-md-12">
+                          <label><h3>Payment Information</h3></label>
+                          <input type="text" name="pay_info" class="form-control" value="" />
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-2 offset-md-4">
+                          <label>EXP</label>
+                          <input type="text" name="first_name" class="form-control" value="" />
+                        </div>
+                          <div class="col-md-2 offset-md-1">
+                            <label>IDK  </label>
+                            <input type="text" name="last_name" class="form-control" value="" />
+                          </div>
+                          <div class="col-md-2 offset-md-1">
+                            <label>CCV</label>
+                            <input type="text" id="codeCcv" class="form-control" maxlength="3" name="ccvCode" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                          </div>
+                      </div>
+                      <div class="row">
+                        <label><h3>Subscription type:</h3></label>
+                        <div class="col-md-4">
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="subscriptText" aria-label="Text input with segmented dropdown button">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                              <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                              <li><a class="dropdown-item" href="#">Daily</a></li>
+                              <li><a class="dropdown-item" href="#">Weekly</a></li>
+                              <li><a class="dropdown-item" href="#">Yearly</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="checkBoxForms">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="boxFutureTransactions">
+                          <label class="form-check-label" for="boxFutureTransactions">
+                            <b>Save Information for future transactions</b>
+                          </label>
+                        </div>
+                        
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="boxTermsCondition">
+                          <label class="form-check-label" for="boxTermsCondition">
+                            <b>agree terms & conditions</b>
+                          </label>
+                        </div>
+
+                      </div>
+                    
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="Cart">
+                        <label><h3>CART</h3></label>
+                          <div class="cartBox">
+                            <div class="col-md-12">
+                              <div class="card border-1 ">
+                                  <div class="card-body pt-0">
+                                      <div class="row  justify-content-between">
+                                          <div class="col-auto col-md-7">
+                                              <div class="media flex-column flex-sm-row">
+                                                  <div class="media-body  my-auto">
+                                                      <div class="row ">
+                                                          <div class="col-auto"><p class="mb-0"><h5>Banana</h5></p><small class="text-muted "><button type="button" class="btn btn-link" onclick="removeCart()">Remove</button></small></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">2</p></div>
+                                          <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>179 SEK</b></p></div>
+                                      </div>
+                                      <hr class="my-2">
+                                      <div class="row  justify-content-between">
+                                          <div class="col-auto col-md-7">
+                                              <div class="media flex-column flex-sm-row">
+                                                  
+                                                  <div class="media-body  my-auto">
+                                                      <div class="row ">
+                                                          <div class="col"><p class="mb-0"><b>Apple</b></p><small class="text-muted">2 Week Subscription</small></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">3</p></div>
+                                          <div class="pl-0 flex-sm-col col-auto my-auto"><p><b>179 SEK</b></p></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="offset-md-4">
+                        <div class="PaymentContainer">
+                        <div class="Payment">  
+                            <ul>
+                                <li class="d-flex justify-content-sm-end"><h2>TOTAL:</h2><p><h2>PHP       
+                                  <?php
+                
+                                        $total = 0;
+                                         $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                      echo "";
+                                        // output data of each row
+                                   while($row = $result->fetch_assoc()) 
+                                       {
+                       
+                                           $total = $total + (double)$row['productPrice'] * (double)$row['quantity'];
+                        
+                                      }
+                                          echo " " . $total. "<br>";
+
+                                    } 
+                                    else 
+                                        {
+                                           echo "0 results";
+                                        }  
+                                           $conn->close();
+     
+                                  ?>
+                    </h2></p></li>
+                            </ul>
+                            
+                            <button id = "Payment" onclick="myFunction()">Check out</button>
+                            <button id = "Cancel" onclick="myFunction()">Cancel</button>
+                        </div>
+                        </div>
+                    </div>
+          
+                    </div>
+                </div>
+                  </div>
+          
+
+
+       
+        <section class="">
+          <footer class="bg-secondary text-white text-center text-md-start">
+            <div class="container-sm">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3 class="text-uppercase">Fruit Facts</h3>
+                  
+                  <p id="FruitFactsText" class="fruitFact">
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <img class="float-end" src="FinalLogo.png" height="200" width="200">
+                </div>
+              </div>
+            </div>
+        
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              Fruits on our Door
+            </div>
+          </footer>
+        </section>
+    </body>
+
+</html>
