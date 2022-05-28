@@ -15,14 +15,25 @@ require_once('Connection.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 	<title>Cart</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="icon" type="image/x-icon" href="img/FinalLogo.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 	<style>
         body{
             background-color: #D4F1F4;
@@ -34,7 +45,7 @@ require_once('Connection.php');
             float: left;
             width: 652px;
             height: 380px;
-            margin-top: 100px;
+            margin-top: 150px;
             margin-left: 300px;
             border-bottom: 5px solid white;
            
@@ -47,7 +58,7 @@ require_once('Connection.php');
             position: absolute;
             float: left;
             width: 650px;
-            margin-top: 480px;
+            margin-top: 530px;
             margin-left: 300px;
         }
 
@@ -61,7 +72,7 @@ require_once('Connection.php');
         #checkout{
             position: absolute;
             float: left;
-            margin-top: 130px;
+            margin-top: 180px;
             margin-left: 1050px;
             width: 150px;
             height: 45px;
@@ -72,7 +83,7 @@ require_once('Connection.php');
         #clearCart{
             position: absolute;
             float: left;
-            margin-top: 180px;
+            margin-top: 230px;
             margin-left: 1050px;
             width: 150px;
             height: 45px;
@@ -80,44 +91,30 @@ require_once('Connection.php');
             background-color: rgb(253, 100, 100);
             border: 1px solid rgb(253, 100, 100);
         }
-        .loginbutton{
-            background-color: skyblue; /* Green */
-            border: none;
-            color: white;
-            padding: 5px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 20px;
-            margin-right: 20px;
-        }
 
        
 
 	</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark  sticky-top" style="background-color: #0E86D4;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" ><img class="float-end" src="FinalLogo.png" height="50" width="50"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-            <a class="nav-link" href="../Home Page/index.php" style="font-size: 20px;">HOME
-              
-            </a>
-          </li>
-              
-            </ul>
-            <a   href="../View Cart/view cart.php" style=" margin-left: 1475px;  color: black;margin-right: 50px;"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></a></li>
-            <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
-          </div>
-        </div>
-    </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #0E86D4;">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">F.O.O.D</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="../Home Page/index.php">Home</a></li>
+                        
+                    </ul>
+                    <a  class="nav-link" href="../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a  href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                </div>
+            </div>
+        </nav>
     <iframe id="cart" src="checkoutcart.php" >
     
         
