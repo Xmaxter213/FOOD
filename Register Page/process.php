@@ -5,13 +5,15 @@ require_once('config.php');
 
 if(isset($_POST)){
 
-		$username = $_POST['username'];
-		$email    = $_POST['email'];
-		$password = sha1($_POST['password']);
+		$firstname = $_POST['firstname'];
+		$lastname  = $_POST['lastname'];
+		$username  = $_POST['username'];
+		$email     = $_POST['email'];
+		$password  = sha1($_POST['password']);
 
-		$sql = "INSERT INTO userTable (username,email,password) VALUES(?,?,?)";
+		$sql = "INSERT INTO userTable (firstName,lastName,username,email,password) VALUES(?,?,?,?,?)";
 		$stmtinsert = $db->prepare($sql);
-		$result = $stmtinsert->execute([$username, $email, $password]);
+		$result = $stmtinsert->execute([$firstname,$lastname,$username, $email, $password]);
 		if($result){
 			echo 'Successfully saved.';
 		}else{
