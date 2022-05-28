@@ -29,6 +29,17 @@ require_once 'config.php';
 
 			              <hr class="mb-3"><br>
 
+			              <div class="d-flex justify-content-between">
+							<div class="form-outline mb-4">
+			                <input type="text" id="firstname" class="form-control form-control-lg" name="firstname" required />
+			                <label class="form-label" for="firstname">First Name</label>
+			              </div>
+			              <div class="form-outline mb-4">
+			                <input type="text" id="lastname" class="form-control form-control-lg" name="lastname" required />
+			                <label class="form-label" for="lastname">Last Name</label>
+			              </div>
+						  </div>
+
 			              <div class="form-outline mb-4">
 			                <input type="text" id="username" class="form-control form-control-lg" name="username" required />
 			                <label class="form-label" for="username">Usename</label>
@@ -45,7 +56,7 @@ require_once 'config.php';
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+			                <input type="password" id="re-password" class="form-control form-control-lg"  name="re-password" />
 			                <label class="form-label" for="form3Example4cdg">Repeat your password</label>
 			              </div>
 
@@ -74,52 +85,61 @@ require_once 'config.php';
 	$(function(){
 		$('#register').click(function(e){
 
-			var valid = this.form.checkValidity();
+			var password     = $('#password').val();
+			var repassword   = $('#re-password').val();
 
-			if(valid){
+			if(password.length != 0)
+			{
+				if(password == repassword)
+				{
+					var valid = this.form.checkValidity();
+					if(valid)
+					{
+						var firstname = $('#firstname').val();
+						var lastname  = $('#lastname').val();
+						var username  = $('#username').val();
+						var email     = $('#email').val();
+						var password  = $('#password').val();
 
+						e.preventDefault();	
 
-				var username = $('#username').val();
-				var email    = $('#email').val();
-				var password = $('#password').val();
-
-			
-
-				e.preventDefault();	
-
-				$.ajax({
-					type: 'POST',
-					url: 'process.php',
-					data: {username: username, email: email, password: password},
-					success: function(data){
-					Swal.fire({
-								'title': 'Successful',
-								'text': data,
-								'type': 'success'
-								})
-							
-					},
-					error: function(data){
-						Swal.fire({
-								'title': 'Errors',
-								'text': 'There were errors while saving the data.',
-								'type': 'error'
-								})
+						$.ajax({
+							type: 'POST',
+							url: 'process.php',
+							data: {firstname: firstname, lastname: lastname, username: username, email: email, password: password},
+							success: function(data){
+							Swal.fire({
+										'title': 'Successful',
+										'text': data,
+										'type': 'success'
+										})
+									
+							},
+							error: function(data){
+								Swal.fire({
+										'title': 'Errors',
+										'text': 'There were errors while saving the data.',
+										'type': 'error'
+										})
+							}
+						});
 					}
-				});
+					else
+					{
 
-				
-			}else{
-				
+					}
+				}
+				else
+				{
+					Swal.fire({
+										'title': 'Errors',
+										'text': 'Password does not match',
+										'type': 'error'
+										})
+				}
+
 			}
-
-			
-
-
-
 		});		
-
-		
 	});
 	
 </script>
