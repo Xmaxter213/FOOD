@@ -11,18 +11,52 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
+<style>
+	body{
+		
+	}
+
+	.leftPic{
+		float: left;
+		background-color: black;
+		width: 35%;
+		height: 700px;
+		background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('photos/LoginPic.png');
+		border-right: 5px solid black;
+	}
+
+	.leftPic img{
+		margin-left: 15px;
+		margin-top: 80px;
+	}
+
+	.container{
+		float: left;
+		width: 65%;
+		height: 100%;
+	}
+
+	.d-flex{
+		margin-top: 12%
+	}
+
+</style>
+
 <body>
+
+	<div class = "leftPic">
+		<img src="photos/Logo.png" width = "500" height = "500" title="Item 1" onclick="showImage('photos/apple.jpg')" />
+	</div>
+
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="FinalLogo.png" class="brand_logo" alt="Logo">
-					</div>
-				</div>
+
 				<div class="d-flex justify-content-center form_container">
 					<form>
+					<h1>LOGIN</h1><br>
 						<div class="input-group mb-3">
+						
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
@@ -54,5 +88,7 @@
 			</div>
 		</div>
 	</div>
+
+
 </body>
 </html>
