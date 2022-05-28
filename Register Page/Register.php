@@ -30,6 +30,7 @@ require_once 'config.php';
 			              <hr class="mb-3"><br>
 
 			              <div class="form-outline mb-4">
+							  
 			                <input type="text" id="username" class="form-control form-control-lg" name="username" required />
 			                <label class="form-label" for="username">Usename</label>
 			              </div>

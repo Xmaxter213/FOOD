@@ -1,3 +1,8 @@
+<?php
+
+include_once ('quantity.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -100,7 +105,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Apple</div>
-                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Apple'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                      
+                       
+
+
+                                  ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +145,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Banana</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Banana'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                     
+                       
+
+
+                                  ?>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +185,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Mango</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Mango'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                      
+                       
+
+
+                                  ?>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -145,7 +225,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Pineapple</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Pineapple'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                      
+                       
+
+
+                                  ?>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -160,7 +265,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Strawberry</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Strawberry'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                      
+                       
+
+
+                                  ?>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -175,7 +305,32 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Orange</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                  <?php
+                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Orange'";
+                                      $result = $conn->query($sql);
+                                      if ($result->num_rows > 0) {
+                                           echo "";
+                                          // output data of each row
+                                      while($row = $result->fetch_assoc()) 
+                                      {
+                                        echo "Quantity: " . $row['quantity']. "<br>";
+                                          
+                                          
+                                           }
+                                          
+                  
+                                      } 
+                                      else 
+                                      {
+                                          echo "0";
+                                      }  
+                                      
+                                      $conn->close();
+
+
+                                  ?>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -390,32 +545,27 @@
         </footer>
         <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" >
+            <div class="modal-dialog" >
+                <div class="modal-content" >
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <div class="modal-body">
+                                <div class="modal-body"  >
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Apple</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Apple1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
+                                    
+                                    <a href = "../View Product/Apple/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        Close Page
                                     </button>
                                 </div>
                             </div>
@@ -426,17 +576,17 @@
         </div>
         <!-- Portfolio item 2 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+            <div class="modal-dialog" >
+                <div class="modal-content" style="background-image: url('banana Rainning.gif');">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
+                    <div class="container" >
+                        <div class="row justify-content-center" >
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <h2 class="text-uppercase">Banana</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Banana1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>
@@ -448,6 +598,10 @@
                                             Graphic Design
                                         </li>
                                     </ul>
+                                    <a href = "../View Product/Banana/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
@@ -471,7 +625,7 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Project Name</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Mango1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>
@@ -483,6 +637,10 @@
                                             Identity
                                         </li>
                                     </ul>
+                                    <a href = "../View Product/Mango/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
@@ -506,7 +664,7 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Project Name</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Pineapple1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>
@@ -518,6 +676,10 @@
                                             Branding
                                         </li>
                                     </ul>
+                                    <a href = "../View Product/Pineapple/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
@@ -541,7 +703,7 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Project Name</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Strawberry1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>
@@ -553,6 +715,10 @@
                                             Website Design
                                         </li>
                                     </ul>
+                                    <a href = "../View Product/Strawberry/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
@@ -576,7 +742,7 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Project Name</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Orange1.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>
@@ -588,6 +754,10 @@
                                             Photography
                                         </li>
                                     </ul>
+                                    <a href = "../View Product/Orange/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Page
+                                        </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
