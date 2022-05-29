@@ -7,7 +7,7 @@ require_once('Connection.php');
 ?>
 <html>
   <head>
-    <title>Title of the document</title>
+    
   </head>
   <style>
       #addedProducts{
@@ -40,5 +40,6 @@ require_once('Connection.php');
                 
  
                 ?>
+                </div>
   </body>
 </html>
