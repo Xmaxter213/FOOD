@@ -2,9 +2,6 @@
 
 session_start();
 include_once ('quantity.php');
-<<<<<<< HEAD
-    
-
 
     if(!isset($_SESSION['userlogin']))
     {
@@ -19,9 +16,7 @@ include_once ('quantity.php');
     }
 
 
-=======
 require_once('../View Cart/Connection.php');
->>>>>>> 06087ed7f93af398c2bb94eb12e8bb7eda0a6410
 ?>
 
 <!DOCTYPE html>
