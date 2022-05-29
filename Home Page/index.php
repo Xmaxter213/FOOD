@@ -520,8 +520,9 @@ require_once('../View Cart/Connection.php');
         <!-- Portfolio item 1 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" >
             <div class="modal-dialog" >
-                <div class="modal-content" >
+                <div class="modal-content"  style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('Apple_Rain.gif');">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -540,6 +541,7 @@ require_once('../View Cart/Connection.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Page
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -597,8 +599,9 @@ require_once('../View Cart/Connection.php');
         <!-- Portfolio item 3 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('mango_rain.gif');">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -617,6 +620,7 @@ require_once('../View Cart/Connection.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -627,8 +631,9 @@ require_once('../View Cart/Connection.php');
         <!-- Portfolio item 4 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('pineapple_rain.gif');">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -647,6 +652,7 @@ require_once('../View Cart/Connection.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -657,8 +663,9 @@ require_once('../View Cart/Connection.php');
         <!-- Portfolio item 5 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('strawberry_rain.gif');">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -677,6 +684,7 @@ require_once('../View Cart/Connection.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -687,8 +695,9 @@ require_once('../View Cart/Connection.php');
         <!-- Portfolio item 6 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('orange_rain.gif');">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -707,6 +716,7 @@ require_once('../View Cart/Connection.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
