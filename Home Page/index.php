@@ -1,6 +1,23 @@
 <?php
 
+session_start();
 include_once ('quantity.php');
+    
+
+
+    if(!isset($_SESSION['userlogin']))
+    {
+        header("Location: ../Login Page/Login_new.php");
+    }
+
+        if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../Login Page/login_new.php");
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +56,7 @@ include_once ('quantity.php');
                     </ul>
                     <a  class="nav-link" href="../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>

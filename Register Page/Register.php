@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../config.php';
  
 
 
@@ -113,7 +113,9 @@ require_once 'config.php';
 										'title': 'Successful',
 										'text': data,
 										'type': 'success'
-										})
+										}).then(function(){
+											window.location = "../Login Page/Login_new.php";
+										});
 									
 							},
 							error: function(data){
