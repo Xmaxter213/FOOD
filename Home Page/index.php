@@ -8,7 +8,7 @@ include_once ('quantity.php');
         header("Location: ../Login Page/Login_new.php");
     }
 
-        if(isset($_GET['logout']))
+    if(isset($_GET['logout']))
     {
         session_destroy();
         unset($_SESSION);
