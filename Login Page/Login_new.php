@@ -1,18 +1,18 @@
+<?php 
+	
+	session_start();
+
+	if(isset($_SESSION['userlogin']))
+	{
+		header("Location: ../Home Page/index.php");
+	}
+?>
 <!DOCTYPE html>
 <html>
     
 <head>
-		<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-    <link rel="stylesheet" href="Style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -65,16 +65,16 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input type="text" name="email" id="email" class="form-control input_user" required>
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+							<input type="password" name="password" id="password" class="form-control input_pass" required>
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn">Login</button>
+				 	<button type="button" name="button" class="btn login_btn" id="login">Login</button>
 				   </div>
 					</form>
 				</div>
@@ -93,7 +93,48 @@
 			</div>
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function()
+		{
+			$('#login').click(function(e){
+				var valid = this.form.checkValidity();
 
+				if(valid)
+				{
+
+					var email = $('#email').val();
+					var password = $('#password').val();
+
+				}
+
+				e.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: 'jslogin.php',
+					data: {email: email, password: password},
+					success: function(data)
+					{
+						alert(data);
+						if($.trim(data) === "1")
+						{
+							setTimeout('window.location.href = "../Home Page/index.php"', 1000);
+						}
+					},
+					error: function(data)
+					{
+						alert('There were errors while doing the operation.');
+					}
+				})
+			})
+		})
+</script>
+
+		
+
+	
 
 </body>
 </html>

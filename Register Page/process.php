@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');
+require_once('../config.php');
 ?>
 <?php
 
@@ -9,7 +9,7 @@ if(isset($_POST)){
 		$lastname  = $_POST['lastname'];
 		$username  = $_POST['username'];
 		$email     = $_POST['email'];
-		$password  = sha1($_POST['password']);
+		$password  = $_POST['password'];
 
 		$sql = "INSERT INTO userTable (firstName,lastName,username,email,password) VALUES(?,?,?,?,?)";
 		$stmtinsert = $db->prepare($sql);
@@ -19,6 +19,8 @@ if(isset($_POST)){
 		}else{
 			echo 'There were erros while saving the data.';
 		}
-}else{
+}
+else
+{
 	echo 'No data';
 }

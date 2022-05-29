@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../config.php';
  
 
 
@@ -52,7 +52,7 @@ require_once 'config.php';
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="password" id="password" class="form-control form-control-lg" name="password" required pattern="\S(.*\S)?(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"> />
+			                <input type="password" id="password" class="form-control form-control-lg" name="password" required pattern="\S(.*\S)?(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
 			                <label class="form-label" for="password">Password</label>
 			              </div>
 
@@ -118,7 +118,9 @@ require_once 'config.php';
 										'title': 'Successful',
 										'text': data,
 										'type': 'success'
-										})
+										}).then(function(){
+											window.location = "../Login Page/Login_new.php";
+										});
 									
 							},
 							error: function(data){

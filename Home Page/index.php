@@ -1,6 +1,21 @@
 <?php
 
+session_start();
 include_once ('quantity.php');
+
+    if(!isset($_SESSION['userlogin']))
+    {
+        header("Location: ../Login Page/Login_new.php");
+    }
+
+        if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../Login Page/login_new.php");
+    }
+
+
 require_once('../View Cart/Connection.php');
 ?>
 
@@ -63,6 +78,7 @@ require_once('../View Cart/Connection.php');
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>
