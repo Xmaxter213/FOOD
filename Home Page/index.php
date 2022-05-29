@@ -5,6 +5,7 @@ include_once ('quantity.php');
 
     if(!isset($_SESSION['userlogin']))
     {
+        $user1 = $_POST[$_SESSION['userlogin'] = $username];
         header("Location: ../Login Page/Login_new.php");
     }
 
@@ -77,7 +78,8 @@ require_once('../View Cart/Connection.php');
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                       ?></a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
                     <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
@@ -380,7 +382,7 @@ require_once('../View Cart/Connection.php');
         <!-- About-->
         
         <!-- Team-->
-        <section class="page-section bg-light" id="team">
+        <!-- <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
@@ -432,9 +434,9 @@ require_once('../View Cart/Connection.php');
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
             </div>
-        </section>
+        </section>-->
         <!-- Clients-->
-        <div class="py-5">
+        <!--<div class="py-5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-3 col-sm-6 my-3">
@@ -451,7 +453,7 @@ require_once('../View Cart/Connection.php');
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
@@ -520,7 +522,7 @@ require_once('../View Cart/Connection.php');
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; F.O.O.D 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -539,7 +541,7 @@ require_once('../View Cart/Connection.php');
             <div class="modal-dialog" >
                 <div class="modal-content"  style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('Apple_Rain.gif');">
+                    <div style="background-image: url('RF/Apple_Rain.gif'); background-repeat:no-repeat;background-size: cover; ">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -572,7 +574,7 @@ require_once('../View Cart/Connection.php');
                 <div class="modal-content"  style="background-color: #D4F1F4;">
                   
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('banana Rainning.gif');">
+                    <div style="background-image: url('RF/banana Rainning.gif'); background-repeat:no-repeat;background-size: cover;">
                     <div class="container" >
                       
                         <div class="row justify-content-center" >
@@ -617,7 +619,7 @@ require_once('../View Cart/Connection.php');
             <div class="modal-dialog">
                 <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('mango_rain.gif');">
+                    <div style="background-image: url('RF/mango_rain.gif'); background-repeat:no-repeat;background-size: cover;">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -649,7 +651,7 @@ require_once('../View Cart/Connection.php');
             <div class="modal-dialog">
                 <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('pineapple_rain.gif');">
+                    <div style="background-image: url('RF/pineapple_rain.gif'); background-repeat:no-repeat;background-size: cover;">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -681,7 +683,7 @@ require_once('../View Cart/Connection.php');
             <div class="modal-dialog">
                 <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('strawberry_rain.gif');">
+                    <div style="background-image: url('RF/strawberry_rain.gif'); background-repeat:no-repeat;background-size: cover;">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -713,7 +715,7 @@ require_once('../View Cart/Connection.php');
             <div class="modal-dialog">
                 <div class="modal-content" style="background-color: #D4F1F4;">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('orange_rain.gif');">
+                    <div style="background-image: url('RF/orange_rain.gif'); background-repeat:no-repeat;background-size: cover;">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">

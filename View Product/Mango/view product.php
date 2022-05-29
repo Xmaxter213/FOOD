@@ -1,4 +1,20 @@
+<?php
 
+session_start();
+
+    if(!isset($_SESSION['userlogin']))
+    {
+        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        header("Location: ../../Login Page/Login_new.php");
+    }
+
+    if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../../Login Page/login_new.php");
+    }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <!-- Core theme CSS (includes Bootstrap)-->
+       <link href="css/styles.css" rel="stylesheet" />
 	<style>
         *{
             margin: 0;
@@ -116,30 +134,28 @@
         }
     </script>
 
-<nav class="navbar navbar-expand-lg navbar-dark  fixed-top py-1"style="background-color: #0E86D4;">
-    <div class="container-fluid" >
-      
-        <a class="navbar-brand" href="#" ><img class="float-end" src="photos/FinalLogo.png" height="50" width="50"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse sticky-top" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../../Home Page/index.php" style="font-size: 20px;">HOME
-              
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#" style="font-size: 20px;">PRODUCTS</a>
-          </li>
-        </ul>
-        <a  class="nav-link" href="../../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></a></li>
-        <a class="button" href="../../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
-      </div>
-    </div>
-  </nav>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #0E86D4;">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">F.O.O.D</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="../../Home Page/index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#portfolio">Product</a></li>
+                        
+                    </ul>
+                    <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                       ?></a>
+                    <a style="font-size: 20px;">&nbsp/&nbsp</a>
+                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
+                </div>
+            </div>
+        </nav>
 
 
     <div class = "container">
