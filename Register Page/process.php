@@ -9,7 +9,7 @@ if(isset($_POST)){
 		$lastname  = $_POST['lastname'];
 		$username  = $_POST['username'];
 		$email     = $_POST['email'];
-		$password  = $_POST['password'];
+		$password  = sha1($_POST['password']);
 
 		$sql = "INSERT INTO userTable (firstName,lastName,username,email,password) VALUES(?,?,?,?,?)";
 		$stmtinsert = $db->prepare($sql);

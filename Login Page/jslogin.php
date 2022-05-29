@@ -4,7 +4,7 @@ require_once('../config.php');
 
 
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = sha1($_POST['password']);
 
 
 $sql = "SELECT * FROM userTable WHERE email = ? AND password = ? LIMIT 1";
