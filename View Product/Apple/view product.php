@@ -144,20 +144,13 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/apple.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/apple.jpeg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
-<<<<<<< HEAD
-                <td><img src="photos/apple.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/apple.jpg')" /></td>
-                <td><img src="photos/apple2.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/apple2.jpg')" /></td>
-                <td><img src="photos/apple3.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/apple3.jpg')" /></td>
+                <td><img src="photos/apple.jpeg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/apple.jpeg')" /></td>
+                <td><img src="photos/apple2.jpeg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/apple2.jpeg')" /></td>
+                <td><img src="photos/apple3.jpeg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/apple3.jpeg')" /></td>
                 <td><img src="photos/apple4.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/apple4.jpg')" /></td>
-=======
-                <td><img src="photos/apple.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/apple.jpg')"/></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/test.jpg')" /></td>
-                <td><img src="photos/apple.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/apple.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/test.jpg')" /></td>
->>>>>>> 28fc85630e45742353b2c6d5a8b0d0ca3957ce47
                 </tr>
             </table>
         </div>
