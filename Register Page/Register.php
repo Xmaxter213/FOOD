@@ -25,39 +25,39 @@ require_once 'config.php';
 			          <div class="card-body p-5">
 			            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-			            <form action = "Register.php" method="post">
+			            <form action = "Register.php" method="post" onSubmit = "return validateForm()">
 
 			              <hr class="mb-3"><br>
 
 			              <div class="d-flex justify-content-between">
 							<div class="form-outline mb-4">
-			                <input type="text" id="firstname" class="form-control form-control-lg" name="firstname" required />
+			                <input type="text" id="firstname" class="form-control form-control-lg" name="firstname" style="text-transform: capitalize;" required pattern="\S(.*\S)?[A-Za-z]" title="Must only contain letters without spaces and numbers."/>
 			                <label class="form-label" for="firstname">First Name</label>
 			              </div>
 			              <div class="form-outline mb-4">
-			                <input type="text" id="lastname" class="form-control form-control-lg" name="lastname" required />
+			                <input type="text" id="lastname" class="form-control form-control-lg" name="lastname" style="text-transform: capitalize;" required pattern="\S(.*\S)?[A-Za-z]" title="Must only contain letters without spaces and numbers."/>
 			                <label class="form-label" for="lastname">Last Name</label>
 			              </div>
 						  </div>
 
 			              <div class="form-outline mb-4">
 							  
-			                <input type="text" id="username" class="form-control form-control-lg" name="username" required />
+			                <input type="text" id="username" class="form-control form-control-lg" name="username" pattern ="\S(.*\S)?[a-zA-Z0-9-]" required title="Must only contain letters and numbers"/>
 			                <label class="form-label" for="username">Usename</label>
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="email" id="email" class="form-control form-control-lg" name="email" required />
+			                <input type="email" id="email" class="form-control form-control-lg" name="email" required/>
 			                <label class="form-label" for="email">Your Email</label>
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="password" id="password" class="form-control form-control-lg" name="password" required />
+			                <input type="password" id="password" class="form-control form-control-lg" name="password" required pattern="\S(.*\S)?(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"> />
 			                <label class="form-label" for="password">Password</label>
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="password" id="re-password" class="form-control form-control-lg"  name="re-password" />
+			                <input type="password" id="re-password" class="form-control form-control-lg"  name="re-password" required pattern="\S(.*\S)?"/>
 			                <label class="form-label" for="form3Example4cdg">Repeat your password</label>
 			              </div>
 
@@ -88,7 +88,12 @@ require_once 'config.php';
 
 			var password     = $('#password').val();
 			var repassword   = $('#re-password').val();
-
+			
+			if(repassword == "")
+			{
+				return;
+			}
+			
 			if(password.length != 0)
 			{
 				if(password == repassword)
@@ -142,6 +147,19 @@ require_once 'config.php';
 			}
 		});		
 	});
+
+	function validateForm() {
+  console.log(1);
+    var username = document.getElementById("username").value; 
+    if (/^[A-Z]\D{2,30}$/.test(username) == false)
+    {
+        document.getElementById("username").innerHTML = "Your email must be filled"; 
+        return false;
+    {
+    return name;
+}
+    }
+}
 	
 </script>
 </body>

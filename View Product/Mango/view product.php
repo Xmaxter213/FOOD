@@ -76,6 +76,11 @@
             width: 20em;
             height: 14em;
             margin: 12em 2em;
+            border: 2px solid black;
+        }
+
+        .description p{
+            margin: 5%;
         }
 
         .button{
@@ -139,13 +144,13 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/test.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/mango3.jpg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
-                <td><img src="photos/mango.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/mango.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/test.jpg')" /></td>
+                <td><img src="photos/mango3.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/mango3.jpg')" /></td>
+                <td><img src="photos/mango2.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/mango2.jpg')" /></td>
                 <td><img src="photos/mango.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/mango.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/test.jpg')" /></td>
+                <td><img src="photos/mango4.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/mango4.jpg')" /></td>
                 </tr>
             </table>
         </div>
@@ -164,7 +169,7 @@
         <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
     </form>
     <div class = "description">
-            <p>test description hehe hi helloooo hi test pewpewpew brrt ratatatatata</p>
+            <p>A mango is an edible stone fruit produced by the tropical tree Mangifera indica which is believed to have originated from the region between northwestern Myanmar, Bangladesh, and northeastern India.</p>
         </div>
     </div>
 
