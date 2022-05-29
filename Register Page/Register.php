@@ -42,7 +42,7 @@ require_once '../config.php';
 
 			              <div class="form-outline mb-4">
 							  
-			                <input type="text" id="username" class="form-control form-control-lg" name="username" pattern ="\S(.*\S)?[a-zA-Z][0-9-]" required title="Must only contain letters and numbers"/>
+			                <input type="text" id="username" class="form-control form-control-lg" name="username" pattern ="\S(.*\S)?[A-Za-z0-9]+" title="Must only contain letters and numbers"/>
 			                <label class="form-label" for="username">Usename</label>
 			              </div>
 
@@ -80,6 +80,7 @@ require_once '../config.php';
 			  </div>
 			</div>
 </section>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript">
@@ -149,19 +150,6 @@ require_once '../config.php';
 			}
 		});		
 	});
-
-	function validateForm() {
-  console.log(1);
-    var username = document.getElementById("username").value; 
-    if (/^[A-Z]\D{2,30}$/.test(username) == false)
-    {
-        document.getElementById("username").innerHTML = "Your email must be filled"; 
-        return false;
-    {
-    return name;
-}
-    }
-}
 	
 </script>
 </body>
