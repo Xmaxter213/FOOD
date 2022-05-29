@@ -13,6 +13,7 @@
 <head>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	
 </head>
 
 <style>
@@ -41,8 +42,12 @@
 		height: 100%;
 	}
 
-	.d-flex{
-		padding-top: 12%
+	.container{
+		padding-top: 8%;
+	}
+
+	label{
+		float: left;
 	}
 
 </style>
@@ -57,23 +62,27 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 
-				<div class="d-flex justify-content-center form_container">
+				<div class="d-flex">
 					<form>
 					<h1>LOGIN</h1><br>
+					<label class="form-label" for="email">Your Email</label>
 						<div class="input-group mb-3">
-						
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input type="text" name="email" id="email" class="form-control input_user" required>
 						</div>
+						
+						<label class="form-label mb-2" for="password">Your Password</label>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
 							<input type="password" name="password" id="password" class="form-control input_pass" required>
+							
 						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
+						
+						<div class="d-flex justify-content-center mt-3 login_container">
 				 	<button type="button" name="button" class="btn login_btn" id="login">Login</button>
 				   </div>
 					</form>
