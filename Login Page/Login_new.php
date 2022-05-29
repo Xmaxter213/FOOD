@@ -13,19 +13,20 @@
 
 <style>
 	body{
-		
+		height: 100vh;
 	}
 
 	.leftPic{
+		position: relative;
 		float: left;
-		background-color: black;
 		width: 35%;
-		height: 700px;
+		height: 100%;
 		background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('photos/LoginPic.png');
 		border-right: 5px solid black;
 	}
 
 	.leftPic img{
+		position: absolute;
 		margin-left: 15px;
 		margin-top: 80px;
 	}
@@ -37,7 +38,7 @@
 	}
 
 	.d-flex{
-		margin-top: 12%
+		padding-top: 12%
 	}
 
 </style>
@@ -45,7 +46,7 @@
 <body>
 
 	<div class = "leftPic">
-		<img src="photos/Logo.png" width = "500" height = "500" title="Item 1" onclick="showImage('photos/apple.jpg')" />
+		<img src="photos/Logo.png" width = "500" height = "500" title="Logo" onclick="showImage('photos/LoginPic.jpg')" />
 	</div>
 
 	<div class="container h-100">
