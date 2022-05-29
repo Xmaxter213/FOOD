@@ -1,6 +1,7 @@
 <?php
 
 include_once ('quantity.php');
+require_once('../View Cart/Connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,29 @@ include_once ('quantity.php');
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        
+        <style>
+          #cart{            
+            background-color: rgb(63, 63, 63);
+            width: 100%;
+            height: 380px;
+            border-bottom: 5px solid white;
+           
+        }
+        #bottomCart{
+            background-color: rgb(63, 63, 63);
+            width: 100%;
+        }
+
+        #bottomCart p{
+            float: right;
+            margin-right: 40px;
+            color: white;
+            font-size: 20px;
+        }
+
+        </style>
+
     </head>
     <body id="page-top" style="background-color: #D4F1F4;">
         <!-- Navigation-->
@@ -37,7 +61,7 @@ include_once ('quantity.php');
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
-                    <a  class="nav-link" href="../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
                 </div>
             </div>
@@ -524,15 +548,22 @@ include_once ('quantity.php');
             </div>
         </div>
         <!-- Portfolio item 2 modal popup-->
+        
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" >
-                <div class="modal-content" style="background-image: url('banana Rainning.gif');">
+                <div class="modal-content"  style="background-color: #D4F1F4;">
+                  
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div style="background-image: url('banana Rainning.gif');">
                     <div class="container" >
+                      
                         <div class="row justify-content-center" >
+                          
                             <div class="col-lg-8">
+                              
                                 <div class="modal-body">
                                     <!-- Project details-->
+                                    
                                     <h2 class="text-uppercase">Banana</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Banana1.png" alt="..." />
@@ -555,6 +586,7 @@ include_once ('quantity.php');
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
                                     </button>
+                            </div>
                                 </div>
                             </div>
                         </div>
@@ -674,6 +706,35 @@ include_once ('quantity.php');
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--view cart pop up-->
+        <div class="portfolio-modal modal fade" id="viewcart1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <iframe id="cart" src="../View Cart/checkoutcart.php" ></iframe>
+                                    <iframe id="bottomCart" src="viewcartprice.php" ></iframe>
+                                    <br>
+                                    <br>
+                                    <a href = "../View Cart/view cart.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to Cart
+                                        </button></a>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Tab
                                     </button>
                                 </div>
                             </div>
