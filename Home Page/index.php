@@ -78,6 +78,7 @@ require_once('../View Cart/Connection.php');
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                    <a style="font-size: 20px;">&nbsp/&nbsp</a>
                     <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
@@ -547,7 +548,6 @@ require_once('../View Cart/Connection.php');
                                     <h2 class="text-uppercase">Apple</h2>
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Apple1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     
                                     <a href = "../View Product/Apple/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
                                     <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
