@@ -52,7 +52,7 @@ require_once '../config.php';
 			              </div>
 
 			              <div class="form-outline mb-4">
-			                <input type="password" id="password" class="form-control form-control-lg" name="password" required pattern ="\S(.*\S)?[a-zA-Z][0-9-]" title="Must contain at least one (1) number, one (1) letter, no space & special characters, and at least 8 or more characters">
+			                <input type="password" id="password" class="form-control form-control-lg" name="password" required pattern ="\S(.*\S)?[A-Za-z0-9]+" title="Must contain at least one (1) number, one (1) letter, no space & special characters, and at least 8 or more characters">
 			                <label class="form-label" for="password">Password</label>
 			              </div>
 
