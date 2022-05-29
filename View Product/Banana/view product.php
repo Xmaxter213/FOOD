@@ -76,6 +76,11 @@
             width: 20em;
             height: 14em;
             margin: 12em 2em;
+            border: 2px solid black;
+        }
+
+        .description p{
+            margin: 5%;
         }
 
         .button{
@@ -139,12 +144,12 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/banana3.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/banana2.jpg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
-                <td><img src="photos/banana3.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/banana3.jpg')" /></td>
+                <td><img src="photos/banana2.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/banana2.jpg')" /></td>
                 <td><img src="photos/banana4.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/banana4.jpg')" /></td>
-                <td><img src="photos/banana2.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/banana2.jpg')" /></td>
+                <td><img src="photos/banana3.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/banana3.jpg')" /></td>
                 <td><img src="photos/banana1.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/banana1.jpg')" /></td>
                 </tr>
             </table>
@@ -164,7 +169,7 @@
         <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
     </form>
     <div class = "description">
-            <p>Cavendish is the most grown variety in the Philippines, accounting for 53% of all bananas.</p>
+            <p>Cavendish is the most grown variety in the Philippines, accounting for 53% of all bananas. The partnered local farm produces 20% of the country's bananas.</p>
         </div>
     </div>
 

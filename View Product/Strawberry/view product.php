@@ -75,7 +75,12 @@
             float: left;
             width: 20em;
             height: 14em;
-            margin: 12em 2em;
+            margin: 12em 5em;
+            border: 2px solid black;
+        }
+
+        .description p{
+            margin: 2%;
         }
 
         .button{
@@ -139,13 +144,13 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/test.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/strawberry.jpg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
                 <td><img src="photos/strawberry.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/strawberry.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/test.jpg')" /></td>
-                <td><img src="photos/strawberry.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/strawberry.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/test.jpg')" /></td>
+                <td><img src="photos/strawberry2.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/strawberry2.jpg')" /></td>
+                <td><img src="photos/strawberry3.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/strawberry3.jpg')" /></td>
+                <td><img src="photos/strawberry4.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/strawberry4.jpg')" /></td>
                 </tr>
             </table>
         </div>
@@ -158,13 +163,13 @@
     
 
         <label for="productName"><h1>Strawberry</h1></label> <br>
-        <label for="productPrice">Price: ₱15/kilo</label><br>
+        <label for="productPrice">Price: ₱300/kilo</label><br>
         <label for="quantity">Quantity:</label>
         <input name="quantity" id="quantity" value="">  <br><br>
         <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
     </form>
     <div class = "description">
-            <p>test description hehe hi helloooo hi test pewpewpew brrt ratatatatata</p>
+            <p>From Baguio, as the cool climate and highlands are conducive to harvesting farm produce and fruits like strawberries. La Trinidad is the capital of Benguet. It is also known as the Strawberry Capital of the Philippines due to its large plantation of luscious strawberries.</p>
         </div>
     </div>
 

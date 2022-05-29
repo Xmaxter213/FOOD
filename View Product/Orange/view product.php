@@ -76,6 +76,11 @@
             width: 20em;
             height: 14em;
             margin: 12em 2em;
+            border: 2px solid black;
+        }
+
+        .description p{
+            margin: 5%;
         }
 
         .button{
@@ -139,13 +144,13 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/test.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/orange1.jpg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
-                <td><img src="photos/Orange.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/Orange.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/test.jpg')" /></td>
-                <td><img src="photos/Orange.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/Orange.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/test.jpg')" /></td>
+                <td><img src="photos/orange1.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/orange1.jpg')" /></td>
+                <td><img src="photos/orange2.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/orange2.jpg')" /></td>
+                <td><img src="photos/orange3.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/orange3.jpg')" /></td>
+                <td><img src="photos/orange4.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/orange4.jpg')" /></td>
                 </tr>
             </table>
         </div>
@@ -164,7 +169,7 @@
         <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
     </form>
     <div class = "description">
-            <p>test description hehe hi helloooo hi test pewpewpew brrt ratatatatata</p>
+            <p>An orange is a fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus × sinensis, which is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange.</p>
         </div>
     </div>
 

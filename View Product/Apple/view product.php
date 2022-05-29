@@ -76,6 +76,11 @@
             width: 20em;
             height: 14em;
             margin: 12em 2em;
+            border: 2px solid black;
+        }
+
+        .description p{
+            margin: 5%;
         }
 
         .button{
@@ -139,13 +144,13 @@
 
     <div class = "container">
         <div class = "imgContainer">
-            <img id="mainImage" src="photos/test.jpg" width = "400" height = "400" alt = "Product"/> 
+            <img id="mainImage" src="photos/apple.jpeg" width = "400" height = "400" alt = "Product"/> 
             <table id="thumbnails">
                 <tr>
-                <td><img src="photos/apple.jpg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/apple.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/test.jpg')" /></td>
-                <td><img src="photos/apple.jpg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/apple.jpg')" /></td>
-                <td><img src="photos/test.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/test.jpg')" /></td>
+                <td><img src="photos/apple.jpeg" width = "100" height = "100" title="Item 1" onclick="showImage('photos/apple.jpeg')" /></td>
+                <td><img src="photos/apple2.jpeg" width = "100" height = "100" title="Item 2" onclick="showImage('photos/apple2.jpeg')" /></td>
+                <td><img src="photos/apple3.jpeg" width = "100" height = "100" title="Item 3" onclick="showImage('photos/apple3.jpeg')" /></td>
+                <td><img src="photos/apple4.jpg" width = "100" height = "100" title="Item 4" onclick="showImage('photos/apple4.jpg')" /></td>
                 </tr>
             </table>
         </div>
@@ -164,7 +169,7 @@
         <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
     </form>
     <div class = "description">
-            <p>test description hehe hi helloooo hi test pewpewpew brrt ratatatatata</p>
+            <p>From a partnered local farm located in Davao Del Sur. Apple trees take five to seven months to bear fruits in temperate countries.</p>
         </div>
     </div>
 
