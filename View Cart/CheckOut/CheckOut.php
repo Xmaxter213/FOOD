@@ -2,6 +2,19 @@
 
 session_start();
 
+    if(!isset($_SESSION['userlogin']))
+    {
+        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        header("Location: ../Login Page/Login_new.php");
+    }
+
+    if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../Login Page/login_new.php");
+    }
+
 require_once('../Connection.php');
 
 ?>
@@ -12,7 +25,9 @@ require_once('../Connection.php');
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </head>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+      </head>
 
     <style>
       .button{
@@ -27,7 +42,7 @@ require_once('../Connection.php');
     margin-right: 20px;
 }
 
-.container{
+.container1{
     padding-top: 3%;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -35,7 +50,7 @@ require_once('../Connection.php');
 }
 
 .cartBox{
-  width: 600px;
+  width: auto;
   padding: 3%;
   margin: 20px;
   background-color: lightcyan;
@@ -67,28 +82,24 @@ require_once('../Connection.php');
   float: right;
 }
 
-.container{
+.container1{
 }
 
 #Cancel{
   background-color: lightcoral;
   float: right;
-  width: 150px;
+  width: 100px;
   margin-right: 2%;
 }
 
 #Payment{
-  background-color: lightgreen;
-  width: 150px;
-  margin-left: 2%;
-}
 
 .Cart ul li{
   background-color: white;
   border: 1px black solid;
 }
 
-.container-sm{
+.container1-sm{
   padding-top: 3%;
   margin-top: 5%;
   margin-bottom: 2%;
@@ -101,7 +112,7 @@ require_once('../Connection.php');
 }
 
 body{
-  background:  #D4F1F4;                    
+  background: #D4F1F4;                        
 }
       
 .shop{
@@ -232,19 +243,6 @@ p{
 .checkBoxForms{
   padding-top: 50px;
 } 
-
-
-#cart{            
-            background-color: rgb(63, 63, 63);
-            position: absolute;
-            float: left;
-            width: 652px;
-            height: 380px;
-            margin-top: 100px;
-            margin-left: 300px;
-            border-bottom: 5px solid white;
-           
-        }
     </style>
 
 
@@ -266,32 +264,32 @@ p{
       }
     </script>
 
-    <body onload="RandomText()" >
-    <nav class="navbar navbar-expand-lg navbar-dark  sticky-top" style="background-color: #0E86D4;">
-            <div class="container-fluid">
-            <a class="navbar-brand" href="#" ><img class="float-end" src="FinalLogo.png" height="50" width="50"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-          
-              <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="../../Home Page/index.php" style="font-size: 20px;">Home
-                    </a>
-                  </li>
-                  
-                </ul>
-                <a   href="../view cart.php" style=" margin-left: 1350px;  color: black;margin-right: 50px;"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></a></li>
-                <a class="button" href="#" style="font-size: 20px;">Log-In</a>
-              </div>
+    <body onload="RandomText()" style="background-color: #D4F1F4;">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #0E86D4;">
+        <div class="container ">
+                <a class="navbar-brand" href="#page-top">F.O.O.D</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="../../Home Page/index.php">Home</a></li>
+                      
+                    </ul>
+                    <a  class="nav-link"  data-bs-toggle="modal" href="../view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a class="loginbutton" href="#" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                       ?></a>
+                    <a style="font-size: 20px;">&nbsp/&nbsp</a>
+                    <a class="loginbutton" href="../../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
+                </div>
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container1">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="offset-md-2 col-md-4">
                     <div class="SubscriptionType">
                       <h3>ACCOUNT INFORMATION</h3>
                       <div class="row mt-3">
@@ -364,7 +362,7 @@ p{
                     
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="Cart">
                         <label><h3>CART</h3></label>
                           <div class="cartBox">
@@ -408,7 +406,7 @@ p{
                         <div class="PaymentContainer">
                         <div class="Payment">  
                             <ul>
-                                <li class="d-flex justify-content-sm-end"><h2>TOTAL:</h2><p><h2>PHP       
+                            <li class="d-flex justify-content-sm-end"><h2>TOTAL:</h2><p><h2>PHP       
                                   <?php
                 
                                         $total = 0;
@@ -427,12 +425,11 @@ p{
                                     } 
                                     else 
                                         {
-                                           echo "0 results";
+                                           echo "0 ";
                                         }  
                                            $conn->close();
      
-                                  ?>
-                    </h2></p></li>
+                                  ?></h2></p></li>
                             </ul>
                             
                             <button id = "Payment" onclick="myFunction()">Check out</button>
@@ -450,7 +447,7 @@ p{
        
         <section class="">
           <footer class="bg-secondary text-white text-center text-md-start">
-            <div class="container-sm">
+            <div class="container1-sm">
               <div class="row">
                 <div class="col-md-6">
                   <h3 class="text-uppercase">Fruit Facts</h3>

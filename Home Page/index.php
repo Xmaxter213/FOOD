@@ -74,7 +74,7 @@ require_once('../View Cart/Connection.php');
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#services">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
@@ -756,9 +756,9 @@ require_once('../View Cart/Connection.php');
                                     <iframe id="bottomCart" src="viewcartprice.php" ></iframe>
                                     <br>
                                     <br>
-                                    <a href = "../View Cart/view cart.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <a href = "../View Cart/CheckOut/CheckOut.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
                                     <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Cart
+                                        Go to CheckOut
                                         </button></a>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>

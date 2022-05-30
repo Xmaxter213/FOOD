@@ -2,6 +2,19 @@
 
 session_start();
 
+    if(!isset($_SESSION['userlogin']))
+    {
+        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        header("Location: ../Login Page/Login_new.php");
+    }
+
+    if(isset($_GET['logout']))
+    {
+        session_destroy();
+        unset($_SESSION);
+        header("location: ../Login Page/login_new.php");
+    }
+
 require_once('Connection.php');
 
 
@@ -110,8 +123,11 @@ require_once('Connection.php');
                         <li class="nav-item"><a class="nav-link" href="../Home Page/index.php">Home</a></li>
                         
                     </ul>
-                    <a  class="nav-link" href="../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a  href="../Login Page/Login_new.php" style="font-size: 20px;">Log-In</a>
+                    <a  class="nav-link active" href="#" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                       ?></a>
+                    <a style="font-size: 20px;">&nbsp/&nbsp</a>
+                    <a class="loginbutton" href="../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>

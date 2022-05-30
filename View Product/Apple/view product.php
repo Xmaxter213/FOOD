@@ -151,11 +151,11 @@ session_start();
                         <li class="nav-item"><a class="nav-link active" href="#portfolio">Product</a></li>
                         
                     </ul>
-                    <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a  class="nav-link"  data-bs-toggle="modal" href="../../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
                        ?></a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
-                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
+                    <a class="loginbutton" href="../../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>
