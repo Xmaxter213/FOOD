@@ -24,7 +24,7 @@ if($result)
 		$_SESSION['userlogin'] = $user;
 		
 		 echo "1";
-		
+		 
 	}
 	else
 	{

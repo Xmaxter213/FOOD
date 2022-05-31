@@ -72,13 +72,13 @@ require_once('../View Cart/Connection.php');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#page-top">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                    <a class="loginbutton" href="#" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin'];echo implode (" ",$_SESSION_user);/*spacing if many array (" ",$_SESSION_user)*/
                        ?></a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
                     <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
@@ -98,7 +98,7 @@ require_once('../View Cart/Connection.php');
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">We offer best quality fruits.</h3>
+                    <!--<h3 class="section-subheading text-muted">We offer best quality fruits.</h3>-->
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
