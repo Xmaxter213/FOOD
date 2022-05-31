@@ -5,8 +5,12 @@ include_once ('quantity.php');
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
-        header("Location: ../Login Page/Login_new.php");
+        
+
+    }
+    else
+    {
+        $name = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -78,8 +82,18 @@ require_once('../View Cart/Connection.php');
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a class="loginbutton" href="#" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin'];echo implode (" ",$_SESSION_user);/*spacing if many array (" ",$_SESSION_user)*/
-                       ?></a>
+                    <a class="loginbutton" href="#" style="font-size: 20px;">
+                        <?php  
+                        if (isset($_SESSION['userlogin']))
+                            {
+                                $_SESSION_user= $_SESSION['userlogin'];echo implode (" ",$_SESSION_user);/*spacing if many array (" ",$_SESSION_user)*/
+                            }
+                        else{
+                                echo 'anon';
+                            }
+                            ?>
+                            
+                        </a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
                     <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>

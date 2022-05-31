@@ -96,7 +96,7 @@
 						<a href="#">Forgot your password?</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">Go to Home</a>
+						<a href="../Home Page/index.php">Go to Home</a>
 					</div>
 				</div>
 			</div>
