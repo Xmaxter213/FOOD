@@ -22,9 +22,7 @@ if($result)
 		$user = $getuser->fetch(PDO::FETCH_ASSOC);
 
 		$_SESSION['userlogin'] = $user;
-		
-		 echo "1";
-		 
+		echo 'Successfully';
 	}
 	else
 	{
