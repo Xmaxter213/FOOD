@@ -22,6 +22,7 @@ include_once ('quantity.php');
 
 
 require_once('../View Cart/Connection.php');
+require_once('ProductCard.php');
 ?>
 
 <!DOCTYPE html>
@@ -142,246 +143,27 @@ require_once('../View Cart/Connection.php');
                     <h3 class="section-subheading text-muted">Numerous fruits to choose from, sourced locally from the country. Each fruit is inspected to deliver them on their best condition.</h3>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 1-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/Apple.jpeg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Apple</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Apple'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                      
-                       
+                <?php
+                    
+                    $sql = "SELECT productName, quantity, portfolioNum, productImg, productBg FROM productTable";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "";
+                        // output data of each row
+                    while($row = $result->fetch_assoc()) 
+                    {
+                        productCard($row['productName'], $row['quantity'], $row['portfolioNum'], $row['productImg'], $row['productBg']);
 
+                        }
+                        
 
-                                  ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/banana3.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Banana</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Banana'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                     
-                       
+                    } 
+                    else 
+                    {
+                        echo "0";
+                    }
+                    ?>
 
-
-                                  ?>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/mango.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Mango</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Mango'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                      
-                       
-
-
-                                  ?>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <!-- Portfolio item 4-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/pineapple3.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Pineapple</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Pineapple'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                      
-                       
-
-
-                                  ?>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <!-- Portfolio item 5-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/strawberry2.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Strawberry</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Strawberry'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                      
-                       
-
-
-                                  ?>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <!-- Portfolio item 6-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="assets/img/portfolio/orange1.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Orange</div>
-                                <div class="portfolio-caption-subheading text-muted">
-                                  <?php
-                                      $sql = "SELECT quantity FROM productTable WHERE productTable.productName ='Orange'";
-                                      $result = $conn->query($sql);
-                                      if ($result->num_rows > 0) {
-                                           echo "";
-                                          // output data of each row
-                                      while($row = $result->fetch_assoc()) 
-                                      {
-                                        echo "Quantity: " . $row['quantity']. "<br>";
-                                          
-                                          
-                                           }
-                                          
-                  
-                                      } 
-                                      else 
-                                      {
-                                          echo "0";
-                                      }  
-                                      
-                                      $conn->close();
-
-
-                                  ?>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
