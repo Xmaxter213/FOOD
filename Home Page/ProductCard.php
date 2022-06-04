@@ -1,6 +1,6 @@
 <?php
 
-function productCard($productName, $productQty, $portfolioModalNum, $productImg, $productBg){
+function productCard($productName, $productQty, $portfolioModalNum, $productPageDirectory, $productImg, $productBg){
     $element ="
     
     <div class=\"portfolio-item mt-5\">
@@ -31,7 +31,7 @@ function productCard($productName, $productQty, $portfolioModalNum, $productImg,
                                                     <p class=\"item-intro text-muted\">Lorem ipsum dolor sit amet consectetur.</p>
                                                     <img class=\"img-fluid d-block mx-auto\" src=\"$productImg\" alt=\"...\" />
                                                     
-                                                    <a href = \"../View Product/Apple/view product.php\"><button class=\"btn btn-primary btn-xl text-uppercase\"  type=\"button\">
+                                                    <a href = \"../$productPageDirectory\"><button class=\"btn btn-primary btn-xl text-uppercase\"  type=\"button\">
                                                     <i class=\"fa fa-shopping-cart fa-1x\" aria-hidden=\"true\"></i>
                                                         Go to Page
                                                         </button></a>
