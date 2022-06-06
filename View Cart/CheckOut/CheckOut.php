@@ -92,7 +92,14 @@ require_once('../Connection.php');
   margin-right: 2%;
 }
 
-#Payment{
+#bottomCart{
+            background-color: rgb(63, 63, 63);
+            position: absolute;
+            float: left;
+            width: 650px;
+            margin-top: 530px;
+            margin-left: 300px;
+        }
 
 .Cart ul li{
   background-color: white;
@@ -309,17 +316,30 @@ p{
                         <div><p></p></div>
                         <div class="col-md-12">
                           <label><h3>Payment Information</h3></label>
-                          <input type="text" name="pay_info" class="form-control" value="" />
+                          <input type="text" name="pay_info" id="CardNum" class="form-control" value="" minlength="16" maxlength="16" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                         </div>
                       </div>
                       <div class="row mt-3">
                         <div class="col-md-2 offset-md-4">
-                          <label>EXP</label>
-                          <input type="text" name="first_name" class="form-control" value="" />
+                          <label>MONTH</label>
+                          <select class="form-control"   aria-label=".form-select-lg example">
+                            <option selected value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select> 
                         </div>
                           <div class="col-md-2 offset-md-1">
-                            <label>IDK  </label>
-                            <input type="text" name="last_name" class="form-control" value="" />
+                            <label>YEAR</label>
+                            <input type="text" name="last_name"  class="form-control" value="" min="1" max="99" minlength="1" maxlength="2" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                           </div>
                           <div class="col-md-2 offset-md-1">
                             <label>CCV</label>
@@ -330,15 +350,12 @@ p{
                         <label><h3>Subscription type:</h3></label>
                         <div class="col-md-4">
                           <div class="input-group">
-                            <input type="text" class="form-control" id="subscriptText" aria-label="Text input with segmented dropdown button">
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                              <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                              <li><a class="dropdown-item" href="#">Daily</a></li>
-                              <li><a class="dropdown-item" href="#">Weekly</a></li>
-                              <li><a class="dropdown-item" href="#">Yearly</a></li>
-                            </ul>
+                          <select class="form-select" aria-label=".form-select-lg example">
+                            <option selected></option>
+                            <option value="1">Daily</option>
+                            <option value="2">Weekly</option>
+                            <option value="3">Yearly</option>
+                          </select>
                           </div>
                         </div>
                       </div>
@@ -401,8 +418,14 @@ p{
                               </div>
                           </div>
                         </div>
+
+
+
+                        
                       </div>
-                      <div class="offset-md-4">
+
+                      
+                      <div class="offset-md-6 col-md-6">
                         <div class="PaymentContainer">
                         <div class="Payment">  
                             <ul>
@@ -410,7 +433,7 @@ p{
                                   <?php
                 
                                         $total = 0;
-                                         $result = $conn->query($sql);
+                                        $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
                                       echo "";
                                         // output data of each row
@@ -432,7 +455,7 @@ p{
                                   ?></h2></p></li>
                             </ul>
                             
-                            <button id = "Payment" onclick="myFunction()">Check out</button>
+                            <button type="button" name="Payment" id = "Payment" >Check out</button>
                             <button id = "Cancel" onclick="myFunction()">Cancel</button>
                         </div>
                         </div>
@@ -445,7 +468,7 @@ p{
 
 
        
-        <section class="">
+        <!--<section class="">
           <footer class="bg-secondary text-white text-center text-md-start">
             <div class="container1-sm">
               <div class="row">
@@ -466,7 +489,59 @@ p{
               Fruits on our Door
             </div>
           </footer>
-        </section>
+        </section>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script type="text/javascript">
+  $(function()
+    {
+      $('#Payment').click(function(e){
+
+          var CardNum = $('#CardNum').val();
+
+        e.preventDefault();
+
+        $.ajax({
+          type: 'POST',
+          url: 'jspayment.php',
+          data: {CardNum: CardNum},
+          success: function(data){
+            if(data === "card is valid")
+            {
+              Swal.fire({
+                    'title': 'Successful',
+                    'text': data,
+                    'type': 'success'
+                    }).then(function(){
+                      window.location = "Success.php";
+                    })
+                    
+            }
+            else
+            {
+              Swal.fire({
+                    'title': 'Erorrs',
+                    'text': data,
+                    'type': 'error'
+                    })
+            }
+                  
+              },
+              error: function(data){
+                Swal.fire({
+                    'title': 'Errors',
+                    'text': 'There were errors',
+                    'type': 'error'
+                    })
+              }
+        })
+      })
+    })
+
+
+</script>
     </body>
+
 
 </html>
