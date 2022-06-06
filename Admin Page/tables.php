@@ -1,7 +1,42 @@
 <?php
 
-require_once('AdminTableShowProducts.php');
+
 require_once('../View Cart/Connection.php');
+include('message.php');
+
+if(isset($_POST['save']))
+{
+    $productID = $_POST['ProductID'];
+
+    $productName = $_POST['ProductName'];
+    $productPrice = $_POST['ProductPrice'];
+    $Quantity = $_POST['Quantity'];
+    $portfolioNum = $_POST['PortfolioNumber'];
+    $productPageDirectory = $_POST['productPageDirectory'];
+    $productImg = $_POST['ProducyImage'];
+    $productBg = $_POST['ProductBackground'];
+
+    $query="UPDATE productTable SET productName='$productName', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productPageDirectory='$productPageDirectory', productImg='$productImg', productBg='$productBg' WHERE productID='$productID' ";
+    $query_run = mysqli_query($conn, $query);
+    
+    if($query_run)
+    {
+        $_SESSION['message'] = "Catagory Updated Successfully";
+        header('Location: tables.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Someting Went Wrong !";
+        header('Location: tables.php');
+        exit(0);
+    }
+} 
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +63,6 @@ require_once('../View Cart/Connection.php');
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet" />
 
 </head>
 
@@ -189,6 +223,7 @@ require_once('../View Cart/Connection.php');
                                             <th>Product Price</th>
                                             <th>Quantity</th>
                                             <th>Portfolio Number</th>
+                                            <th>productPageDirectory</th>
                                             <th>Product Image</th>
                                             <th>Product Background</th>
                                             <th>Edit Product</th>
@@ -202,6 +237,7 @@ require_once('../View Cart/Connection.php');
                                             <th>Product Price</th>
                                             <th>Quantity</th>
                                             <th>Portfolio Number</th>
+                                            <th>productPageDirectory</th>
                                             <th>Product Image</th>
                                             <th>Product Background</th>
                                             <th>Edit Product</th>
@@ -209,19 +245,43 @@ require_once('../View Cart/Connection.php');
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    
                                         <?php
-                                            $sql = "SELECT productID ,productName, productPrice, quantity, portfolioNum, productImg, productBg FROM productTable";
+                                            $count =0;
+                                            $sql = "SELECT * FROM productTable";
                                             $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 echo "";
                                                 // output data of each row
                                             while($row = $result->fetch_assoc()) 
-                                            {
+                                            {   
+                                                $count = $count + 1;
+                                                ?>
+                                            <tr>
+                                            <td><?php echo $row['productID'];?></td>
+                                            <td><?php echo $row['productName'];?></td>
+                                            <td><?php echo $row['productPrice'];?></td>
+                                            <td><?php echo $row['quantity'];?></td>
+                                            <td><?php echo $row['portfolioNum'];?></td>
+                                            <td><?php echo $row['productPageDirectory'];?></td>
+                                            <td><?php echo $row['productImg'];?></td>
+                                            <td><?php echo $row['productBg'];?></td>
+                                            <td>
+                                                    <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
                                                 
-                                                adminfunction($row['productID'], $row['productName'],$row['productPrice'],$row['quantity'], $row['portfolioNum'], $row['productImg'], $row['productBg']);
-                        
+                                            </td>
+
+                                            <td>
+                                                    <form action="Admin_Delete.php" method="POST">
+                                                
+                                                    <button type="submit" name="admindelete" value="<?= $row['productID'] ?>" class="btn btn-danger">Delete</a>
+                                                    </form>
+                                            </td>
+                                            </tr>  
+                                            <?php
+                                               
                                                 }
-                                                
+                                               
                         
                                             } 
                                             else 
@@ -229,8 +289,9 @@ require_once('../View Cart/Connection.php');
                                                 echo "0";
                                             }
                                         ?>
+                                       
                                         
-                                        
+                                    
                                     </tbody>
                                 </table>
                             </div>
