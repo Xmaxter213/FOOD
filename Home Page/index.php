@@ -1,6 +1,7 @@
 <?php
 
-session_start();
+
+require_once('../View Cart/Connection.php');
 include_once ('quantity.php');
 
     if(!isset($_SESSION['userlogin']))
@@ -21,7 +22,7 @@ include_once ('quantity.php');
     }
 
 
-require_once('../View Cart/Connection.php');
+
 require_once('ProductCard.php');
 ?>
 

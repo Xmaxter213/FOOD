@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+       
         header("Location: ../../Login Page/Login_new.php");
+    }
+    else
+    {
+        $userID = $_SESSION['userID'];
+         $user1 = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -181,8 +186,8 @@ session_start();
         <label for="productName"><h1>Orange</h1></label> <br>
         <label for="productPrice">Price: ₱26/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
     <div class = "description">
             <p>An orange is a fruit of various citrus species in the family Rutaceae; it primarily refers to Citrus × sinensis, which is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange.</p>

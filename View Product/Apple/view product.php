@@ -1,12 +1,25 @@
 <?php
 
 session_start();
+include_once ('addproduct.php');
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        
         header("Location: ../../Login Page/Login_new.php");
     }
+    else
+    {
+        $userID = $_SESSION['userID'];
+        $user1 =$_SESSION['userlogin'];
+    }
+
+    //if(!isset($_SESSION['userID']))
+    //{
+       // $userID = $_POST[$_SESSION['userID'] = $userID];
+      
+   // }
+
 
     if(isset($_GET['logout']))
     {
@@ -152,7 +165,14 @@ session_start();
                         
                     </ul>
                     <a  class="nav-link"  data-bs-toggle="modal" href="../../View Cart/view cart.php" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;"><?php  $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+                    <a class="loginbutton" href="../Login Page/Login_new.php" style="font-size: 20px;">
+                    <?php  
+                        
+                    $_SESSION_user= $_SESSION['userlogin']; echo implode (" ",$_SESSION_user);
+
+                    
+                  
+
                        ?></a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
                     <a class="loginbutton" href="../../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
@@ -179,20 +199,17 @@ session_start();
     <!-- form type -->
     <div class = "secondContainer">
         <form class="addAndInfo" action="adding.php" method="POST">
-    
-
-        <label for="productName"><h1>Apple</h1></label> <br>
+        <label for="productName" ><h1>Apple</h1></label> <br>
         <label for="productPrice">Price: ₱10/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
     <div class = "description">
             <p>From a partnered local farm located in Davao Del Sur. Apple trees take five to seven months to bear fruits in temperate countries.</p>
         </div>
     </div>
 
-    
     
 
     

@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        
         header("Location: ../../Login Page/Login_new.php");
+    }
+    else
+    {
+        $userID = $_SESSION['userID'];
+        $user1 = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -181,8 +186,8 @@ session_start();
         <label for="productName"><h1>Pineapple</h1></label> <br>
         <label for="productPrice">Price: ₱24.5/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
     <div class = "description">
             <p>The pineapple is a tropical plant with an edible fruit; it is the most economically significant plant in the family Bromeliaceae. The pineapple is indigenous to South America, where it has been cultivated for many centuries.</p>

@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        
         header("Location: ../../Login Page/Login_new.php");
+    }
+    else
+    {
+        $user1 = $_SESSION['userlogin'];
+        $userID = $_SESSION['userID'];
     }
 
     if(isset($_GET['logout']))
@@ -181,8 +186,8 @@ session_start();
         <label for="productName"><h1>Mango</h1></label> <br>
         <label for="productPrice">Price: ₱20/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
     <div class = "description">
             <p>A mango is an edible stone fruit produced by the tropical tree Mangifera indica which is believed to have originated from the region between northwestern Myanmar, Bangladesh, and northeastern India.</p>

@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+       
         header("Location: ../../Login Page/Login_new.php");
+    }
+    else
+    {
+        $userID = $_SESSION['userID'];
+         $user1 = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -180,8 +185,8 @@ session_start();
         <label for="productName"><h1>Banana</h1></label> <br>
         <label for="productPrice">Price: ₱21.44/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>" >ADD TO CART</button>
     </form>
     <div class = "description">
             <p>Cavendish is the most grown variety in the Philippines, accounting for 53% of all bananas. The partnered local farm produces 20% of the country's bananas.</p>

@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        
         header("Location: ../Login Page/Login_new.php");
+    }
+    else
+    {
+        $userID = $_SESSION['userID'];
+        $user1 = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -143,6 +148,8 @@ require_once('Connection.php');
         <p id = "totalPrice">TOTAL PRICE: 
         <?php
                 
+                
+
                 $total = 0;
                 $result = $conn->query($sql);
                     if ($result->num_rows > 0) {

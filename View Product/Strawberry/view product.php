@@ -4,8 +4,13 @@ session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
-        $user1 = $_POST[$_SESSION['userlogin'] = $username];
+        
         header("Location: ../../Login Page/Login_new.php");
+    }
+    else
+    {
+        $userID = $_SESSION['userID'];
+        $user1 = $_SESSION['userlogin'];
     }
 
     if(isset($_GET['logout']))
@@ -181,8 +186,8 @@ session_start();
         <label for="productName"><h1>Strawberry</h1></label> <br>
         <label for="productPrice">Price: ₱300/kilo</label><br>
         <label for="quantity">Quantity:</label>
-        <input name="quantity" id="quantity" value="">  <br><br>
-        <button type= "submit"  id="add" name="submit" >ADD TO CART</button>
+        <input name="quantity" id="quantity" value="" required>  <br><br>
+        <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
     <div class = "description">
             <p>From Baguio, as the cool climate and highlands are conducive to harvesting farm produce and fruits like strawberries. La Trinidad is the capital of Benguet. It is also known as the Strawberry Capital of the Philippines due to its large plantation of luscious strawberries.</p>
