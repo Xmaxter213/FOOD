@@ -4,6 +4,39 @@
 require_once('../View Cart/Connection.php');
 include('message.php');
 
+
+if(isset($_POST['add']))
+{
+    $productID = $_POST['ProductID'];
+
+    $productName = $_POST['ProductName'];
+    $productPrice = $_POST['ProductPrice'];
+    $Quantity = $_POST['Quantity'];
+    $portfolioNum = $_POST['PortfolioNumber'];
+    $productPageDirectory = $_POST['productPageDirectory'];
+    $productImg = $_POST['ProducyImage'];
+    $productBg = $_POST['ProductBackground'];
+
+    $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productPageDirectory, productImg, productBg) VALUES ('$productID','$productName', '$productPrice','$Quantity','$portfolioNum', '$productPageDirectory', '$productImg', '$productBg' )";
+    $query_run = mysqli_query($conn, $query);
+
+    if($query_run)
+    {
+        $_SESSION['message'] = "Catagory Updated Successfully";
+        header('Location: tables.php');
+        exit(0);
+    }
+    else
+    {
+        $_SESSION['message'] = "Someting Went Wrong !";
+        header('Location: tables.php');
+        exit(0);
+    }
+
+}
+
+
+
 if(isset($_POST['save']))
 {
     $productID = $_POST['ProductID'];
@@ -214,7 +247,9 @@ if(isset($_POST['save']))
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                           
+                            <div class="table-responsive"> 
+                                <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>

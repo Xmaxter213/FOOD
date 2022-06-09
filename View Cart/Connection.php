@@ -13,17 +13,21 @@ if ($conn->connect_error)  {
 //MySQL query goes here
 
 session_start();
-    if(!isset($_SESSION['userlogin']))
+if (isset($_SESSION['userlogin']))
     {
+        $userID = $_SESSION['userID'];
         
-        header("Location: ../Login Page/Login_new.php");
+        $userID = implode($_SESSION['userID']);
+
+        $sql = "SELECT cartTable.quantity, productTable.productName, productTable.productPrice  FROM productTable, cartTable WHERE productTable.productID = cartTable.productID AND cartTable.userID ='$userID'";
+
     }
     else
     {
-        $userID = $_SESSION['userID'];
+        $sql = "SELECT cartTable.quantity, productTable.productName, productTable.productPrice  FROM productTable, cartTable WHERE productTable.productID = cartTable.productID AND cartTable.userID ='0'";
+
     }
+
     
-$userID = implode($_SESSION['userID']);
-$sql = "SELECT cartTable.quantity, productTable.productName, productTable.productPrice  FROM productTable, cartTable WHERE productTable.productID = cartTable.productID AND cartTable.userID ='$userID'";
 
-
+    

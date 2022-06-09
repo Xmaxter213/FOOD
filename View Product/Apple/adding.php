@@ -6,7 +6,20 @@ $quantity= $_POST['quantity'];
 $userID =  $_POST['submit'];
 
 
-$sql = "INSERT INTO cartTable (userID, productID, quantity) VALUES ('$userID' ,'1', '$quantity'); ";
+$sql = "SELECT productID FROM productTable WHERE productName= 'Apple'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    echo "";
+    // output data of each row
+while($row = $result->fetch_assoc()) 
+{   
+   $productID = $row['productID'];
+ 
+}
+}
+
+
+$sql = "INSERT INTO cartTable (userID, productID, quantity) VALUES ('$userID' ,'$productID', '$quantity'); ";
 mysqli_query($conn, $sql);
 
 

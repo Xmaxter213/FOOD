@@ -197,9 +197,10 @@ include_once ('addproduct.php');
     </div>
     
     <!-- form type -->
+    
     <div class = "secondContainer">
         <form class="addAndInfo" action="adding.php" method="POST">
-        <label for="productName" ><h1>Apple</h1></label> <br>
+        <label for="productName" name="name"><h1>Apple</h1></label> <br>
         <label for="productPrice">Price: ₱10/kilo</label><br>
         <label for="quantity">Quantity:</label>
         <input name="quantity" id="quantity" value="" required>  <br><br>
