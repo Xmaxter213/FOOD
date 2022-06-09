@@ -25,44 +25,56 @@ require_once('../View Cart/Connection.php');
 
     <div class="card">
         <div class="card-header">
-            <h4> Edit Product
+            <h4> Add Product
             <a href="tables.php" class="btn btn-danger float-end" >BACK</a>
             </h4>
         </div> 
         <div class="card-body">
 
-    <form action ="tables.php" method="POST">
+    <form action ="tables.php" method="POST" enctype="multipart/form-data">
         <div>
         <label>ProductID</label>
             <input type="number" name="ProductID"  required class="form-control" placeholder="Enter ProductID">
         </div>
         <div>
             <label>ProductName</label>
-            <input type="text" name="ProductName"  class="form-control" placeholder="Enter ProductName">
+            <input type="text" name="ProductName"  class="form-control" placeholder="Enter ProductName" required>
         </div>
         <div>
             <label>ProductPrice</label>
-            <input type="text" name="ProductPrice"  class="form-control" placeholder="Enter ProductPrice">
+            <input type="text" name="ProductPrice"  class="form-control" placeholder="Enter ProductPrice" required>
         </div>
         <div>
             <label>Quantity</label>
-            <input type="text" name="Quantity"  class="form-control" placeholder="Enter Quantity">
+            <input type="text" name="Quantity"  class="form-control" placeholder="Enter Quantity" required>
         </div>
         <div>
             <label>PortfolioNumber</label>
-            <input type="text" name="PortfolioNumber" class="form-control" placeholder="Enter PortfolioNumber">
-        </div>
-        <div>
-            <label>productPageDirectory</label>
-            <input type="text" name="productPageDirectory"  class="form-control" placeholder="Enter productPageDirectory">
+            <input type="text" name="PortfolioNumber" class="form-control" placeholder="Enter PortfolioNumber" required>
         </div>
         <div>
             <label>ProductImage</label>
-            <input type="text" name="ProducyImage" class="form-control" placeholder="Enter ProducyImage">
+            <input type="file" name="productImg" id="image"  class="form-control" required>
+        </div>
+        <div>
+            <label>ProductImage2</label>
+            <input type="file" name="productImg2" id="image2"  class="form-control" required>
+        </div>
+        <div>
+            <label>ProductImage3</label>
+            <input type="file" name="productImg3" id="image3"  class="form-control" required>
+        </div>
+        <div>
+            <label>ProductImage4</label>
+            <input type="file" name="productImg4" id="image4"  class="form-control" required>
         </div>
         <div>
             <label>ProductBackground</label>
-            <input type="text" name="ProductBackground"  class="form-control" placeholder="Enter ProductBackground">
+            <input type="file" name="ProductBackground"  class="form-control" placeholder="Enter ProductBackground" required>
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" name="description"  class="form-control" placeholder="Enter Description" required>
         </div>
         <div class = "col-md-12 mb-3">
         <button type = "submit" class = "btn btn-primary" name = "add" >Add</button>

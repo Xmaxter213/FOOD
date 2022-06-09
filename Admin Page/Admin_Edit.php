@@ -70,12 +70,32 @@ require_once('../View Cart/Connection.php');
     <input type="text" name="productPageDirectory" value="<?= $row['productPageDirectory'] ?>" class="form-control" placeholder="Enter productPageDirectory">
 </div>
 <div>
-    <label>ProducyImage</label>
-    <input type="text" name="ProducyImage" value="<?= $row['productImg'] ?>" class="form-control" placeholder="Enter ProducyImage">
+    <label>ProductImage</label>
+    <input type="file" name="ProductImage" id="image" value="<?= $row['productImg'] ?>" class="form-control">
+</div>
+<div>
+    <label>ProductImage</label>
+    <input type="file" name="ProductImage" id="image" value="<?= $row['productImg'] ?>" class="form-control">
+</div>
+<div>
+    <label>ProductImage2</label>
+    <input type="file" name="ProductImage2" id="image2" value="<?= $row['productImg2'] ?>" class="form-control">
+</div>
+<div>
+    <label>ProductImage3</label>
+    <input type="file" name="ProductImage3" id="image3" value="<?= $row['productImg3'] ?>" class="form-control">
+</div>
+<div>
+    <label>ProductImage4</label>
+    <input type="file" name="ProductImage4" id="image4" value="<?= $row['productImg4'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductBackground</label>
     <input type="text" name="ProductBackground" value="<?= $row['productBg'] ?>" class="form-control" placeholder="Enter ProductBackground">
+</div>
+<div>
+    <label>ProductBackground</label>
+    <input type="text" name="description" value="<?= $row['description'] ?>" class="form-control" placeholder="Enter Description">
 </div>
 <div class = "col-md-12 mb-3">
 <button type = "submit" class = "btn btn-primary" name = "save" >Save</button>

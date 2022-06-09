@@ -8,29 +8,47 @@ include('message.php');
 if(isset($_POST['add']))
 {
     $productID = $_POST['ProductID'];
-
-    $productName = $_POST['ProductName'];
+    $name = $_POST['ProductName'];
     $productPrice = $_POST['ProductPrice'];
     $Quantity = $_POST['Quantity'];
     $portfolioNum = $_POST['PortfolioNumber'];
-    $productPageDirectory = $_POST['productPageDirectory'];
-    $productImg = $_POST['ProducyImage'];
-    $productBg = $_POST['ProductBackground'];
+    $productImg = $_FILES["productImg"]['name'];
+    $productImg2 = $_FILES["productImg2"]['name'];
+    $productImg3 = $_FILES["productImg3"]['name'];
+    $productImg4 = $_FILES["productImg4"]['name'];
+    $productBg = $_FILES["ProductBackground"]['name'];
+    $description = $_POST['description'];
 
-    $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productPageDirectory, productImg, productBg) VALUES ('$productID','$productName', '$productPrice','$Quantity','$portfolioNum', '$productPageDirectory', '$productImg', '$productBg' )";
-    $query_run = mysqli_query($conn, $query);
-
-    if($query_run)
+    if(file_exists("../View Product/photos/" .$_FILES["productImg"]["name"]))
     {
-        $_SESSION['message'] = "Catagory Updated Successfully";
+        $store=$_FILES["productImg"]["name"];
+        $_SESSION['status']= "Image already exists.'.$store.'";
         header('Location: tables.php');
-        exit(0);
     }
+
     else
     {
-        $_SESSION['message'] = "Someting Went Wrong !";
-        header('Location: tables.php');
-        exit(0);
+        $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productImg, productImg2, productImg3, productImg4, productBg,description) VALUES ('$productID','$name', '$productPrice','$Quantity','$portfolioNum', '$productImg', '$productImg2', '$productImg3', '$productImg4', '$productBg','$description' )";
+        $query_run = mysqli_query($conn, $query);
+
+        if($query_run)
+        {
+            move_uploaded_file($_FILES["productImg"]["tmp_name"],"../View Product/photos/" .$_FILES["productImg"]["name"] );
+            move_uploaded_file($_FILES["productImg2"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg2"]["name"] );
+            move_uploaded_file($_FILES["productImg3"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg3"]["name"] );
+            move_uploaded_file($_FILES["productImg4"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg4"]["name"] );
+            move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photos/Background/"  .$_FILES["ProductBackground"]["name"] );
+            //move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photo/Background/".$_FILES["ProductBackground"]["name"] );
+            $_SESSION['message'] = "Catagory Added Successfully";
+            header('Location: tables.php');
+            exit(0);
+        }
+        else
+        {
+            $_SESSION['message'] = "Someting Went Wrong !";
+            header('Location: tables.php');
+            exit(0);
+        }
     }
 
 }
@@ -45,24 +63,41 @@ if(isset($_POST['save']))
     $productPrice = $_POST['ProductPrice'];
     $Quantity = $_POST['Quantity'];
     $portfolioNum = $_POST['PortfolioNumber'];
-    $productPageDirectory = $_POST['productPageDirectory'];
-    $productImg = $_POST['ProducyImage'];
+    $productImg = $_POST['ProductImage'];
     $productBg = $_POST['ProductBackground'];
-
-    $query="UPDATE productTable SET productName='$productName', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productPageDirectory='$productPageDirectory', productImg='$productImg', productBg='$productBg' WHERE productID='$productID' ";
-    $query_run = mysqli_query($conn, $query);
     
-    if($query_run)
+    if(file_exists("../View Product/photo/".$_FILES["ProductImage"]["name"]))
     {
-        $_SESSION['message'] = "Catagory Updated Successfully";
+        $store=$_FILES["ProductImage"]["name"];
+        $_SESSION['status']= "Image already exists.'.$store.'";
         header('Location: tables.php');
-        exit(0);
+    }
+
+    else if(file_exists("../View Product/photo/Background/".$_FILES["ProductBackground"]["name"]))
+    {
+        $store=$_FILES["ProductBackground"]["name"];
+        $_SESSION['status']= "Image already exists.'.$store.'";
+        header('Location: tables.php');
     }
     else
     {
-        $_SESSION['message'] = "Someting Went Wrong !";
-        header('Location: tables.php');
-        exit(0);
+        $query="UPDATE productTable SET productName='$productName', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$productImg', productBg='$productBg' WHERE productID='$productID' ";
+        $query_run = mysqli_query($conn, $query);
+
+        if($query_run)
+        {
+            move_uploaded_file($_FILES["ProductImage"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
+            move_uploaded_file($_FILES["ProductBackground"]['tmp_name'],"../View Product/photo/Background/".$_FILES["ProductBackground"]["name"] );
+            $_SESSION['message'] = "Catagory Updated Successfully";
+            header('Location: tables.php');
+            exit(0);
+        }
+        else
+        {
+            $_SESSION['message'] = "Someting Went Wrong !";
+            header('Location: tables.php');
+            exit(0);
+        }
     }
 } 
 
@@ -258,9 +293,13 @@ if(isset($_POST['save']))
                                             <th>Product Price</th>
                                             <th>Quantity</th>
                                             <th>Portfolio Number</th>
-                                            <th>productPageDirectory</th>
+                                        
                                             <th>Product Image</th>
+                                            <th>Product Image2</th>
+                                            <th>Product Image3</th>
+                                            <th>Product Image4</th>
                                             <th>Product Background</th>
+                                            <th>Description</th>
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
                                         </tr>
@@ -272,9 +311,13 @@ if(isset($_POST['save']))
                                             <th>Product Price</th>
                                             <th>Quantity</th>
                                             <th>Portfolio Number</th>
-                                            <th>productPageDirectory</th>
+                                            
                                             <th>Product Image</th>
+                                            <th>Product Image2</th>
+                                            <th>Product Image3</th>
+                                            <th>Product Image4</th>
                                             <th>Product Background</th>
+                                            <th>Description</th>
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
                                         </tr>
@@ -298,9 +341,12 @@ if(isset($_POST['save']))
                                             <td><?php echo $row['productPrice'];?></td>
                                             <td><?php echo $row['quantity'];?></td>
                                             <td><?php echo $row['portfolioNum'];?></td>
-                                            <td><?php echo $row['productPageDirectory'];?></td>
                                             <td><?php echo $row['productImg'];?></td>
+                                            <td><?php echo $row['productImg2'];?></td>
+                                            <td><?php echo $row['productImg3'];?></td>
+                                            <td><?php echo $row['productImg4'];?></td>
                                             <td><?php echo $row['productBg'];?></td>
+                                            <td><?php echo $row['description'];?></td>
                                             <td>
                                                     <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
                                                 
