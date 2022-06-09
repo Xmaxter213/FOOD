@@ -145,14 +145,14 @@ require_once('ProductCard.php');
                 <div class="row">
                 <?php
                     
-                    $sql = "SELECT productName, quantity, portfolioNum, productPageDirectory, productImg, productBg FROM productTable";
+                    $sql = "SELECT productID, productName, quantity, portfolioNum, productImg, productBg FROM productTable";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         echo "";
                         // output data of each row
                     while($row = $result->fetch_assoc()) 
                     {
-                        productCard($row['productName'], $row['quantity'], $row['portfolioNum'], $row['productPageDirectory'], $row['productImg'], $row['productBg']);
+                        productCard($row['productID'], $row['productName'], $row['quantity'], $row['portfolioNum'], $row['productImg'], $row['productBg']);
 
                         }
                         

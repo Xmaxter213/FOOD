@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require_once('Connection.php');
 
     if(!isset($_SESSION['userlogin']))
     {
@@ -20,7 +20,7 @@ session_start();
         header("location: ../Login Page/login_new.php");
     }
 
-require_once('Connection.php');
+
 
 
 // create instance of Createdb class

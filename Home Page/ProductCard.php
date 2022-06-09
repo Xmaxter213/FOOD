@@ -1,6 +1,6 @@
 <?php
 
-function productCard($productName, $productQty, $portfolioModalNum, $productPageDirectory, $productImg, $productBg){
+function productCard($productID, $productName, $productQty, $portfolioModalNum, $productImg, $productBg){
     $element ="
     
     <div class=\"portfolio-item mt-5\">
@@ -8,11 +8,11 @@ function productCard($productName, $productQty, $portfolioModalNum, $productPage
                                 <div class=\"portfolio-hover\">
                                     <div class=\"portfolio-hover-content\"><i class=\"fas fa-plus fa-3x\"></i></div>
                                 </div>
-                                <img class=\"img-fluid\" src= \"$productImg\" alt=\"...\" />
+                                <img class=\"img-fluid\" src= \"../View Product/photos/$productImg\" alt=\"...\" />
                             </a>
                             <div class=\"portfolio-caption\">
                                 <div class=\"portfolio-caption-heading\">$productName</div>
-                                <div class=\"portfolio-caption-subheading text-muted\">Quantity: $productQty</div>
+                                <div class=\"portfolio-caption-subheading text-muted\">Quantity:$productQty</div>
                             </div>
     </div>
 
@@ -21,7 +21,7 @@ function productCard($productName, $productQty, $portfolioModalNum, $productPage
                             <div class=\"modal-dialog\" >
                                 <div class=\"modal-content\"  style=\"background-color: #D4F1F4;\">
                                     <div class=\"close-modal\" data-bs-dismiss=\"modal\"><img src=\"assets/img/close-icon.svg\" alt=\"Close modal\" /></div>
-                                    <div style=\"background-image: url('$productBg'); background-repeat:no-repeat;background-size: cover; \">
+                                    <div style=\"background-image: url('RF/$productBg'); background-repeat:no-repeat;background-size: cover; \">
                                     <div class=\"container\">
                                         <div class=\"row justify-content-center\">
                                             <div class=\"col-lg-8\">
@@ -29,16 +29,19 @@ function productCard($productName, $productQty, $portfolioModalNum, $productPage
                                                     <!-- Project details-->
                                                     <h2 class=\"text-uppercase\">$productName</h2>
                                                     <p class=\"item-intro text-muted\">Lorem ipsum dolor sit amet consectetur.</p>
-                                                    <img class=\"img-fluid d-block mx-auto\" src=\"$productImg\" alt=\"...\" />
+                                                    <img class=\"img-fluid d-block mx-auto\" src=\"../View Product/photos/$productImg\" alt=\"...\" />
                                                     
-                                                    <a href = \"../$productPageDirectory\"><button class=\"btn btn-primary btn-xl text-uppercase\"  type=\"button\">
+                                                    <form action = \"../View Product/Product Page.php\" method = \"GET\">
+                                                    <a href = \"\"><button class=\"btn btn-primary btn-xl text-uppercase\" name = \"homeProductID\"  type=\"submit\" value =\"$productID\">
                                                     <i class=\"fa fa-shopping-cart fa-1x\" aria-hidden=\"true\"></i>
                                                         Go to Page
                                                         </button></a>
+                                                    
                                                     <button class=\"btn btn-primary btn-xl text-uppercase\" data-bs-dismiss=\"modal\" type=\"button\">
                                                         <i class=\"fas fa-xmark me-1\"></i>
                                                         Close Page
                                                     </button>
+                                                    </form>
                                             </div>
                                                 </div>
                                             </div>
