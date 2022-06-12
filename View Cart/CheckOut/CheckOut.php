@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
     if(!isset($_SESSION['userlogin']))
     {
@@ -89,6 +90,11 @@ require_once('../Connection.php');
   float: right;
   width: 100px;
   margin-right: 2%;
+}
+
+#cart{
+  width: 550px;
+  height: 400px;
 }
 
 #bottomCart{
@@ -268,6 +274,34 @@ p{
 
         document.getElementById("FruitFactsText").innerHTML = newText;
       }
+
+      function card(){
+          var cardNum = document.getElementById('CardNum');
+          cardNum.onkeyup = function (e) {
+          if (this.value == this.lastValue) return;
+          var caretPosition = this.selectionStart;
+          var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+          var parts = [];
+          
+          for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+              parts.push(sanitizedValue.substring(i, i + 4));
+          }
+          
+          for (var i = caretPosition - 1; i >= 0; i--) {
+              var c = this.value[i];
+              if (c < '0' || c > '9') {
+                  caretPosition--;
+              }
+          }
+          caretPosition += Math.floor(caretPosition / 4);
+        
+        this.value = this.lastValue = parts.join(' ');
+        this.selectionStart = this.selectionEnd = caretPosition;
+      }
+
+      
+}
+
     </script>
 
     <body onload="RandomText()" style="background-color: #D4F1F4;">
@@ -292,36 +326,41 @@ p{
             </div>
         </nav>
 
+
+      <form name="Paymentf" action="Success.php" method="POST">
         <div class="container1">
             <div class="row">
-
                 <div class="offset-md-2 col-md-4">
                     <div class="SubscriptionType">
                       <h3>ACCOUNT INFORMATION</h3>
                       <div class="row mt-3">
                           <div class="col-md-6">
                             <label>FIRST NAME:</label>
-                            <input type="text" name="first_name" class="form-control" value="" />
+                            <input type="text" required="true" id="fname" name="first_name" class="form-control" value="" />
                           </div>
                             <div class="col-md-6">
                               <label>LAST NAME:</label>
-                              <input type="text" name="last_name" class="form-control" value="" />
+                              <input type="text" required="true" id="lname" name="last_name" class="form-control" value="" />
                             </div>
                         </div>
                         <div class="col-md-12">
                           <label>E-MAIL</label>
-                          <input type="text" name="e_mail" class="form-control" value="" />
+                          <input type="text" required="true" id="eMail" name="e_mail" class="form-control" value="" />
+                        </div>
+                        <div class="col-md-12">
+                          <label>ADDRESS:</label>
+                          <input type="text" required="true" id="addresS" name="address" class="form-control" value="" />
                         </div>
                         <div><p></p></div>
                         <div class="col-md-12">
                           <label><h3>Payment Information</h3></label>
-                          <input type="text" name="pay_info" id="CardNum" class="form-control" value="" minlength="16" maxlength="16" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                          <input type="text" required name="pay_info" minlength="19" maxlength="19" onkeyup="card()" id="CardNum" class="form-control" placeholder="0000-0000-0000-0000" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                         </div>
                       </div>
                       <div class="row mt-3">
                         <div class="col-md-2 offset-md-4">
                           <label>MONTH</label>
-                          <select class="form-control"   aria-label=".form-select-lg example">
+                          <select class="form-control"  aria-label=".form-select-lg example">
                             <option selected value="01">01</option>
                             <option value="02">02</option>
                             <option value="03">03</option>
@@ -338,11 +377,11 @@ p{
                         </div>
                           <div class="col-md-2 offset-md-1">
                             <label>YEAR</label>
-                            <input type="text" name="last_name"  class="form-control" value="" min="1" max="99" minlength="1" maxlength="2" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                            <input type="text" name="Year" required="true" class="form-control" value="" min="1" max="99" minlength="1" maxlength="2" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                           </div>
                           <div class="col-md-2 offset-md-1">
                             <label>CCV</label>
-                            <input type="text" id="codeCcv" class="form-control" maxlength="3" name="ccvCode" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                            <input type="text" required="true" id="codeCcv" class="form-control" maxlength="3" name="ccvCode" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                           </div>
                       </div>
                       <div class="row">
@@ -360,15 +399,9 @@ p{
                       </div>
                       
                       <div class="checkBoxForms">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="boxFutureTransactions">
-                          <label class="form-check-label" for="boxFutureTransactions">
-                            <b>Save Information for future transactions</b>
-                          </label>
-                        </div>
                         
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="boxTermsCondition">
+                          <input required class="form-check-input" type="checkbox" value="" id="boxTermsCondition"/>
                           <label class="form-check-label" for="boxTermsCondition">
                             <b>agree terms & conditions</b>
                           </label>
@@ -379,42 +412,12 @@ p{
                     </div>
 
                     <div class="col-md-4">
+                      <!-- Paymeny -->
                       <div class="Cart">
                         <label><h3>CART</h3></label>
                           <div class="cartBox">
-                            <div class="col-md-12">
-                              <div class="card border-1 ">
-                                  <div class="card-body pt-0">
-                                      <div class="row  justify-content-between">
-                                          <div class="col-auto col-md-7">
-                                              <div class="media flex-column flex-sm-row">
-                                                  <div class="media-body  my-auto">
-                                                      <div class="row ">
-                                                          <div class="col-auto"><p class="mb-0"><h5>Banana</h5></p><small class="text-muted "><button type="button" class="btn btn-link" onclick="removeCart()">Remove</button></small></div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">2</p></div>
-                                          <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>179 SEK</b></p></div>
-                                      </div>
-                                      <hr class="my-2">
-                                      <div class="row  justify-content-between">
-                                          <div class="col-auto col-md-7">
-                                              <div class="media flex-column flex-sm-row">
-                                                  
-                                                  <div class="media-body  my-auto">
-                                                      <div class="row ">
-                                                          <div class="col"><p class="mb-0"><b>Apple</b></p><small class="text-muted">2 Week Subscription</small></div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">3</p></div>
-                                          <div class="pl-0 flex-sm-col col-auto my-auto"><p><b>179 SEK</b></p></div>
-                                      </div>
-                                  </div>
-                              </div>
+                          <iframe id="cart" src="../checkoutcart.php" >
+    </iframe>
                           </div>
                         </div>
 
@@ -424,7 +427,7 @@ p{
                       </div>
 
                       
-                      <div class="offset-md-6 col-md-6">
+                      <div class="offset-md-4 col-md-6">
                         <div class="PaymentContainer">
                         <div class="Payment">  
                             <ul>
@@ -454,16 +457,15 @@ p{
                                   ?></h2></p></li>
                             </ul>
                             
-                            <button type="button" name="Payment" id = "Payment" >Check out</button>
+                            <button name="Payment" data-click="swal-danger" id = "Payment" >Check out</button>
                             <button id = "Cancel" onclick="myFunction()">Cancel</button>
                         </div>
                         </div>
-                    </div>
-          
+                    </div>           
                     </div>
                 </div>
-                  </div>
-          
+                  </div> 
+        </form>  
 
 
        
@@ -493,14 +495,21 @@ p{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript">
+
+                                        
   $(function()
     {
       $('#Payment').click(function(e){
 
+        var valid = this.form.checkValidity();
+
+				if(valid)
+				{
           var CardNum = $('#CardNum').val();
+          var form = $(this).parents('form');
 
-        e.preventDefault();
-
+          e.preventDefault();
+        
         $.ajax({
           type: 'POST',
           url: 'jspayment.php',
@@ -512,9 +521,7 @@ p{
                     'title': 'Successful',
                     'text': data,
                     'type': 'success'
-                    }).then(function(){
-                      window.location = "Success.php";
-                    })
+                    });form.submit();
                     
             }
             else
@@ -535,6 +542,14 @@ p{
                     })
               }
         })
+        
+				}
+        else{
+          
+        }
+          
+
+        
       })
     })
 

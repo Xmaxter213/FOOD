@@ -32,6 +32,8 @@ require_once('Connection.php');
                 while($row = $result->fetch_assoc()) 
                 {
                     echo "- ". $row["quantity"] . " x" ."- "  . $row["productName"]. ": ₱". $row["productPrice"]. "<br>";
+        
+
                      }
                 } 
                 else 

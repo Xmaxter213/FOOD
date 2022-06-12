@@ -2,6 +2,8 @@
 
 $number = $_POST['CardNum'];
 
+$number = preg_replace('/\s+/', '', $number);
+
 function is_valid_luhn($number) {
 
 

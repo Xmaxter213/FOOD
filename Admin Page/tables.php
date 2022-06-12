@@ -284,6 +284,15 @@ if(isset($_POST['save']))
                         <div class="card-body">
                            
                             <div class="table-responsive"> 
+
+                             <?php
+                                            $count =0;
+                                            $sql = "SELECT * FROM productTable";
+                                            $result = mysqli_query($conn, $sql);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                echo "";
+                                                
+                                                ?>
                                 <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -323,29 +332,24 @@ if(isset($_POST['save']))
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    
-                                        <?php
-                                            $count =0;
-                                            $sql = "SELECT * FROM productTable";
-                                            $result = $conn->query($sql);
-                                            if ($result->num_rows > 0) {
-                                                echo "";
-                                                // output data of each row
-                                            while($row = $result->fetch_assoc()) 
-                                            {   
-                                                $count = $count + 1;
+                                                <?php
+                                                     while($row = mysqli_fetch_array($result)) 
+                                                     {   
+                                                         $count = $count + 1;
+                                                
                                                 ?>
+                                       
                                             <tr>
                                             <td><?php echo $row['productID'];?></td>
                                             <td><?php echo $row['productName'];?></td>
                                             <td><?php echo $row['productPrice'];?></td>
                                             <td><?php echo $row['quantity'];?></td>
                                             <td><?php echo $row['portfolioNum'];?></td>
-                                            <td><?php echo $row['productImg'];?></td>
-                                            <td><?php echo $row['productImg2'];?></td>
-                                            <td><?php echo $row['productImg3'];?></td>
-                                            <td><?php echo $row['productImg4'];?></td>
-                                            <td><?php echo $row['productBg'];?></td>
+                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg'].'" width="100px" height="100px">'?> </td>
+                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg2'].'" width="100px" height="100px">'?> </td>
+                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg3'].'" width="100px" height="100px">'?> </td>
+                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg4'].'" width="100px" height="100px">'?> </td>
+                                            <td> <?php echo'<img src ="../View Product/photos/Background/'.$row['productBg'].'" width="100px" height="100px">'?> </td>
                                             <td><?php echo $row['description'];?></td>
                                             <td>
                                                     <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
@@ -367,7 +371,7 @@ if(isset($_POST['save']))
                                             } 
                                             else 
                                             {
-                                                echo "0";
+                                                echo "No Record Found";
                                             }
                                         ?>
                                        
