@@ -275,9 +275,14 @@ p{
         newText = randomFacts[randomIndex];
 
         document.getElementById("FruitFactsText").innerHTML = newText;
-      }
 
-      function card(){
+
+        
+        }
+
+      
+
+        function card1(){
           var cardNum = document.getElementById('CardNum');
           cardNum.onkeyup = function (e) {
           if (this.value == this.lastValue) return;
@@ -301,7 +306,35 @@ p{
         this.selectionStart = this.selectionEnd = caretPosition;
       }
 
-      
+    
+}
+        
+
+      function card(){
+          var cardNum = document.getElementById('CardNum');
+          cardNum.onkeydown = function (e) {
+          if (this.value == this.lastValue) return;
+          var caretPosition = this.selectionStart;
+          var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+          var parts = [];
+          
+          for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+              parts.push(sanitizedValue.substring(i, i + 4));
+          }
+          
+          for (var i = caretPosition - 1; i >= 0; i--) {
+              var c = this.value[i];
+              if (c < '0' || c > '9') {
+                  caretPosition--;
+              }
+          }
+          caretPosition += Math.floor(caretPosition / 4);
+        
+        this.value = this.lastValue = parts.join(' ');
+        this.selectionStart = this.selectionEnd = caretPosition;
+      }
+
+    
 }
 
     </script>
@@ -356,7 +389,7 @@ p{
                         <div><p></p></div>
                         <div class="col-md-12">
                           <label><h3>Payment Information</h3></label>
-                          <input type="text" required name="pay_info" minlength="19" maxlength="19" onkeyup="card()" id="CardNum" class="form-control" placeholder="0000-0000-0000-0000" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                          <input type="text" required name="pay_info" minlength="19" maxlength="19" onkeydown="card()" onkeyup="card1()" id="CardNum" class="form-control" placeholder="0000-0000-0000-0000" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                         </div>
                       </div>
                       <div class="row mt-3">
