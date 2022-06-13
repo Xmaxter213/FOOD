@@ -43,7 +43,7 @@ require_once '../config.php';
 			              <div class="form-outline mb-4">
 							  
 			                <input type="text" id="username" class="form-control form-control-lg" name="username" pattern ="\S(.*\S)?[A-Za-z0-9]+" title="Must only contain letters and numbers"/>
-			                <label class="form-label" for="username">Usename</label>
+			                <label class="form-label" for="username">Username</label>
 			              </div>
 
 			              <div class="form-outline mb-4">
