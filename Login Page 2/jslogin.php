@@ -10,6 +10,7 @@ $sql = "SELECT * FROM userTable WHERE email = ? AND password = ? LIMIT 1";
 $stmtselect = $db->prepare($sql);
 $result = $stmtselect->execute([$email, $password]);
 
+
 if($result)
 {
 	$user = $stmtselect->fetch(PDO::FETCH_ASSOC);
@@ -22,6 +23,8 @@ if($result)
 		$user = $getuser->fetch(PDO::FETCH_ASSOC);
 
 		$_SESSION['userlogin'] = $user;
+
+		
 		echo 'Successfully';
 	}
 	else
@@ -34,3 +37,14 @@ else
 	echo 'There was an error connecting to the database';
 }
 
+	$sqlgetuserID = "SELECT userID FROM userTable WHERE email = ? AND password = ? LIMIT 1";
+		$getuserID = $db->prepare($sqlgetuserID);
+		$database = $getuserID->execute([$email, $password ]);
+
+		$userID = $getuserID->fetch(PDO::FETCH_ASSOC);
+
+		$_SESSION['userID'] = $userID;
+
+		
+
+		

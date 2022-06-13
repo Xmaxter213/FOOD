@@ -7,99 +7,105 @@
 		header("Location: ../Home Page/index.php");
 	}
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
+    
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	
 </head>
 
-<body class="bg-gradient-primary">
+<style>
+	body{
+		height: 100vh;
+	}
 
-    <div class="container">
+	.leftPic{
+		position: relative;
+		float: left;
+		width: 35%;
+		height: 100%;
+		background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('photos/LoginPic.png');
+		border-right: 5px solid black;
+	}
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+	.leftPic img{
+		position: absolute;
+		margin-left: 15px;
+		margin-top: 80px;
+	}
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+	.container{
+		float: left;
+		width: 65%;
+		height: 100%;
+	}
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="button" name="button" class="btn btn-primary btn-user btn-block" id="login">Login</button>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	.container{
+		padding-top: 8%;
+	}
 
-            </div>
+	label{
+		float: left;
+	}
 
-        </div>
+</style>
 
-    </div>
+<body>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script type="text/javascript">
+	<div class = "leftPic">
+		<img src="photos/Logo.png" width = "500" height = "500" title="Logo" onclick="showImage('photos/LoginPic.jpg')" />
+	</div>
+
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+
+				<div class="d-flex">
+					<form>
+					<h1>LOGIN</h1><br>
+					<label class="form-label" for="email">Your Email</label>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="email" id="email" class="form-control input_user" required>
+						</div>
+						
+						<label class="form-label mb-2" for="password">Your Password</label>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="password" id="password" class="form-control input_pass" required>
+							
+						</div>
+						
+						<div class="d-flex justify-content-center mt-3 login_container">
+				 	<button type="button" name="button" class="btn login_btn" id="login">Login</button>
+				   </div>
+					</form>
+				</div>
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="../Register Page/Register.php" class="ml-2">Sign Up</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						<a href="#">Forgot your password?</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						<a href="../Home Page/index.php">Go to Home</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script type="text/javascript">
 	$(function()
 		{
 			$('#login').click(function(e){
@@ -141,6 +147,9 @@
 		})
 </script>
 
-</body>
+		
 
+	
+
+</body>
 </html>
