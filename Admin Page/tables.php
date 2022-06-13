@@ -58,36 +58,23 @@ if(isset($_POST['add']))
 if(isset($_POST['save']))
 {
     $productID = $_POST['ProductID'];
-
-    $productName = $_POST['ProductName'];
+    $name = $_POST['ProductName'];
     $productPrice = $_POST['ProductPrice'];
     $Quantity = $_POST['Quantity'];
     $portfolioNum = $_POST['PortfolioNumber'];
-    $productImg = $_POST['ProductImage'];
-    $productBg = $_POST['ProductBackground'];
+    $productImg = $_FILES["productImg"]['name'];
+    $productImg2 = $_FILES["productImg2"]['name'];
+    $productImg3 = $_FILES["ProductImg3"]['name'];
+    $productImg4 = $_FILES["productImg4"]['name'];
+    $productBg = $_FILES["ProductBackground"]['name'];
+    $description = $_POST['description'];
     
-    if(file_exists("../View Product/photo/".$_FILES["ProductImage"]["name"]))
-    {
-        $store=$_FILES["ProductImage"]["name"];
-        $_SESSION['status']= "Image already exists.'.$store.'";
-        header('Location: tables.php');
-    }
-
-    else if(file_exists("../View Product/photo/Background/".$_FILES["ProductBackground"]["name"]))
-    {
-        $store=$_FILES["ProductBackground"]["name"];
-        $_SESSION['status']= "Image already exists.'.$store.'";
-        header('Location: tables.php');
-    }
-    else
-    {
-        $query="UPDATE productTable SET productName='$productName', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$productImg', productBg='$productBg' WHERE productID='$productID' ";
+        $query="UPDATE productTable SET productName='$name', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$productImg',productImg2='$productImg2',productImg3='$productImg3',productImg4='$productImg4', productBg='$productBg',description='$description' WHERE productID='$productID' ";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
         {
             move_uploaded_file($_FILES["ProductImage"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
-            move_uploaded_file($_FILES["ProductBackground"]['tmp_name'],"../View Product/photo/Background/".$_FILES["ProductBackground"]["name"] );
             $_SESSION['message'] = "Catagory Updated Successfully";
             header('Location: tables.php');
             exit(0);
@@ -98,7 +85,7 @@ if(isset($_POST['save']))
             header('Location: tables.php');
             exit(0);
         }
-    }
+    
 } 
 
 
@@ -352,6 +339,7 @@ if(isset($_POST['save']))
                                             <td> <?php echo'<img src ="../View Product/photos/Background/'.$row['productBg'].'" width="100px" height="100px">'?> </td>
                                             <td><?php echo $row['description'];?></td>
                                             <td>
+                                                
                                                     <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
                                                 
                                             </td>

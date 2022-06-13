@@ -45,58 +45,51 @@ require_once('../View Cart/Connection.php');
 
 
 
-<form action ="tables.php" method="POST">
+<form action ="tables.php" method="POST" enctype="multipart/form-data">
 <div>
-    <input type="hidden" name="ProductID" value="<?= $row['productID'] ?>" require class="form-control" placeholder="Enter ProductID">
+    <input type="hidden" name="ProductID" value="<?=  $row['productID'] ?>" require class="form-control" placeholder="Enter ProductID">
 </div>
 <div>
     <label>ProductName</label>
-    <input type="text" name="ProductName" value="<?= $row['productName'] ?>" class="form-control" placeholder="Enter ProductName">
+    <input type="text" name="ProductName" value="<?php echo $row['productName'] ?>" class="form-control" placeholder="Enter ProductName">
 </div>
 <div>
     <label>ProductPrice</label>
-    <input type="text" name="ProductPrice" value="<?= $row['productPrice'] ?>" class="form-control" placeholder="Enter ProductPrice">
+    <input type="text" name="ProductPrice" value="<?php echo $row['productPrice'] ?>" class="form-control" placeholder="Enter ProductPrice">
 </div>
 <div>
     <label>Quantity</label>
-    <input type="text" name="Quantity" value="<?= $row['quantity'] ?>" class="form-control" placeholder="Enter Quantity">
+    <input type="text" name="Quantity" value="<?php echo  $row['quantity'] ?>" class="form-control" placeholder="Enter Quantity">
 </div>
 <div>
     <label>PortfolioNumber</label>
-    <input type="text" name="PortfolioNumber" value="<?= $row['portfolioNum'] ?>" class="form-control" placeholder="Enter PortfolioNumber">
-</div>
-<div>
-    <label>productPageDirectory</label>
-    <input type="text" name="productPageDirectory" value="<?= $row['productPageDirectory'] ?>" class="form-control" placeholder="Enter productPageDirectory">
+    <input type="text" name="PortfolioNumber" value="<?php  echo $row['portfolioNum'] ?>" class="form-control" placeholder="Enter PortfolioNumber">
 </div>
 <div>
     <label>ProductImage</label>
-    <input type="file" name="ProductImage" id="image" value="<?= $row['productImg'] ?>" class="form-control">
-</div>
-<div>
-    <label>ProductImage</label>
-    <input type="file" name="ProductImage" id="image" value="<?= $row['productImg'] ?>" class="form-control">
+    <input type="file" name="productImg" id="image" value="<?php  echo $row['productImg'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage2</label>
-    <input type="file" name="ProductImage2" id="image2" value="<?= $row['productImg2'] ?>" class="form-control">
+    <input type="file" name="productImg2" id="image2" value="<?php echo $row['productImg2'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage3</label>
-    <input type="file" name="ProductImage3" id="image3" value="<?= $row['productImg3'] ?>" class="form-control">
+    <input type="file" name="ProductImg3" id="image3" value="<?php  echo$row['productImg3'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage4</label>
-    <input type="file" name="ProductImage4" id="image4" value="<?= $row['productImg4'] ?>" class="form-control">
+    <input type="file" name="productImg4" id="image4" value="<?php  echo $row['productImg4'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductBackground</label>
-    <input type="text" name="ProductBackground" value="<?= $row['productBg'] ?>" class="form-control" placeholder="Enter ProductBackground">
+    <input type="file" name="ProductBackground" value="<?php  echo $row['productBg'] ?>" class="form-control" placeholder="Enter ProductBackground">
 </div>
 <div>
-    <label>ProductBackground</label>
-    <input type="text" name="description" value="<?= $row['description'] ?>" class="form-control" placeholder="Enter Description">
+    <label>Description</label>
+    <input type="text" name="description" value="<?php echo $row['description'] ?>" class="form-control" placeholder="Enter Description">
 </div>
+
 <div class = "col-md-12 mb-3">
 <button type = "submit" class = "btn btn-primary" name = "save" >Save</button>
 </div>
