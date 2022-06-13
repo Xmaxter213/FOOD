@@ -21,6 +21,10 @@ if (isset($_SESSION['userlogin']))
 
         $sql = "SELECT cartTable.quantity, productTable.productName, productTable.productPrice  FROM productTable, cartTable WHERE productTable.productID = cartTable.productID AND cartTable.userID ='$userID'";
 
+        $del = "DELETE FROM cartTable WHERE userID='$userID'";
+
+        $prodid = "SELECT quantity FROM productTable WHERE productName = 'Apple'";
+
     }
     else
     {

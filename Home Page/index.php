@@ -21,8 +21,9 @@ include_once ('quantity.php');
     }
 
 
-
+//calls out template
 require_once('ProductCard.php');
+require_once('ReviewCard.php')
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +44,8 @@ require_once('ProductCard.php');
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         
+        
+
         <style>
           #cart{            
             background-color: rgb(63, 63, 63);
@@ -242,12 +245,73 @@ require_once('ProductCard.php');
                 </div>
             </div>
         </div>-->
+
+
+    <!--Review-->     
+    <!--To Work with icons, but ruins services part so excluded
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    -->
+<div class="container">
+	<h2 class="text-center">User Rating Form</h2>
+	
+	<div class="card">
+	    <div class="card-body">
+	        <div class="row">
+        	    <div class="col-md-2">
+        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+        	        <p class="text-secondary text-center">15 Minutes Ago</p>
+        	    </div>
+        	    <div class="col-md-10">
+        	        <p>
+        	            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+        	       </p>
+        	       <div class="clearfix"></div>
+        	        <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        	        <p>
+        	            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+        	       </p>
+        	    </div>
+	        </div>
+            
+            <?php
+                    
+                    $sql = "SELECT username, rating, content, date FROM reviewTable";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "";
+                        // output data of each row
+                    while($row = $result->fetch_assoc()) 
+                    {
+                        reviewCard($row['username'], $row['rating'], $row['content'], $row['date']);
+                    }
+                        
+
+                    } 
+                    else 
+                    {
+                        echo "0";
+                    }
+                    ?>
+            
+
+	    </div>
+	</div>
+</div>
+		
+    </div> <!-- /container -->
+
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">Give us a review!</h2>
+                    <h3 class="section-subheading text-muted">We'd appreciate the honest feedback.</h3>
                 </div>
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
@@ -256,30 +320,43 @@ require_once('ProductCard.php');
                 <!-- To make this form functional, sign up at-->
                 <!-- https://startbootstrap.com/solution/contact-forms-->
                 <!-- to get an API token!-->
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                <form id="contactForm" action = "addReview.php" method = "POST">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <!-- Name input-->
-                                <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <!-- Name and date-->
+                                <input class="form-control" id="username" type="hidden" name = "username" value= "<?= implode($_SESSION_user)?>"/>
+                                <input class="form-control disabled" id="date" type="hidden" name = "date" value = <?= date("j, n, Y")?>/>
+                                
+                                <script>
+                                function getDate(){
+                                    var todaydate = new Date();
+                                    var day = todaydate.getDate();
+                                    var month = todaydate.getMonth() + 1;
+                                    var year = todaydate.getFullYear();
+                                    var datestring = month + "/" + day + "/" + year;
+                                    document.getElementById("date").value = datestring;
+                                } 
+                                getDate(); 
+                                </script>
                             </div>
-                            <div class="form-group">
-                                <!-- Email address input-->
-                                <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
+
                             <div class="form-group mb-md-0">
-                                <!-- Phone number input-->
-                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                <!-- Rating input-->
+                                <label for="rating" style="color: white">Rating</label>
+                                <select class="form-control" name="rating" id="rating" type = "int">
+                                    <option value= 1>1</option>
+                                    <option value= 2>2</option>
+                                    <option value= 3>3</option>
+                                    <option value= 4>4</option>
+                                    <option value= 5>5</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
                                 <!-- Message input-->
-                                <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                                <textarea class="form-control" id="message" name = "content" placeholder="Your Message *" required = "\S(.*\S)?[A-Za-z0-9]+"></textarea>
                                 <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                             </div>
                         </div>
@@ -302,12 +379,24 @@ require_once('ProductCard.php');
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                     <!-- Submit Button-->
-                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
+                    <?php
+                    if(!isset($_SESSION['userlogin']))
+                    {
+                        echo "<div class=\"text-center\"><button class=\"btn btn-primary btn-xl text-uppercase disabled\" id=\"submitButton\" type=\"submit\">Send Message</button></div>";
+
+                    }
+                    else
+                    {
+                        echo "<div class=\"text-center\"><button class=\"btn btn-primary btn-xl text-uppercase\" id=\"submitButton\" type=\"submit\">Send Message</button></div>";
+                    }
+                    ?>
+                    
                 </form>
             </div>
         </section>
+
         <!-- Footer-->
-        <footer class="footer py-4">
+        <footer class="footer py-4 mt-2">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; F.O.O.D 2022</div>
@@ -323,213 +412,7 @@ require_once('ProductCard.php');
                 </div>
             </div>
         </footer>
-        <!-- Portfolio Modals-->
-        <!-- Portfolio item 1 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" >
-            <div class="modal-dialog" >
-                <div class="modal-content"  style="background-color: #D4F1F4;">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/Apple_Rain.gif'); background-repeat:no-repeat;background-size: cover; ">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body"  >
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Apple</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Apple1.png" alt="..." />
-                                    
-                                    <a href = "../View Product/Apple/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Page
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 2 modal popup-->
         
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content"  style="background-color: #D4F1F4;">
-                  
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/banana Rainning.gif'); background-repeat:no-repeat;background-size: cover;">
-                    <div class="container" >
-                      
-                        <div class="row justify-content-center" >
-                          
-                            <div class="col-lg-8">
-                              
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    
-                                    <h2 class="text-uppercase">Banana</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Banana1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Explore
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Graphic Design
-                                        </li>
-                                    </ul>
-                                    <a href = "../View Product/Banana/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #D4F1F4;">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/mango_rain.gif'); background-repeat:no-repeat;background-size: cover;">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Mango</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Mango1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                  
-                                    <a href = "../View Product/Mango/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #D4F1F4;">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/pineapple_rain.gif'); background-repeat:no-repeat;background-size: cover;">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Pineapple</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Pineapple1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    
-                                    <a href = "../View Product/Pineapple/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 5 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #D4F1F4;">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/strawberry_rain.gif'); background-repeat:no-repeat;background-size: cover;">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Strawberry</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Strawberry1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                  
-                                    <a href = "../View Product/Strawberry/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 6 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="background-color: #D4F1F4;">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div style="background-image: url('RF/orange_rain.gif'); background-repeat:no-repeat;background-size: cover;">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Orange</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Orange1.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    
-                                    <a href = "../View Product/Orange/view product.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                                        Go to Page
-                                        </button></a>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-xmark me-1"></i>
-                                        Close Project
-                                    </button>
-                            </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!--view cart pop up-->
         <div class="portfolio-modal modal fade" id="viewcart1" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">

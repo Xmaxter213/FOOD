@@ -39,6 +39,7 @@ include_once ('php layouts/ProductPageLayout3.php');
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        
 	<title>Product</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -48,6 +49,8 @@ include_once ('php layouts/ProductPageLayout3.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+
+
 	<style>
         *{
             margin: 0;
@@ -263,6 +266,8 @@ include_once ('php layouts/ProductPageLayout3.php');
     }
     
     ?>
+
+    
 
 </body>
 </html>
