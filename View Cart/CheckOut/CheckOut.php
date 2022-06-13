@@ -380,7 +380,7 @@ p{
                         </div>
                         <div class="col-md-12">
                           <label>E-MAIL</label>
-                          <input type="text" required="true" id="eMail" name="e_mail" class="form-control" value="" />
+                          <input type="email" required="true" id="eMail" name="e_mail" class="form-control" value="" />
                         </div>
                         <div class="col-md-12">
                           <label>ADDRESS:</label>
