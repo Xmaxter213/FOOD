@@ -82,7 +82,9 @@ require_once('../Connection.php');
   float: right;
 }
 
-.container1{
+#CardNum{
+  text-align: center;
+  font-size: 20px;
 }
 
 #Cancel{

@@ -4,6 +4,7 @@ require_once('../Connection.php');
 $Address = $_POST['address'];
 $Fname = $_POST['first_name'];
 $Lname = $_POST['last_name'];
+$to = $_POST['e_mail'];
 
 ?>
 
@@ -57,7 +58,7 @@ $Lname = $_POST['last_name'];
 
     .content 
     {
-        text-align:center;
+        text-align: center;
     }
 
     .content  h1
@@ -100,12 +101,30 @@ $Lname = $_POST['last_name'];
             <div class="payment_header">
                <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
             </div>
-            <div class="content">
-               <h1>Payment Success !</h1>
+            <div class="conten">
+               <h1 class="content">Payment Success !</h1>
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                <div class="card">
                     <div class="card-body mx-4">
                     <div class="container">
-                    <p class="my-5 mx-5" style="font-size: 30px;">Thank for your purchase!</p>
+                    <p class="my-5 mx-5 content" style="font-size: 30px;">Thank for your purchase!</p>
                     <div class="row">
                         <ul class="list-unstyled">
                         <?php
@@ -120,7 +139,7 @@ $Lname = $_POST['last_name'];
                         
                         </ul>
                         <hr>
-                        <div class="col-xl-12">
+                        <div class="col-md-12">
 
                         <div id = "addedProducts">
                             <?php
@@ -132,7 +151,8 @@ $Lname = $_POST['last_name'];
                                     // output data of each row
                                 while($row = $result->fetch_assoc()) 
                                 {      
-                                    echo "<div class=row", "<div class=col-xl-10>","<p>", $row["quantity"]," ",$row["productName"],"<span>", "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ₱ ",$row["productPrice"],"</span>","</p>","</div>","<br>";
+                                    echo "<div class=row", "<div class=col-md-10>", $row["quantity"]," ",$row["productName"] ," &nbsp&nbsp - &nbsp&nbsp ₱ ",$row["productPrice"],"<hr>";
+
 
                                     $prodid = "SELECT quantity FROM productTable WHERE productName = '$row[productName]'";
                                     $res = $conn->query($prodid);
@@ -149,14 +169,17 @@ $Lname = $_POST['last_name'];
                                     echo "0 results";
                                 }  
                                 
-            
+                                
                                 
                                 ?>
                         </div>
                         
                         </div>
                     </div>
+
+                    <br>
                     <div class="row text-black">
+                        
 
                     <ul>
                             <li class="d-flex justify-content-sm-end"><h5>TOTAL:</h5><p><h5>PHP       
@@ -173,15 +196,17 @@ $Lname = $_POST['last_name'];
                         
                                       }
                                           echo " " . $total. "<br>";
+                                          $message = $total;
 
                                     } 
                                     else 
                                         {
                                            echo "0 ";
                                         }  
-                                            $delete = $conn->query($del);
-                                           $conn->close();
-     
+                                        $delete = $conn->query($del);
+                                        $conn->close();
+                                    
+                                
                                   ?></h5></p></li>
                             </ul>
 
@@ -191,8 +216,7 @@ $Lname = $_POST['last_name'];
                     </div>
                 </div>
                 </div>
-               <p>Thank you purchasing from our website! </p>
-               <a href="../../Home Page/index.php">Go to Home</a>
+               <a href="../../Home Page/index.php"><p class="content"><br>Go to Home</p></a>
             </div>
             
          </div>
