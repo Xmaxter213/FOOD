@@ -25,6 +25,8 @@ if (isset($_SESSION['userlogin']))
 
         $prodid = "SELECT quantity FROM productTable WHERE productName = 'Apple'";
 
+        $his = "SELECT * FROM CustomerStatusTable";
+
     }
     else
     {

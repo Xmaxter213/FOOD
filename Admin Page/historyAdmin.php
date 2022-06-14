@@ -5,86 +5,14 @@ require_once('../View Cart/Connection.php');
 include('message.php');
 
 
-if(isset($_POST['add']))
-{
-    $productID = $_POST['ProductID'];
-    $name = $_POST['ProductName'];
-    $productPrice = $_POST['ProductPrice'];
-    $Quantity = $_POST['Quantity'];
-    $portfolioNum = $_POST['PortfolioNumber'];
-    $productImg = $_FILES["productImg"]['name'];
-    $productImg2 = $_FILES["productImg2"]['name'];
-    $productImg3 = $_FILES["productImg3"]['name'];
-    $productImg4 = $_FILES["productImg4"]['name'];
-    $productBg = $_FILES["ProductBackground"]['name'];
-    $description = $_POST['description'];
-
-    if(file_exists("../View Product/photos/" .$_FILES["productImg"]["name"]))
-    {
-        $store=$_FILES["productImg"]["name"];
-        $_SESSION['status']= "Image already exists.'.$store.'";
-        header('Location: tables.php');
-    }
-
-    else
-    {
-        $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productImg, productImg2, productImg3, productImg4, productBg,description) VALUES ('$productID','$name', '$productPrice','$Quantity','$portfolioNum', '$productImg', '$productImg2', '$productImg3', '$productImg4', '$productBg','$description' )";
-        $query_run = mysqli_query($conn, $query);
-
-        if($query_run)
-        {
-            move_uploaded_file($_FILES["productImg"]["tmp_name"],"../View Product/photos/" .$_FILES["productImg"]["name"] );
-            move_uploaded_file($_FILES["productImg2"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg2"]["name"] );
-            move_uploaded_file($_FILES["productImg3"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg3"]["name"] );
-            move_uploaded_file($_FILES["productImg4"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg4"]["name"] );
-            move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photos/Background/"  .$_FILES["ProductBackground"]["name"] );
-            //move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photo/Background/".$_FILES["ProductBackground"]["name"] );
-            $_SESSION['message'] = "Catagory Added Successfully";
-            header('Location: tables.php');
-            exit(0);
-        }
-        else
-        {
-            $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: tables.php');
-            exit(0);
-        }
-    }
-
-}
-
-
-
 if(isset($_POST['save']))
 {
-    $productID = $_POST['ProductID'];
-    $name = $_POST['ProductName'];
-    $productPrice = $_POST['ProductPrice'];
-    $Quantity = $_POST['Quantity'];
-    $portfolioNum = $_POST['PortfolioNumber'];
-    $productImg = $_FILES["productImg"]['name'];
-    $productImg2 = $_FILES["productImg2"]['name'];
-    $productImg3 = $_FILES["ProductImg3"]['name'];
-    $productImg4 = $_FILES["productImg4"]['name'];
-    $productBg = $_FILES["ProductBackground"]['name'];
-    $description = $_POST['description'];
+    $Invoice = $_POST['Invoice'];
+    $Status = $_POST['Status'];
     
-        $query="UPDATE productTable SET productName='$name', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$productImg',productImg2='$productImg2',productImg3='$productImg3',productImg4='$productImg4', productBg='$productBg',description='$description' WHERE productID='$productID' ";
-        $query_run = mysqli_query($conn, $query);
+        $query="UPDATE CustomerStatusTable SET Stat='$Status' WHERE Invoice='$Invoice' ";
+        $upd = $conn->query($query);
 
-        if($query_run)
-        {
-            move_uploaded_file($_FILES["ProductImage"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
-            $_SESSION['message'] = "Catagory Updated Successfully";
-            header('Location: tables.php');
-            exit(0);
-        }
-        else
-        {
-            $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: tables.php');
-            exit(0);
-        }
     
 } 
 
@@ -105,7 +33,7 @@ if(isset($_POST['save']))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>F.O.O.D - Tables</title>
+    <title>F.O.O.D - History Tables</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -154,7 +82,7 @@ if(isset($_POST['save']))
             
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -164,7 +92,7 @@ if(isset($_POST['save']))
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item -History Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="historyAdmin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>History Tables</span></a>
@@ -268,7 +196,7 @@ if(isset($_POST['save']))
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <h1 class="h3 mb-2 text-gray-800">History Tables</h1>
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
@@ -284,46 +212,33 @@ if(isset($_POST['save']))
 
                              <?php
                                             $count =0;
-                                            $sql = "SELECT * FROM productTable";
-                                            $result = mysqli_query($conn, $sql);
+                                            $his = "SELECT * FROM CustomerStatusTable";
+                                            $result = mysqli_query($conn, $his);
                                             if (mysqli_num_rows($result) > 0) {
                                                 echo "";
                                                 
                                                 ?>
-                                <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Product ID</th>
+                                        <th>User ID</th>
+                                            <th>Invoice</th>
                                             <th>Product Name</th>
-                                            <th>Product Price</th>
                                             <th>Quantity</th>
-                                            <th>Portfolio Number</th>
-                                        
-                                            <th>Product Image</th>
-                                            <th>Product Image2</th>
-                                            <th>Product Image3</th>
-                                            <th>Product Image4</th>
-                                            <th>Product Background</th>
-                                            <th>Description</th>
+                                            <th>Status</th>
+
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Product ID</th>
+                                        <th>User ID</th>
+                                            <th>Invoice</th>
                                             <th>Product Name</th>
-                                            <th>Product Price</th>
                                             <th>Quantity</th>
-                                            <th>Portfolio Number</th>
-                                            
-                                            <th>Product Image</th>
-                                            <th>Product Image2</th>
-                                            <th>Product Image3</th>
-                                            <th>Product Image4</th>
-                                            <th>Product Background</th>
-                                            <th>Description</th>
+                                            <th>Status</th>
+
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
                                         </tr>
@@ -337,27 +252,21 @@ if(isset($_POST['save']))
                                                 ?>
                                        
                                             <tr>
-                                            <td><?php echo $row['productID'];?></td>
+                                            <td><?php echo $row['userID'];?></td>
+                                            <td><?php echo $row['Invoice'];?></td>
                                             <td><?php echo $row['productName'];?></td>
-                                            <td><?php echo $row['productPrice'];?></td>
                                             <td><?php echo $row['quantity'];?></td>
-                                            <td><?php echo $row['portfolioNum'];?></td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg2'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg3'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg4'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/Background/'.$row['productBg'].'" width="100px" height="100px">'?> </td>
-                                            <td><?php echo $row['description'];?></td>
+                                            <td><?php echo $row['Stat'];?></td>
                                             <td>
                                                 
-                                                    <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
+                                                    <a href="history_Edit.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Edit</a>
                                                 
                                             </td>
 
                                             <td>
-                                                    <form action="Admin_Delete.php" method="POST">
+                                                    <form action="history_Delete.php" method="POST">
                                                 
-                                                    <button type="submit" name="admindelete" value="<?= $row['productID'] ?>" class="btn btn-danger">Delete</a>
+                                                    <button type="submit" name="admindelete" value="<?= $row['Invoice'] ?>" class="btn btn-danger">Delete</a>
                                                     </form>
                                             </td>
                                             </tr>  

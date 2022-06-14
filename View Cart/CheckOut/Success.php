@@ -163,7 +163,7 @@ $to = $_POST['e_mail'];
                                     $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
                                     $updating = $conn->query($updateQuan);
                                     
-                                    $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]');";
+                                    $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity, Stat) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]', 'OnGoing');";
                                     $inserting = $conn->query($invoiceTable);
 
                                     }
