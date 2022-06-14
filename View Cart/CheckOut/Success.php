@@ -6,6 +6,7 @@ $Fname = $_POST['first_name'];
 $Lname = $_POST['last_name'];
 $to = $_POST['e_mail'];
 
+
 ?>
 
 <!DOCTYPE html>
@@ -162,6 +163,9 @@ $to = $_POST['e_mail'];
                                     $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
                                     $updating = $conn->query($updateQuan);
                                     
+                                    $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]');";
+                                    $inserting = $conn->query($invoiceTable);
+
                                     }
                                 } 
                                 else 
