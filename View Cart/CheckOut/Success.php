@@ -195,7 +195,7 @@ $to = $_POST['e_mail'];
                                            $total = $total + (double)$row['productPrice'] * (double)$row['quantity'];
                         
                                       }
-                                          echo " " . $total. "<br>";
+                                          echo " " . number_format($total, 2). "<br>";
                                           $message = $total;
 
                                     } 

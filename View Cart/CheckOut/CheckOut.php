@@ -480,7 +480,7 @@ p{
                                            $total = $total + (double)$row['productPrice'] * (double)$row['quantity'];
                         
                                       }
-                                          echo " " . $total. "<br>";
+                                          echo " " . number_format($total, 2). "<br>";
 
                                     } 
                                     else 
@@ -538,14 +538,17 @@ p{
 
         var valid = this.form.checkValidity();
 
-				if(valid)
-				{
+                if(valid)
+                {
           var CardNum = $('#CardNum').val();
           var form = $(this).parents('form');
 
           e.preventDefault();
-        
-        $.ajax({
+
+          if(CardNum.length === 19)
+          {
+
+            $.ajax({
           type: 'POST',
           url: 'jspayment.php',
           data: {CardNum: CardNum},
@@ -577,8 +580,19 @@ p{
                     })
               }
         })
+
+          }
+          else{
+            Swal.fire({
+                    'title': 'Error',
+                    'text': 'Card invalid',
+                    'type': 'error'
+            })
+          }
         
-				}
+          
+        
+                }
         else{
           
         }

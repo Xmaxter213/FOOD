@@ -34,7 +34,7 @@ require_once('../View Cart/Connection.php');
                         $total = $total + (double)$row['productPrice'] * (double)$row['quantity'];
                         
                          }
-                        echo " " ."₱ ". " ".$total. "<br>";
+                        echo " " ."₱ ". " ".number_format($total, 2). "<br>";
 
                     } 
                     else 
