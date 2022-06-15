@@ -217,6 +217,7 @@ if(isset($_POST['save']))
                                             if (mysqli_num_rows($result) > 0) {
                                                 echo "";
                                                 
+                                                
                                                 ?>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -226,6 +227,7 @@ if(isset($_POST['save']))
                                             <th>Product Name</th>
                                             <th>Quantity</th>
                                             <th>Status</th>
+                                            <th>Date</th>
 
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
@@ -238,6 +240,7 @@ if(isset($_POST['save']))
                                             <th>Product Name</th>
                                             <th>Quantity</th>
                                             <th>Status</th>
+                                            <th>Date</th>
 
                                             <th>Edit Product</th>
                                             <th>Remove Product</th>
@@ -248,6 +251,21 @@ if(isset($_POST['save']))
                                                      while($row = mysqli_fetch_array($result)) 
                                                      {   
                                                          $count = $count + 1;
+
+                                                         $oldDate = new DateTime($row['curDate']);
+
+                                                         $ODate = $oldDate->format('Y-m-d H:i:s');
+
+                                                         $newDate = new DateTime();
+
+                                                         $diff = $newDate->diff($oldDate);
+
+                                                         if($diff->days > 5)
+                                                         {
+                                                            $deleteOldDate = "DELETE FROM CustomerStatusTable WHERE curDate ='$ODate' ";
+                                                            $DelRun = mysqli_query($conn, $deleteOldDate);
+                                                            echo "Its working";
+                                                         }
                                                 
                                                 ?>
                                        
@@ -256,7 +274,10 @@ if(isset($_POST['save']))
                                             <td><?php echo $row['Invoice'];?></td>
                                             <td><?php echo $row['productName'];?></td>
                                             <td><?php echo $row['quantity'];?></td>
-                                            <td><?php echo $row['Stat'];?></td>
+                                            <td>
+                                                <?php echo $row['Stat'];?>
+                                            </td>
+                                            <td><?php echo $row['curDate'];?></td>
                                             <td>
                                                 
                                                     <a href="history_Edit.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Edit</a>

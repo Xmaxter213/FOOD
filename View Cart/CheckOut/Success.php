@@ -4,6 +4,7 @@ require_once('../Connection.php');
 $Address = $_POST['address'];
 $Fname = $_POST['first_name'];
 $Lname = $_POST['last_name'];
+$Subcript = $_POST['Subscription'];
 $to = $_POST['e_mail'];
 
 
@@ -129,12 +130,15 @@ $to = $_POST['e_mail'];
                     <div class="row">
                         <ul class="list-unstyled">
                         <?php
+                            $now = new DateTime();
+
                             $randOrderNum = strtoupper(substr(uniqid(sha1(time())),0,5));
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Name: </span>",$Fname, " ", $Lname, "</li>";
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Address: </span>",$Address, "</li>";
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Invoice: </span>",$randOrderNum, "</li>";
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Date: </span>",date("Y / m / d"), "</li>";
 
+                            $curr = $now->format('Y-m-d H:i:s');
                             
                         ?>
                         
@@ -163,7 +167,7 @@ $to = $_POST['e_mail'];
                                     $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
                                     $updating = $conn->query($updateQuan);
                                     
-                                    $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity, Stat) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]', 'OnGoing');";
+                                    $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity, Stat, curDate) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]', 'OnGoing' , '$curr');";
                                     $inserting = $conn->query($invoiceTable);
 
                                     }
@@ -206,9 +210,11 @@ $to = $_POST['e_mail'];
                                     else 
                                         {
                                            echo "0 ";
-                                        }  
+                                        }
+                                         
                                         $delete = $conn->query($del);
                                         $conn->close();
+                                        
                                     
                                 
                                   ?></h5></p></li>

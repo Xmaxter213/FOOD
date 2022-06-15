@@ -423,11 +423,11 @@ p{
                         <label><h3>Subscription type:</h3></label>
                         <div class="col-md-4">
                           <div class="input-group">
-                          <select class="form-select" aria-label=".form-select-lg example">
+                          <select class="form-select" name="Subscription" aria-label=".form-select-lg example">
                             <option selected></option>
-                            <option value="1">Daily</option>
-                            <option value="2">Weekly</option>
-                            <option value="3">Yearly</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Yearly">Yearly</option>
                           </select>
                           </div>
                         </div>
