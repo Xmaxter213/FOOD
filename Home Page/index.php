@@ -84,9 +84,10 @@ require_once('ReviewCard.php')
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../History Page/HistoryPage.php">History</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
-                    <a class="loginbutton" href="#" style="font-size: 20px;">
+                    <a class="loginbutton" href="../History Page/HistoryPage.php" style="font-size: 20px;">
                         <?php  
                         if (isset($_SESSION['userlogin']))
                             {

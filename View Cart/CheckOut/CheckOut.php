@@ -1,7 +1,6 @@
 <?php
 
-session_start();
-
+require_once('../Connection.php');
     if(!isset($_SESSION['userlogin']))
     {
         $user1 = $_POST[$_SESSION['userlogin'] = $username];
@@ -15,7 +14,7 @@ session_start();
         header("location: ../Login Page/login_new.php");
     }
 
-require_once('../Connection.php');
+
 
 ?>
 <!DOCTYPE html>
