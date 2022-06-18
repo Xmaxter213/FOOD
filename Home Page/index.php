@@ -432,6 +432,13 @@ require_once('ReviewCard.php')
                                     <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
                                         Go to CheckOut
                                         </button></a>
+                                        
+                                        <a href="remove1.php"><button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="submit">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Clear Cart
+                                    </button></a>
+                                        
+
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Tab
