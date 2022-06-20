@@ -40,7 +40,7 @@ require_once('../View Cart/Connection.php');
 
     <div class="card">
         <div class="card-header">
-            <h4> Edit Product
+            <h4> Review
             <a href="HistoryPage.php" class="btn btn-danger float-end" >BACK</a>
             </h4>
         </div> 

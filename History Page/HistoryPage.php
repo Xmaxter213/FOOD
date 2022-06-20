@@ -1,6 +1,7 @@
 <?php 
 require_once('../View Cart/Connection.php');
 
+
     if(!isset($_SESSION['userlogin']))
     {
         header("Location: ../Login Page/Login_new.php");
@@ -35,6 +36,7 @@ require_once('../View Cart/Connection.php');
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--<link href="css/sb-admin-2.min.css" rel="stylesheet">-->
 </head>
 <body id="page-top" style="background-color: #D4F1F4;">
 
@@ -51,9 +53,9 @@ require_once('../View Cart/Connection.php');
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="#contact">History</a></li>
+                        <li class="nav-item "><a class="nav-link active" href="#contact">History</a></li>
                     </ul>
-                    <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
+                    <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="color: white"></i></a></li>
                     <a class="loginbutton" href="#" style="font-size: 20px;">
                         <?php  
                         if (isset($_SESSION['userlogin']))
@@ -77,6 +79,8 @@ require_once('../View Cart/Connection.php');
     
             </div>
         </header>
+        <div class="card shadow mb-3">
+                        <div class="card-header py-3">
         <div class="card-body">
         <div class="table-responsive"> 
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -86,6 +90,7 @@ require_once('../View Cart/Connection.php');
                                             <th>Quantity</th>
                                             <th>Status</th>
                                             <th>Current Date</th>
+                                            <th></th>
                                            
                                         </tr>
                                     </thead>
@@ -95,6 +100,7 @@ require_once('../View Cart/Connection.php');
                                             <th>Quantity</th>
                                             <th>Status</th>
                                             <th>Current Date</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                 <?php
@@ -137,9 +143,52 @@ require_once('../View Cart/Connection.php');
                                         ?>
             </div>
             </div>
+                                        </div>
+                                        </div>
 
         
 
         
+        <!--view cart pop up-->
+        <div class="portfolio-modal modal fade" id="viewcart1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <iframe id="cart" src="../View Cart/checkoutcart.php" ></iframe>
+                                    <iframe id="bottomCart" src="../Home Page/viewcartprice.php" ></iframe>
+                                    <br>
+                                    <br>
+                                    <a href = "../View Cart/CheckOut/CheckOut.php"><button class="btn btn-primary btn-xl text-uppercase"  type="button">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                        Go to CheckOut
+                                        </button></a>
+                                        
+                                        <a href="../Home Page/remove1.php"><button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="submit">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Clear Cart
+                                    </button></a>
+                                        
+
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Tab
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -113,10 +113,10 @@ require_once('ReviewCard.php')
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#page-top">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="../History Page/HistoryPage.php">History</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
