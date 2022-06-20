@@ -11,6 +11,14 @@ include_once ('quantity.php');
     else
     {
         $name = $_SESSION['userlogin'];
+
+        $status = $_SESSION['userStatus'];
+
+        if(implode("", $status) === 'ADMIN')
+        {
+            header("location: ../Admin Page/index.php");
+        }
+
     }
 
     if(isset($_GET['logout']))

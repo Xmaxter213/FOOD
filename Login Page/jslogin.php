@@ -23,7 +23,8 @@ if($result)
 		$user = $getuser->fetch(PDO::FETCH_ASSOC);
 
 		$_SESSION['userlogin'] = $user;
-		echo 'Successfully';
+        	echo 'Successfully';
+
 	}
 	else
 	{
@@ -35,13 +36,22 @@ else
 	echo 'There was an error connecting to the database';
 }
 
-	$sqlgetuserID = "SELECT userID FROM userTable WHERE email = ? AND password = ? LIMIT 1";
+		$sqlgetuserID = "SELECT userID FROM userTable WHERE email = ? AND password = ? LIMIT 1";
 		$getuserID = $db->prepare($sqlgetuserID);
 		$database = $getuserID->execute([$email, $password ]);
 
 		$userID = $getuserID->fetch(PDO::FETCH_ASSOC);
 
 		$_SESSION['userID'] = $userID;
+
+		$sqlgetstatus = "SELECT status FROM userTable WHERE email = ? AND password = ? LIMIT 1";
+        $getstatus = $db->prepare($sqlgetstatus);
+        $sqlstatus = $getstatus->execute([$email, $password ]);
+
+        $status = $getstatus->fetch(PDO::FETCH_ASSOC);
+
+        $_SESSION['userStatus'] = $status;
+
 
 		
 

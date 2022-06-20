@@ -1,22 +1,21 @@
 <?php
-
-
-    if(!isset($_SESSION['userlogin']))
+require_once('../View Cart/Connection.php');
+    if(!isset($_SESSION['userStatus']))
     {
-        
-
+        header("location: ../Login Page/Login_new.php");
     }
     else
     {
-        $name = $_SESSION['userlogin'];
+        $name = $_SESSION['userStatus'];
     }
 
     if(isset($_GET['logout']))
     {
         session_destroy();
         unset($_SESSION);
-        header("location: ../Login Page/login_new.php");
+        header("location: ../Login Page/Login_new.php");
     }
+
 
 
 require_once('../View Cart/Connection.php');;
@@ -205,7 +204,7 @@ require_once('../View Cart/Connection.php');;
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="index.php?logout=true" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -422,7 +421,7 @@ require_once('../View Cart/Connection.php');;
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="index.php?logout=true">Logout</a>
                 </div>
             </div>
         </div>
