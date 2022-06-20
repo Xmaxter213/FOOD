@@ -37,7 +37,8 @@ require_once('../View Cart/Connection.php');
         <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body id="page-top" style="background-color: #D4F1F4;">
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style = "background-color: black;">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">F.O.O.D</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,7 +118,11 @@ require_once('../View Cart/Connection.php');
                                             <td><?php echo $row['quantity'];?></td>
                                             <td><?php echo $row['Stat'];?></td>
                                             <td><?php echo $row['curDate'];?></td>
-                                        
+                                            <td>
+                                                    <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Make Review</a>
+                                                    
+                                            </td>
+                                            
                                             </tr>  
                                             <?php
                                                
@@ -132,5 +137,9 @@ require_once('../View Cart/Connection.php');
                                         ?>
             </div>
             </div>
+
+        
+
+        
 </body>
 </html>

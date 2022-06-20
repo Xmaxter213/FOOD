@@ -3,7 +3,7 @@
 function reviewCard($username, $rating, $content, $date){
     $element1 ="
     
-    <div class=\"row\">
+    <div class=\"reviews row\" style =\"display:none;\">
         	    <div class=\"col-md-2\">
         	        <img src=\"https://image.ibb.co/jw55Ex/def_face.jpg\" class=\"img img-rounded img-fluid\"/>
         	        <p class=\"text-secondary text-center\">$date</p>
@@ -14,14 +14,14 @@ function reviewCard($username, $rating, $content, $date){
 
 	$element2 = "
 	
-	</p>
-	<div class=\"clearfix\"></div>
-	<p>$content</p>
-	<p>
-		<a class=\"float-right btn btn-outline-primary ml-2\"> <i class=\"fa fa-reply\"></i> Reply</a>
-		<a class=\"float-right btn text-white btn-danger\"> <i class=\"fa fa-heart\"></i> Like</a>
-	</p>
-	</div>
+					</p>
+				<div class=\"clearfix\"></div>
+					<p>$content</p>
+					<p>
+						<a class=\"float-right btn btn-outline-primary ml-2\"> <i class=\"fa fa-reply\"></i> Reply</a>
+						<a class=\"float-right btn text-white btn-danger\"> <i class=\"fa fa-heart\"></i> Like</a>
+					</p>
+				</div>
 	</div>";
 
 	//display
