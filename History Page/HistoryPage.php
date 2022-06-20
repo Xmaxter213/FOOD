@@ -50,7 +50,7 @@ require_once('../View Cart/Connection.php');
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">History</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="#contact">History</a></li>
                     </ul>
                     <a  class="nav-link" class="portfolio-link" data-bs-toggle="modal" href="#viewcart1" style=" margin-right: 50px;  color: black;"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></a></li>
                     <a class="loginbutton" href="#" style="font-size: 20px;">
