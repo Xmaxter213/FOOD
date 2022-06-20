@@ -66,9 +66,42 @@ require_once('ReviewCard.php')
             font-size: 20px;
         }
 
+        /*For rating*/
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+        .content{
+        width: 420px;
+        margin-top: 100px;
+        }
+
+        .ratings{
+
+            background-color:#fff;
+                padding: 54px;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                box-shadow: 0px 10px 10px #E0E0E0;
+        }
+
+        .product-rating{
+
+            font-size: 50px;
+        }
+
+        .stars i{
+
+            font-size: 18px;
+            color: #28a745;
+        }
+
+        .rating-text{
+            margin-top: 10px;
+        }
+
+
+
         </style>
 
     </head>
+    
     <body id="page-top" style="background-color: #D4F1F4;">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -252,7 +285,104 @@ require_once('ReviewCard.php')
     <!--To Work with icons, but ruins services part so excluded
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     -->
+
+<div class="d-flex justify-content-center">                      
+    <div class="content text-center">
+        <div class="ratings">
+        <?php    
+            $sql = "SELECT rating FROM reviewTable";
+            $result = $conn->query($sql);
+            $ratingCount = null;
+            $ratingAverage = null;
+            if ($result->num_rows > 0) {
+                echo "";
+                // output data of each row
+            while($row = $result->fetch_assoc()) 
+            {
+                $ratingAverage = $ratingAverage + $row['rating'];
+                $ratingCount++;
+                }
+            $ratingAverage = $ratingAverage / $ratingCount;
+
+            } 
+            else 
+            {
+                echo "0";
+            }
+            ?>
+
+            <span class="product-rating"><?= number_format((float)$ratingAverage, 2, '.', '') ?></span><span>/5</span>
+            <div class="stars">
+                <?php
+                    if ($ratingAverage <= 1)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                    }
+                    else if ($ratingAverage <= 1.5)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star-half"></i>';
+                    }
+                    else if ($ratingAverage <= 2)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                    }
+                    else if ($ratingAverage <= 2.5)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star-half"></i>';
+                    }
+                    else if ($ratingAverage <= 3)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+
+                    }
+                    else if ($ratingAverage <= 3.5)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star-half"></i>';
+                    }
+                    else if ($ratingAverage <= 4)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+
+                    }
+                    else if ($ratingAverage <= 4.5)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star-half"></i>';
+                    }
+                    else if ($ratingAverage <= 5)
+                    {
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                        echo '<i class="fa fa-star"></i>';
+                    }
+                ?>
+            </div>
+        <div class="rating-text">
+            <span><?= $ratingCount ?> reviews</span>
+        </div>
+    </div>
+</div>
+
+</div> 
 <div class="container">
+    <br><br>
 	<h2 class="text-center">User Rating Form</h2>
 	
 	<div class="card">
@@ -299,105 +429,31 @@ require_once('ReviewCard.php')
                         echo "0";
                     }
                     ?>
-            
 
+            <a href = "#" id = "loadMore"> Load More </a>
+
+            <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+            <script src ="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
+            <script>
+            $(document).ready (function () {
+            $(".reviews").slice(0, 2).show();
+            $("#loadMore").on("click", function(e){
+                e.preventDefault();
+                $(".reviews:hidden").slice(0, 2).slideDown();
+                if ($(".reviews:hidden").length == 0) {
+                $("#loadMore").text("No Content").addClass("noContent");
+                }
+            });
+            })
+            </script>
 	    </div>
 	</div>
 </div>
 		
     </div> <!-- /container -->
 
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Give us a review!</h2>
-                    <h3 class="section-subheading text-muted">We'd appreciate the honest feedback.</h3>
-                </div>
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
-                <form id="contactForm" action = "addReview.php" method = "POST">
-                    <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <!-- Name and date-->
-                                <input class="form-control" id="username" type="hidden" name = "username" value= "<?= implode($_SESSION_user)?>"/>
-                                <input class="form-control disabled" id="date" type="hidden" name = "date" value = <?= date("j, n, Y")?>/>
-                                
-                                <script>
-                                function getDate(){
-                                    var todaydate = new Date();
-                                    var day = todaydate.getDate();
-                                    var month = todaydate.getMonth() + 1;
-                                    var year = todaydate.getFullYear();
-                                    var datestring = month + "/" + day + "/" + year;
-                                    document.getElementById("date").value = datestring;
-                                } 
-                                getDate(); 
-                                </script>
-                            </div>
-
-                            <div class="form-group mb-md-0">
-                                <!-- Rating input-->
-                                <label for="rating" style="color: white">Rating</label>
-                                <select class="form-control" name="rating" id="rating" type = "int">
-                                    <option value= 1>1</option>
-                                    <option value= 2>2</option>
-                                    <option value= 3>3</option>
-                                    <option value= 4>4</option>
-                                    <option value= 5>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-group-textarea mb-md-0">
-                                <!-- Message input-->
-                                <textarea class="form-control" id="message" name = "content" placeholder="Your Message *" required = "\S(.*\S)?[A-Za-z0-9]+"></textarea>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center text-white mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                    <!-- Submit Button-->
-                    <?php
-                    if(!isset($_SESSION['userlogin']))
-                    {
-                        echo "<div class=\"text-center\"><button class=\"btn btn-primary btn-xl text-uppercase disabled\" id=\"submitButton\" type=\"submit\">Send Message</button></div>";
-
-                    }
-                    else
-                    {
-                        echo "<div class=\"text-center\"><button class=\"btn btn-primary btn-xl text-uppercase\" id=\"submitButton\" type=\"submit\">Send Message</button></div>";
-                    }
-                    ?>
-                    
-                </form>
-            </div>
-        </section>
-
         <!-- Footer-->
-        <footer class="footer py-4 mt-2">
+        <footer class="footer py-4 mt-2" style = "background-color: black; color: white;">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; F.O.O.D 2022</div>
@@ -407,8 +463,8 @@ require_once('ReviewCard.php')
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                        <a class="link-dark text-decoration-none me-3" href="#!" style = "color: white;">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!" style = "color: white;">Terms of Use</a>
                     </div>
                 </div>
             </div>
