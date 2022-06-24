@@ -32,6 +32,8 @@ function productCard($productID, $productName, $productQty, $portfolioModalNum, 
                                                     <img class=\"img-fluid d-block mx-auto\" src=\"../View Product/photos/$productImg\" alt=\"...\" />
                                                     
                                                     <form action = \"../View Product/Product Page.php\" method = \"GET\">
+
+                                                    <input   type =\"hidden\" name =\"maxquantity1\" for=\"maxquantity1\" value =\"$productQty\"></input>
                                                     <a href = \"\"><button class=\"btn btn-primary btn-xl text-uppercase\" name = \"homeProductID\"  type=\"submit\" value =\"$productID\">
                                                     <i class=\"fa fa-shopping-cart fa-1x\" aria-hidden=\"true\"></i>
                                                         Go to Page
