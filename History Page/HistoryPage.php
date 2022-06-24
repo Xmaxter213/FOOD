@@ -72,7 +72,7 @@ require_once('../View Cart/Connection.php');
                             
                         </a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
-                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
+                    <a class="loginbutton" href="../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>

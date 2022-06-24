@@ -137,9 +137,9 @@ require_once('ReviewCard.php')
                                 echo "<a class=\"loginbutton\" href=\"index.php?logout=true\" style=\"font-size: 20px;\">Logout</a>";
                             }
                         else{
-                                echo 'Guest';
+                                echo "<a class=\"small\" href=\"../Login Page/Login_new.php\">Login</a>";
                                 echo "<a style=\"font-size: 20px;\">&nbsp/&nbsp</a>";
-                                echo "<a class=\"small\" href=\"../Register Page/Register.php\">Create an Account!</a>";
+                                echo "<a class=\"small\" href=\"../Register Page/Register.php\">Register</a>";
                             }
                             ?>
                             
