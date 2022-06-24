@@ -72,7 +72,7 @@ require_once('../View Cart/Connection.php');
                             
                         </a>
                     <a style="font-size: 20px;">&nbsp/&nbsp</a>
-                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
+                    <a class="loginbutton" href="../Home Page/index.php?logout=true" style="font-size: 20px;">Logout</a>
                 </div>
             </div>
         </nav>
@@ -112,7 +112,7 @@ require_once('../View Cart/Connection.php');
                                 <?php
                                             $ID = implode($_SESSION['userID']);
                                             $count =0;
-                                            $sql = "SELECT * FROM CustomerStatusTable WHERE userID ='$ID' AND Stat ='Delivered' ";
+                                            $sql = "SELECT * FROM CustomerStatusTable WHERE userID ='$ID' ";
                                             $result = mysqli_query($conn, $sql);
                                             if (mysqli_num_rows($result) > 0) {
                                                 echo "";
@@ -132,8 +132,17 @@ require_once('../View Cart/Connection.php');
                                             <td><?php echo $row['Stat'];?></td>
                                             <td><?php echo $row['curDate'];?></td>
                                             <td>
+                                                    <?php  if($row['Stat'] === "Delivered") 
+                                                     {
+                                                     ?>
                                                     <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Make Review</a>
-                                                    
+                                                    <?php
+                                                     }
+                                                    else{
+                                                     ?>
+
+                                                     <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn disabled">Not Delivered</a>
+                                                     <?php }?>
                                             </td>
                                             
                                             </tr>  

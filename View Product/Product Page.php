@@ -47,6 +47,8 @@ include_once ('php layouts/ProductPageLayout3.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
 
@@ -197,6 +199,7 @@ include_once ('php layouts/ProductPageLayout3.php');
     <?php          
 
         $ID = $_GET['homeProductID'];
+        $maxquantity = $_GET['maxquantity1'];
         $sql = "SELECT productImg, productImg2, productImg3, productImg4 FROM productTable WHERE productID = '$ID'";
         $result = $conn->query($sql);
 
@@ -224,9 +227,10 @@ include_once ('php layouts/ProductPageLayout3.php');
     </div>
 
     <div class = "secondContainer">
-    <form class="addAndInfo" action="adding.php" method="POST">
+    <form class="addAndInfo" method="POST">
     
     <?php
+
     $sql = "SELECT productName, productPrice, quantity, productID FROM productTable WHERE productID = '$ID'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -236,7 +240,7 @@ include_once ('php layouts/ProductPageLayout3.php');
     {
         $imgdirectory = "assets/img/portfolio/";
         productPageLayout2($row['productName'], $row['productPrice'], $row['quantity'], $row['productID']);
-        }
+    }
     } 
     else 
     {
@@ -244,9 +248,70 @@ include_once ('php layouts/ProductPageLayout3.php');
     }
 
     ?>
+    
+    <input type = "hidden" name = "maxquantity" id = "maxquantity" value = "<?= $maxquantity?>">
     <input type = "hidden" name = "productName" id = "productName" value = "<?= $ID?>">
     <button type= "submit"  id="add" name="submit" value="<?= implode($_SESSION['userID']) ?>">ADD TO CART</button>
     </form>
+    <?php
+ if(isset($_POST['submit']))
+ {
+$maxquantity= $_POST['maxquantity'];
+$quantity= $_POST['quantity'];
+$userID =  $_POST['submit'];
+$productName = $_POST['productName'];
+
+$total = (int)$maxquantity - (int)$quantity;
+
+    if ($total < "0")
+{
+    
+     echo '<script type="text/javascript">
+    
+         swal({
+             
+             text: "Sorry but the product is not sufficient",
+             icon: "error",
+             button: "Ok"
+            
+         });
+     
+ </script>';
+}
+else
+{    
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+     echo "";
+    // output data of each row
+    while($row = $result->fetch_assoc()) 
+    {      
+        
+    $prodid = "SELECT quantity FROM productTable WHERE productName = '$row[productName]'";
+    $res = $conn->query($prodid);
+    $row1 = $res->fetch_assoc();
+                                    
+    $change = $row1["quantity"] - $row["quantity"];
+    $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
+    $updating = $conn->query($updateQuan);
+
+    }
+    } 
+    else 
+    {
+      echo "0 results";
+    }  
+
+    $sql = "INSERT INTO cartTable (userID, productID, quantity) VALUES ('$userID','$productName', '$quantity');";
+    mysqli_query($conn, $sql);
+
+   
+}
+ }
+    ?>
+
+
 
     <?php
     $sql = "SELECT description FROM productTable WHERE productID = '$ID'";
@@ -266,6 +331,8 @@ include_once ('php layouts/ProductPageLayout3.php');
     }
     
     ?>
+
+
 
     
 

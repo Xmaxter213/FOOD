@@ -150,7 +150,7 @@ $to = $_POST['e_mail'];
                             <?php
                                 
                             
-                            $result = $conn->query($sql);
+                                $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     echo "";
                                     // output data of each row
