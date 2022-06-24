@@ -133,15 +133,18 @@ require_once('ReviewCard.php')
                         if (isset($_SESSION['userlogin']))
                             {
                                 $_SESSION_user= $_SESSION['userlogin'];echo implode (" ",$_SESSION_user);/*spacing if many array (" ",$_SESSION_user)*/
+                                echo "<a style=\"font-size: 20px;\">&nbsp/&nbsp</a>";
+                                echo "<a class=\"loginbutton\" href=\"index.php?logout=true\" style=\"font-size: 20px;\">Logout</a>";
                             }
                         else{
-                                echo 'anon';
+                                echo 'Guest';
+                                echo "<a style=\"font-size: 20px;\">&nbsp/&nbsp</a>";
+                                echo "<a class=\"small\" href=\"../Register Page/Register.php\">Create an Account!</a>";
                             }
                             ?>
                             
                         </a>
-                    <a style="font-size: 20px;">&nbsp/&nbsp</a>
-                    <a class="loginbutton" href="index.php?logout=true" style="font-size: 20px;">Logout</a>
+                    
                 </div>
             </div>
         </nav>
