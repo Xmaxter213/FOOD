@@ -101,14 +101,14 @@ if(isset($_GET['logout']))
             <li class="nav-item active">
                 <a class="nav-link" href="historyAdmin.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>History Tables</span></a>
+                    <span>Purchase History Tables</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item">
-                <a class="nav-link" href="historyAdmin.php">
+                <a class="nav-link" href="add_admin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Add Admin</span></a>
             </li>

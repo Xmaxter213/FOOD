@@ -7,49 +7,28 @@ include('message.php');
 
 if(isset($_POST['add']))
 {
-    $productID = $_POST['ProductID'];
-    $name = $_POST['ProductName'];
-    $productPrice = $_POST['ProductPrice'];
-    $Quantity = $_POST['Quantity'];
-    $portfolioNum = $_POST['PortfolioNumber'];
-    $productImg = $_FILES["productImg"]['name'];
-    $productImg2 = $_FILES["productImg2"]['name'];
-    $productImg3 = $_FILES["productImg3"]['name'];
-    $productImg4 = $_FILES["productImg4"]['name'];
-    $productBg = $_FILES["ProductBackground"]['name'];
-    $description = $_POST['description'];
-
-    if(file_exists("../View Product/photos/" .$_FILES["productImg"]["name"]))
-    {
-        $store=$_FILES["productImg"]["name"];
-        $_SESSION['status']= "Image already exists.'.$store.'";
-        header('Location: tables.php');
-    }
-
-    else
-    {
-        $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productImg, productImg2, productImg3, productImg4, productBg,description) VALUES ('$productID','$name', '$productPrice','$Quantity','$portfolioNum', '$productImg', '$productImg2', '$productImg3', '$productImg4', '$productBg','$description' )";
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
+    
+        $query = "INSERT INTO userTable (firstName, lastName, username , email, password, status) VALUES ('$firstName','$lastName', '$username','$email','$password', 'ADMIN' )";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
         {
-            move_uploaded_file($_FILES["productImg"]["tmp_name"],"../View Product/photos/" .$_FILES["productImg"]["name"] );
-            move_uploaded_file($_FILES["productImg2"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg2"]["name"] );
-            move_uploaded_file($_FILES["productImg3"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg3"]["name"] );
-            move_uploaded_file($_FILES["productImg4"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg4"]["name"] );
-            move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photos/Background/"  .$_FILES["ProductBackground"]["name"] );
-            //move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photo/Background/".$_FILES["ProductBackground"]["name"] );
             $_SESSION['message'] = "Catagory Added Successfully";
-            header('Location: tables.php');
+            header('Location: add_admin.php');
             exit(0);
         }
         else
         {
             $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: tables.php');
+            header('Location: add_admin.php');
             exit(0);
         }
-    }
+    
 
 }
 
@@ -57,103 +36,29 @@ if(isset($_POST['add']))
 
 if(isset($_POST['save']))
 {
-    $productID = $_POST['ProductID'];
-    $name = $_POST['ProductName'];
-    $productPrice = $_POST['ProductPrice'];
-    $Quantity = $_POST['Quantity'];
-    $portfolioNum = $_POST['PortfolioNumber'];
-    $productImg = $_FILES["productImg"]['name'];
-    $productImg2 = $_FILES["productImg2"]['name'];
-    $productImg3 = $_FILES["ProductImg3"]['name'];
-    $productImg4 = $_FILES["productImg4"]['name'];
-    $productBg = $_FILES["ProductBackground"]['name'];
-    $description = $_POST['description'];
-    
-    $productImgold = $_POST['oldimage'];
-    $productImgold2 = $_POST['oldimage2'];
-    $productImgold3 = $_POST['oldimage3'];
-    $productImgold4 = $_POST['oldimage4'];
-    $productBgold = $_POST['oldBg'];
+    $userID = $_POST['userID'];
+    $status = $_POST['status'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
 
-    $updatefile = "";
-    $updatefile2 = "";
-    $updatefile3 = "";
-    $updatefile4 = "";
-    $updatefile5 = "";
-        if($productImg != NULL)
-        {
-
-            $updatefile = $productImg;
-        }
-        else
-        {
-            $updatefile = $productImgold;
-        }
-
-        if($productImg2 != NULL)
-        {
-
-            $updatefile2 = $productImg2;
-        }
-        else
-        {
-            $updatefile2 = $productImgold2;
-        }
-
-        if($productImg3 != NULL)
-        {
-
-            $updatefile3 = $productImg3;
-        }
-        else
-        {
-            $updatefile3 = $productImgold3;
-        }
-
-        if($productImg4 != NULL)
-        {
-
-            $updatefile4 = $productImg4;
-        }
-
-        else
-        {
-            $updatefile4 = $productImgold4;
-        }
-
-        if($productBg != NULL)
-        {
-
-            $updatefile5 = $productBg;
-        }
-        else
-        {
-            $updatefile5 = $productBgold;
-        }
-
-
-
-
-
-        $query="UPDATE productTable SET productName='$name', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$updatefile',productImg2='$updatefile2',productImg3='$updatefile3',productImg4='$updatefile4', productBg='$updatefile5',description='$description' WHERE productID='$productID' ";
+        $query="UPDATE userTable SET firstName='$firstName', lastName ='$lastName', username='$username', email='$email', password='$password' WHERE userID='$userID' AND status ='$status' ";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
         {
             
-            move_uploaded_file($_FILES["ProductImg"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
-            move_uploaded_file($_FILES["productImg2"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg2"]["name"] );
-            move_uploaded_file($_FILES["productImg3"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg3"]["name"] );
-            move_uploaded_file($_FILES["productImg4"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg4"]["name"] );
-            move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photos/Background/"  .$_FILES["ProductBackground"]["name"] );
+           
             $_SESSION['message'] = "Catagory Updated Successfully";
-            header('Location: tables.php');
+            header('Location: add_admin.php');
             exit(0);
         }
         else
         {
             $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: tables.php');
+            header('Location: add_admin.php');
             exit(0);
         }
     
@@ -225,7 +130,7 @@ if(isset($_POST['save']))
             
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -244,7 +149,7 @@ if(isset($_POST['save']))
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="add_admin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Add Admin</span></a>
@@ -372,48 +277,36 @@ if(isset($_POST['save']))
 
                              <?php
                                             $count =0;
-                                            $sql = "SELECT * FROM productTable";
+                                            $sql = "SELECT * FROM userTable WHERE status = 'ADMIN' ";
                                             $result = mysqli_query($conn, $sql);
                                             if (mysqli_num_rows($result) > 0) {
                                                 echo "";
                                                 
                                                 ?>
-                                <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
+                                <a href= "adding_admin.php" class="btn btn-primary float-end">Add</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Product ID</th>
-                                            <th>Product Name</th>
-                                            <th>Product Price</th>
-                                            <th>Quantity</th>
-                                            <th>Portfolio Number</th>
-                                        
-                                            <th>Product Image</th>
-                                            <th>Product Image2</th>
-                                            <th>Product Image3</th>
-                                            <th>Product Image4</th>
-                                            <th>Product Background</th>
-                                            <th>Description</th>
-                                            <th>Edit Product</th>
-                                            <th>Remove Product</th>
+                                            <th>UserID</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>Username</th>
+                                            <th>E-mail</th>
+                                            <th>Status</th>
+                                            <th>Edit Admin</th>
+                                            <th>Remove Admin</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Product ID</th>
-                                            <th>Product Name</th>
-                                            <th>Product Price</th>
-                                            <th>Quantity</th>
-                                            <th>Portfolio Number</th>
-                                            
-                                            <th>Product Image</th>
-                                            <th>Product Image2</th>
-                                            <th>Product Image3</th>
-                                            <th>Product Image4</th>
-                                            <th>Product Background</th>
-                                            <th>Description</th>
-                                            <th>Edit Product</th>
-                                            <th>Remove Product</th>
+                                            <th>UserID</th>
+                                            <th>FirstName</th>
+                                            <th>LastName</th>
+                                            <th>Username</th>
+                                            <th>E-mail</th>
+                                            <th>Status</th>
+                                            <th>Edit Admin</th>
+                                            <th>Remove Admin</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -425,27 +318,22 @@ if(isset($_POST['save']))
                                                 ?>
                                        
                                             <tr>
-                                            <td><?php echo $row['productID'];?></td>
-                                            <td><?php echo $row['productName'];?></td>
-                                            <td><?php echo $row['productPrice'];?></td>
-                                            <td><?php echo $row['quantity'];?></td>
-                                            <td><?php echo $row['portfolioNum'];?></td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg2'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg3'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/'.$row['productImg4'].'" width="100px" height="100px">'?> </td>
-                                            <td> <?php echo'<img src ="../View Product/photos/Background/'.$row['productBg'].'" width="100px" height="100px">'?> </td>
-                                            <td><?php echo $row['description'];?></td>
+                                            <td><?php echo $row['userID'];?></td>
+                                            <td><?php echo $row['firstName'];?></td>
+                                            <td><?php echo $row['lastName'];?></td>
+                                            <td><?php echo $row['username'];?></td>
+                                            <td><?php echo $row['email'];?></td>
+                                            <td><?php echo $row['status'];?></td>
                                             <td>
                                                 
-                                                    <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
+                                                    <a href="edit_admin.php?userID=<?= $row['userID'] ?>" class="btn btn-info">Edit</a>
                                                 
                                             </td>
 
                                             <td>
-                                                    <form action="Admin_Delete.php" method="POST">
+                                                    <form action="delete_admin.php" method="POST">
                                                 
-                                                    <button type="submit" name="admindelete" value="<?= $row['productID'] ?>" class="btn btn-danger">Delete</a>
+                                                    <button type="submit" name="admindelete" value="<?= $row['userID'] ?>" class="btn btn-danger">Delete</a>
                                                     </form>
                                             </td>
                                             </tr>  
