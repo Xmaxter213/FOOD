@@ -69,12 +69,83 @@ if(isset($_POST['save']))
     $productBg = $_FILES["ProductBackground"]['name'];
     $description = $_POST['description'];
     
-        $query="UPDATE productTable SET productName='$name', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$productImg',productImg2='$productImg2',productImg3='$productImg3',productImg4='$productImg4', productBg='$productBg',description='$description' WHERE productID='$productID' ";
+    $productImgold = $_POST['oldimage'];
+    $productImgold2 = $_POST['oldimage2'];
+    $productImgold3 = $_POST['oldimage3'];
+    $productImgold4 = $_POST['oldimage4'];
+    $productBgold = $_POST['oldBg'];
+
+    $updatefile = "";
+    $updatefile2 = "";
+    $updatefile3 = "";
+    $updatefile4 = "";
+    $updatefile5 = "";
+        if($productImg != NULL)
+        {
+
+            $updatefile = $productImg;
+        }
+        else
+        {
+            $updatefile = $productImgold;
+        }
+
+        if($productImg2 != NULL)
+        {
+
+            $updatefile2 = $productImg2;
+        }
+        else
+        {
+            $updatefile2 = $productImgold2;
+        }
+
+        if($productImg3 != NULL)
+        {
+
+            $updatefile3 = $productImg3;
+        }
+        else
+        {
+            $updatefile3 = $productImgold3;
+        }
+
+        if($productImg4 != NULL)
+        {
+
+            $updatefile4 = $productImg4;
+        }
+
+        else
+        {
+            $updatefile4 = $productImgold4;
+        }
+
+        if($productBg != NULL)
+        {
+
+            $updatefile5 = $productBg;
+        }
+        else
+        {
+            $updatefile5 = $productBgold;
+        }
+
+
+
+
+
+        $query="UPDATE productTable SET productName='$name', productPrice ='$productPrice', quantity='$Quantity', portfolioNum='$portfolioNum', productImg='$updatefile',productImg2='$updatefile2',productImg3='$updatefile3',productImg4='$updatefile4', productBg='$updatefile5',description='$description' WHERE productID='$productID' ";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
         {
-            move_uploaded_file($_FILES["ProductImage"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
+            
+            move_uploaded_file($_FILES["ProductImg"]['tmp_name'],"../View Product/photo/".$_FILES["ProductImage"]["name"] );
+            move_uploaded_file($_FILES["productImg2"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg2"]["name"] );
+            move_uploaded_file($_FILES["productImg3"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg3"]["name"] );
+            move_uploaded_file($_FILES["productImg4"]["tmp_name"],"../View Product/photos/"  .$_FILES["productImg4"]["name"] );
+            move_uploaded_file($_FILES["ProductBackground"]["tmp_name"],"../View Product/photos/Background/"  .$_FILES["ProductBackground"]["name"] );
             $_SESSION['message'] = "Catagory Updated Successfully";
             header('Location: tables.php');
             exit(0);
@@ -168,6 +239,15 @@ if(isset($_POST['save']))
                 <a class="nav-link" href="historyAdmin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>History Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+                <a class="nav-link" href="historyAdmin.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Add Admin</span></a>
             </li>
 
             <!-- Divider -->

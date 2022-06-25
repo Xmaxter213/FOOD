@@ -67,22 +67,27 @@ require_once('../View Cart/Connection.php');
 </div>
 <div>
     <label>ProductImage</label>
-    <input type="file" name="productImg" id="image" value="<?php  echo $row['productImg'] ?>" class="form-control">
+    <input type="hidden" name="oldimage" id="oldimage" value="<?php echo $row['productImg'] ?>" class="form-control">
+    <input type="file" name="productImg" id="image" value="<?php echo $row['productImg'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage2</label>
+    <input type="hidden" name="oldimage2" id="oldimage2" value="<?php  echo $row['productImg2'] ?>" class="form-control">
     <input type="file" name="productImg2" id="image2" value="<?php echo $row['productImg2'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage3</label>
-    <input type="file" name="ProductImg3" id="image3" value="<?php  echo$row['productImg3'] ?>" class="form-control">
+    <input type="hidden" name="oldimage3" id="oldimage3" value="<?php  echo $row['productImg3'] ?>" class="form-control">
+    <input type="file" name="ProductImg3" id="image3" value="<?php  echo $row['productImg3'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductImage4</label>
+    <input type="hidden" name="oldimage4" id="oldimage4" value="<?php  echo $row['productImg4'] ?>" class="form-control">
     <input type="file" name="productImg4" id="image4" value="<?php  echo $row['productImg4'] ?>" class="form-control">
 </div>
 <div>
     <label>ProductBackground</label>
+    <input type="hidden" name="oldBg" id="oldBg" value="<?php  echo $row['productBg'] ?>" class="form-control">
     <input type="file" name="ProductBackground" value="<?php  echo $row['productBg'] ?>" class="form-control" placeholder="Enter ProductBackground">
 </div>
 <div>
