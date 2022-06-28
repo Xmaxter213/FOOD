@@ -115,14 +115,26 @@ require_once '../config.php';
 							url: 'process.php',
 							data: {firstname: firstname, lastname: lastname, username: username, email: email, password: password},
 							success: function(data){
-							Swal.fire({
-										'title': 'Successful',
-										'text': data,
-										'type': 'success'
-										}).then(function(){
-											window.location = "../Login Page/Login_new.php";
-										});
-									
+								if(data === "Successfully saved.")
+								{
+									Swal.fire({
+											'title': 'Successful',
+											'text': data,
+											'type': 'success'
+											}).then(function(){
+												window.location = "../OTP/OTP.php";
+											});
+
+								}
+								else
+								{
+									Swal.fire({
+											'title': 'Errors',
+											'text': data,
+											'type': 'error'
+											})
+								}
+
 							},
 							error: function(data){
 								Swal.fire({
@@ -131,6 +143,7 @@ require_once '../config.php';
 										'type': 'error'
 										})
 							}
+								
 						});
 					}
 					else

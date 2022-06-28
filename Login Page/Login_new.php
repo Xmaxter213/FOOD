@@ -119,6 +119,16 @@
                                 setTimeout('window.location.href = "../Home Page/index.php"', 2000);
                             }
                         }
+                        else if(data === "Account Not validated")
+                        {
+                            Swal.fire({
+                                        'title': 'Errors',
+                                        'text': data,
+                                        'type': 'error'
+                                        }).then(function(){
+                                                window.location = "../OTP/OTP.php";
+                                        });
+                        }
                         else
                         {
                             Swal.fire({

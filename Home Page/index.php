@@ -14,10 +14,21 @@ include_once ('quantity.php');
 
         $status = $_SESSION['userStatus'];
 
-        if(implode("", $status) === 'ADMIN')
+        $valid = $_SESSION['Validity'];
+
+        if(implode("", $valid) === '1')
         {
-            header("location: ../Admin Page/index.php");
+            if(implode("", $status) === 'ADMIN')
+            {
+                header("location: ../Admin Page/index.php");
+            }
         }
+        else
+        {
+            header("location: ../OTP/OTP.php");
+        }
+
+        
 
     }
 

@@ -13,18 +13,35 @@ $result = $stmtselect->execute([$email, $password]);
 
 if($result)
 {
-	$user = $stmtselect->fetch(PDO::FETCH_ASSOC);
 	if($stmtselect->rowCount() > 0)
 	{
-		$sqlgetuser = "SELECT username FROM userTable WHERE email = ? AND password = ? LIMIT 1";
-		$getuser = $db->prepare($sqlgetuser);
-		$data = $getuser->execute([$email, $password ]);
+	$check_valid = "SELECT OTP FROM userTable WHERE email = ? AND password = ? LIMIT 1";
+	$valid = $db->prepare($check_valid);
+	$user_valid = $valid->execute([$email, $password]);
 
-		$user = $getuser->fetch(PDO::FETCH_ASSOC);
+	$validity = $valid->fetch(PDO::FETCH_ASSOC);
 
-		$_SESSION['userlogin'] = $user;
-        	echo 'Successfully';
+		if(implode("", $validity) === '1')
+		{
+			$user = $stmtselect->fetch(PDO::FETCH_ASSOC);
+			$_SESSION['Validity'] = $validity;
+			
+			
+				$sqlgetuser = "SELECT username FROM userTable WHERE email = ? AND password = ? LIMIT 1";
+				$getuser = $db->prepare($sqlgetuser);
+				$data = $getuser->execute([$email, $password ]);
 
+				$user = $getuser->fetch(PDO::FETCH_ASSOC);
+
+				$_SESSION['userlogin'] = $user;
+		        	echo 'Successfully';
+
+			
+		}
+		else
+		{
+			echo 'Account Not validated';
+		}
 	}
 	else
 	{
