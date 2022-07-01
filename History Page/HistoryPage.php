@@ -37,8 +37,8 @@ require_once('../View Cart/Connection.php');
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">  
+        <!-- Custom styles for this page -->
+        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">  
 
 </head>
 <body id="page-top" style="background-color: #D4F1F4;">
@@ -82,86 +82,86 @@ require_once('../View Cart/Connection.php');
     
             </div>
         </header>
-         <div class="container-fluid">
-        <div class="card shadow mb-3">
-        <div class="card-header py-3">
-        <div class="card-body">
-        <div class="table-responsive"> 
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Invoice</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Status</th>
-                                            <th>Current Date</th>
-                                            <th></th>
-                                           
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Invoice</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Status</th>
-                                            <th>Current Date</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                <?php
-                                            $ID = implode($_SESSION['userID']);
-                                            $count =0;
-                                            $sql = "SELECT * FROM CustomerStatusTable WHERE userID ='$ID' ";
-                                            $result = mysqli_query($conn, $sql);
-                                            if (mysqli_num_rows($result) > 0) {
-                                                echo "";
-                                                
-                                                ?>
-                                                <?php
-                                                     while($row = mysqli_fetch_array($result)) 
-                                                     {   
-                                                         $count = $count + 1;
-                                                
-                                                ?>
-                                       
-                                            <tr>
-                                            <td><?php echo $row['Invoice'];?></td>
-                                            <td><?php echo $row['productName'];?></td>
-                                            <td><?php echo $row['quantity'];?></td>
-                                            <td><?php echo $row['Stat'];?></td>
-                                            <td><?php echo $row['curDate'];?></td>
-                                            <td>
-                                                    <?php  if($row['Stat'] === "Delivered") 
-                                                     {
-                                                     ?>
-                                                    <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Make Review</a>
-                                                    <?php
-                                                     }
-                                                    else{
-                                                     ?>
-
-                                                     <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn disabled">Not Delivered</a>
-                                                     <?php }?>
-                                            </td>
+        <div class="container-fluid">
+            <div class="card shadow mb-3">
+                <div class="card-header py-3">
+                    <div class="card-body">
+                        <div class="table-responsive"> 
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Current Date</th>
+                                        <th></th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Current Date</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            <?php
+                                        $ID = implode($_SESSION['userID']);
+                                        $count =0;
+                                        $sql = "SELECT * FROM CustomerStatusTable WHERE userID ='$ID' ";
+                                        $result = mysqli_query($conn, $sql);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            echo "";
                                             
-                                            </tr>  
+                                            ?>
                                             <?php
-                                               
-                                                }
-                                               
-                        
-                                            } 
-                                            else 
-                                            {
-                                                echo "No Record Found";
+                                                    while($row = mysqli_fetch_array($result)) 
+                                                    {   
+                                                        $count = $count + 1;
+                                            
+                                            ?>
+                                    
+                                        <tr>
+                                        <td><?php echo $row['Invoice'];?></td>
+                                        <td><?php echo $row['productName'];?></td>
+                                        <td><?php echo $row['quantity'];?></td>
+                                        <td><?php echo $row['Stat'];?></td>
+                                        <td><?php echo $row['curDate'];?></td>
+                                        <td>
+                                                <?php  if($row['Stat'] === "Delivered") 
+                                                    {
+                                                    ?>
+                                                <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn-info">Make Review</a>
+                                                <?php
+                                                    }
+                                                else{
+                                                    ?>
+
+                                                    <a href="MakeReviewPage.php?Invoice=<?= $row['Invoice'] ?>" class="btn btn disabled">Not Delivered</a>
+                                                <?php }?>
+                                        </td>
+                                        
+                                        </tr>  
+                                        <?php
+                                            
                                             }
-                                        ?>
+                                            
+                    
+                                        } 
+                                        else 
+                                        {
+                                            echo "No Record Found";
+                                        }
+                                    ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-                                        </div>
-                                        </div>
-                                        </div>
+        </div>
 
         
 
@@ -203,12 +203,12 @@ require_once('../View Cart/Connection.php');
             </div>
         </div>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 
-        <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
