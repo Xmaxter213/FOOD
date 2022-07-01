@@ -201,6 +201,7 @@ require_once('ReviewCard.php')
                     <h2 class="section-heading text-uppercase">Product</h2>
                     <h3 class="section-subheading text-muted">Numerous fruits to choose from, sourced locally from the country. Each fruit is inspected to deliver them on their best condition.</h3>
                 </div>
+                
                 <div class="row">
                 <?php
                     
@@ -222,7 +223,6 @@ require_once('ReviewCard.php')
                         echo "0";
                     }
                     ?>
-
                 </div>
             </div>
         </section>

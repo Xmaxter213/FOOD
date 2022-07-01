@@ -374,7 +374,7 @@ if(isset($_POST['save']))
                                             $count =0;
                                             $sql = "SELECT * FROM productTable";
                                             $result = mysqli_query($conn, $sql);
-                                            if (mysqli_num_rows($result) > 0) {
+                                            if (mysqli_num_rows($result ) > 0 ) {
                                                 echo "";
                                                 
                                                 ?>
@@ -420,8 +420,7 @@ if(isset($_POST['save']))
                                                 <?php
                                                      while($row = mysqli_fetch_array($result)) 
                                                      {   
-                                                         $count = $count + 1;
-                                                
+                                                        $count = $count + 1;  
                                                 ?>
                                        
                                             <tr>
@@ -437,7 +436,6 @@ if(isset($_POST['save']))
                                             <td> <?php echo'<img src ="../View Product/photos/Background/'.$row['productBg'].'" width="100px" height="100px">'?> </td>
                                             <td><?php echo $row['description'];?></td>
                                             <td>
-                                                
                                                     <a href="Admin_Edit.php?productID=<?= $row['productID'] ?>" class="btn btn-info">Edit</a>
                                                 
                                             </td>
@@ -448,9 +446,8 @@ if(isset($_POST['save']))
                                                     <button type="submit" name="admindelete" value="<?= $row['productID'] ?>" class="btn btn-danger">Delete</a>
                                                     </form>
                                             </td>
-                                            </tr>  
+                                            </tr> 
                                             <?php
-                                               
                                                 }
                                                
                         

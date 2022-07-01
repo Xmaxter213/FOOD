@@ -163,9 +163,6 @@ $to = $_POST['e_mail'];
                                     $res = $conn->query($prodid);
                                     $row1 = $res->fetch_assoc();
                                     
-                                    $change = $row1["quantity"] - $row["quantity"];
-                                    $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
-                                    $updating = $conn->query($updateQuan);
                                     
                                     $invoiceTable = "INSERT INTO CustomerStatusTable (userID, Invoice , productName, quantity, Stat, curDate) VALUES ('$userID','$randOrderNum','$row[productName]', '$row[quantity]', 'OnGoing' , '$curr');";
                                     $inserting = $conn->query($invoiceTable);
@@ -181,6 +178,44 @@ $to = $_POST['e_mail'];
                                 
                                 ?>
                         </div>
+                        <?php
+                    
+                                    $sql1 = "SELECT productTable.productName,productTable.quantity, userTable.email FROM productTable, userTable WHERE userTable.status = 'ADMIN'  ";
+                                    $result1 = $conn->query($sql1);
+                                    if ($result1->num_rows > 0) {
+                                        echo "";
+                                        // output data of each row
+                                    while($row = $result1->fetch_assoc()) 
+                                    {
+                                        if($row['quantity'] <= 20)
+                                        {
+                                            $email=$row['email'];
+                                            $names = $row['productName'];
+                                            $receiver = "$email";
+                                            $subject = "Product Is Low";
+                                            $message = "Please Resupply product $names";
+                                            $sender = "From: NatsuDragneelxd42069@gmail.com";
+                                            if(mail($receiver, $subject, $message, $sender))
+                                            {
+                                            
+                                            }
+                                            else
+                                            {
+                                                
+                                            }    
+                                          
+                                        }
+
+                                        
+                                        }
+                                        
+
+                                    } 
+                                    else 
+                                    {
+                                        echo "0";
+                                    }
+                                ?>
                         
                         </div>
                     </div>

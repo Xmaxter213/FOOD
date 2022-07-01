@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 session_start();
 include_once ('addproduct.php');
 include_once ('php layouts/ProductPageLayout.php');
@@ -136,6 +136,11 @@ include_once ('php layouts/ProductPageLayout3.php');
             font-size: 20px;
             margin-right: 20px;
         }
+        input[type=number] 
+        {
+            width: 100px;
+            
+        }
 
           /* RESPONSIVE RULES */
   
@@ -227,7 +232,7 @@ include_once ('php layouts/ProductPageLayout3.php');
     </div>
 
     <div class = "secondContainer">
-    <form class="addAndInfo" method="POST">
+    <form class="addAndInfo"  method="POST">
     
     <?php
 
@@ -262,8 +267,7 @@ $userID =  $_POST['submit'];
 $productName = $_POST['productName'];
 
 $total = (int)$maxquantity - (int)$quantity;
-
-    if ($total < "0")
+    if ($total < 0)
 {
     
      echo '<script type="text/javascript">
@@ -276,10 +280,15 @@ $total = (int)$maxquantity - (int)$quantity;
             
          });
      
- </script>';
+ </script> ';
 }
 else
 {    
+    
+    $maxquantity= $_POST['maxquantity'];
+    $quantity= $_POST['quantity'];
+
+    $total = (int)$maxquantity - (int)$quantity;
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -287,13 +296,11 @@ else
     // output data of each row
     while($row = $result->fetch_assoc()) 
     {      
-        
     $prodid = "SELECT quantity FROM productTable WHERE productName = '$row[productName]'";
     $res = $conn->query($prodid);
     $row1 = $res->fetch_assoc();
                                     
-    $change = $row1["quantity"] - $row["quantity"];
-    $updateQuan = "UPDATE productTable SET quantity='$change' WHERE productName = '$row[productName]'";
+    $updateQuan = "UPDATE productTable SET quantity='$total' WHERE productName = '$row[productName]'";
     $updating = $conn->query($updateQuan);
 
     }
@@ -305,10 +312,14 @@ else
 
     $sql = "INSERT INTO cartTable (userID, productID, quantity) VALUES ('$userID','$productName', '$quantity');";
     mysqli_query($conn, $sql);
+    header("Location: ..\Home Page\index.php?adding=success");
+    
 
    
 }
+ 
  }
+
     ?>
 
 

@@ -13,7 +13,7 @@ if(isset($_POST['add']))
     $email = $_POST['email'];
     $password = sha1($_POST['password']);
     
-        $query = "INSERT INTO userTable (firstName, lastName, username , email, password, status) VALUES ('$firstName','$lastName', '$username','$email','$password', 'ADMIN' )";
+        $query = "INSERT INTO userTable (firstName, lastName, username , email, password, status, OTP) VALUES ('$firstName','$lastName', '$username','$email','$password', 'ADMIN', '1' )";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
