@@ -423,7 +423,7 @@ p{
                         <div class="col-md-4">
                           <div class="input-group">
                           <select class="form-select" name="Subscription" aria-label=".form-select-lg example">
-                            <option selected></option>
+                            <option selected value="none"></option>
                             <option value="Daily">Daily</option>
                             <option value="Weekly">Weekly</option>
                             <option value="Yearly">Yearly</option>
@@ -492,7 +492,7 @@ p{
                             </ul>
                             
                             <button name="Payment" data-click="swal-danger" id = "Payment" >Check out</button>
-                            <button id = "Cancel" onclick="myFunction()">Cancel</button>
+                            <button id = "Cancel" onclick="window.location='../../Home Page/index.php'">Cancel</button>
                         </div>
                         </div>
                     </div>   
