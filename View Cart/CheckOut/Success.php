@@ -5,10 +5,15 @@ $Address = $_POST['address'];
 $Fname = $_POST['first_name'];
 $Lname = $_POST['last_name'];
 $Subcript = $_POST['Subscription'];
-$to = $_POST['e_mail'];
+$mail = $_POST['e_mail'];
 
-
+$receiver = $mail;
+$headers  = "From: NatsuDragneelxd42069@gmail.com" . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 ?>
+                 
+
 
 <!DOCTYPE html>
 <html>
@@ -138,6 +143,7 @@ $to = $_POST['e_mail'];
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Name: </span>",$Fname, " ", $Lname, "</li>";
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Address: </span>",$Address, "</li>";
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Invoice: </span>",$randOrderNum, "</li>";
+                            $subject = $randOrderNum;
                             echo "<li class=text-muted mt-1>","<span class=text-black>","Date: </span>",date("Y / m / d"), "</li>";
 
                             $curr = $now->format('Y-m-d H:i:s');
@@ -150,8 +156,13 @@ $to = $_POST['e_mail'];
 
                         <div id = "addedProducts">
                             <?php
-                                
-                            
+                                $message = "<h2>Receipt</h2>";
+                                $message .= "<br>Customer: " . $Fname . " " . $Lname;
+                                $message .= "<br>" . "Address: " . $Address . "<br>";
+                                $message .= "<br>" . "Subscription: " . $Subcript . "<br>";
+                                $message .= "<br>" . "ORDER:" . "<br>";
+                                $message .= '<hr>';
+                                $message .= '<table>';
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     echo "";
@@ -159,7 +170,13 @@ $to = $_POST['e_mail'];
                                 while($row = $result->fetch_assoc()) 
                                 {      
                                     echo "<div class=row", "<div class=col-md-10>", $row["quantity"]," ",$row["productName"] ," &nbsp&nbsp - &nbsp&nbsp ₱ ",$row["productPrice"],"<hr>";
-
+                                    $message .= '<tr>';
+                                    $message .= '<td>' .$row["quantity"]. "x " . '</td>';
+                                    $message .= '<td>' .$row["productName"]. " " .'</td>';
+                                    $message .= '<td>' ." - ₱ ".$row["productPrice"]. '</td>';
+                                    $message .= '</tr>';
+                                   
+                                   
 
                                     $prodid = "SELECT quantity FROM productTable WHERE productName = '$row[productName]'";
                                     $res = $conn->query($prodid);
@@ -241,14 +258,23 @@ $to = $_POST['e_mail'];
                         
                                       }
                                           echo " " . number_format($total, 2). "<br>";
-                                          $message = $total;
+                                          $message .= '<td>' . "Total " . '</td>';
+                                          $message .= '<td>' . "- ₱ " .number_format($total, 2); '</td>';
+                                          $message .= '</table>';
 
                                     } 
                                     else 
                                         {
                                            echo "0 ";
                                         }
-                                         
+                                        if(mail($receiver, $subject, $message, $headers))
+                                            {
+                                                
+                                            }
+                                            else
+                                            {
+                                                
+                                            }    
                                         $delete = $conn->query($del);
                                         $conn->close();
                                         

@@ -311,6 +311,7 @@ require_once('ReviewCard.php')
 <div class="d-flex justify-content-center">                      
     <div class="content text-center">
         <div class="ratings">
+
         <?php    
             $sql = "SELECT rating FROM reviewTable";
             $result = $conn->query($sql);
@@ -409,32 +410,37 @@ require_once('ReviewCard.php')
 	
 	<div class="card">
 	    <div class="card-body">
-	        <div class="row">
-        	    <div class="col-md-2">
-        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-        	        <p class="text-secondary text-center">15 Minutes Ago</p>
-        	    </div>
-        	    <div class="col-md-10">
-        	        <p>
-        	            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+	        
+            <form method="post">
+            <label for = "Rating+">Sort By:</label>
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Best Rating" name="Rating+">
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Worse Rating" name="Rating-">
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Earlist Date" name="Date+">
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Latest Date" name="Date-"><br/><br/>
 
-        	       </p>
-        	       <div class="clearfix"></div>
-        	        <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        	        <p>
-        	            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-        	       </p>
-        	    </div>
-	        </div>
-            
             <?php
-                    
                     $sql = "SELECT username, rating, content, date FROM reviewTable";
+
+                    if(isset($_POST["Rating+"]))
+                    {
+                        $sql = "SELECT username, rating, content, date FROM reviewTable ORDER BY rating DESC";
+                    }
+        
+                    if(isset($_POST["Rating-"]))
+                    {
+                        $sql = "SELECT username, rating, content, date FROM reviewTable ORDER BY rating ASC";
+                    }
+        
+                    if(isset($_POST["Date+"]))
+                    {
+                        $sql = "SELECT username, rating, content, date FROM reviewTable ORDER BY date DESC";
+                    }
+
+                    if(isset($_POST["Date-"]))
+                    {
+                        $sql = "SELECT username, rating, content, date FROM reviewTable ORDER BY date ASC";
+                    }
+
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         echo "";
@@ -458,10 +464,10 @@ require_once('ReviewCard.php')
             <script src ="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> </script>
             <script>
             $(document).ready (function () {
-            $(".reviews").slice(0, 2).show();
+            $(".reviews").slice(0, 5).show();
             $("#loadMore").on("click", function(e){
                 e.preventDefault();
-                $(".reviews:hidden").slice(0, 2).slideDown();
+                $(".reviews:hidden").slice(0, 5).slideDown();
                 if ($(".reviews:hidden").length == 0) {
                 $("#loadMore").text("No Content").addClass("noContent");
                 }
@@ -471,7 +477,8 @@ require_once('ReviewCard.php')
 	    </div>
 	</div>
 </div>
-		
+</form>
+
     </div> <!-- /container -->
 
         <!-- Footer-->
