@@ -7,6 +7,10 @@ require_once('../View Cart/Connection.php');
     else
     {
         $name = $_SESSION['userStatus'];
+        if($name != 'ADMIN')
+        {
+            header("location: ../Home Page/index.php");
+        }
     }
 
     if(isset($_GET['logout']))
