@@ -273,7 +273,7 @@ if(isset($_GET['logout']))
 
                                                          $diff = $newDate->diff($oldDate);
 
-                                                         if($diff->days > 5)
+                                                         if($diff->days > 6)
                                                          {
                                                             $deleteOldDate = "DELETE FROM CustomerStatusTable WHERE curDate ='$ODate' ";
                                                             $DelRun = mysqli_query($conn, $deleteOldDate);
