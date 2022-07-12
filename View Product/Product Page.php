@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include_once ('addproduct.php');
+include_once ('../addproduct.php');
 include_once ('php layouts/ProductPageLayout.php');
 include_once ('php layouts/ProductPageLayout2.php');
 include_once ('php layouts/ProductPageLayout3.php');
