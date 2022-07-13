@@ -5,7 +5,7 @@
 //$dbname     = "VnxQEuFWPf";
 //$host       = "remotemysql.com";
 $username   = "freedb_FoodOnOurDoor";
-$password   = "zTX@9jPUTFa6Xsh";
+$password   = "k937kQZm!uUBjT%";
 $dbname     = "freedb_FoodOnOurDoor";
 $host       = "sql.freedb.tech";
 
