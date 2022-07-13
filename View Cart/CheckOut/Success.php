@@ -197,44 +197,7 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                                 
                                 ?>
                         </div>
-                        <?php
-                    
-                                    $sql1 = "SELECT productTable.productName,productTable.quantity, userTable.email FROM productTable, userTable WHERE userTable.status = 'ADMIN'  ";
-                                    $result1 = $conn->query($sql1);
-                                    if ($result1->num_rows > 0) {
-                                        echo "";
-                                        // output data of each row
-                                    while($row = $result1->fetch_assoc()) 
-                                    {
-                                        if($row['quantity'] <= 20)
-                                        {
-                                            $email=$row['email'];
-                                            $names = $row['productName'];
-                                            $receiver = "$email";
-                                            $subject = "Product Is Low";
-                                            $message = "Please Resupply product $names";
-                                            $sender = "From: NatsuDragneelxd42069@gmail.com";
-                                            if(mail($receiver, $subject, $message, $sender))
-                                            {
-                                            
-                                            }
-                                            else
-                                            {
-                                                
-                                            }    
-                                          
-                                        }
-
-                                        
-                                        }
-                                        
-
-                                    } 
-                                    else 
-                                    {
-                                        echo "0";
-                                    }
-                                ?>
+                        
                         
                         </div>
                     </div>
@@ -276,7 +239,7 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                                                 
                                             }    
                                         $delete = $conn->query($del);
-                                        $conn->close();
+                                        
                                         
                                     
                                 
@@ -288,6 +251,44 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
                     </div>
                 </div>
+                <?php
+                    
+                                    $sql1 = "SELECT productTable.productName,productTable.quantity, userTable.email FROM productTable, userTable WHERE userTable.status = 'ADMIN'  ";
+                                    $result1 = $conn->query($sql1);
+                                    if ($result1->num_rows > 0) {
+                                        echo "";
+                                        // output data of each row
+                                    while($row = $result1->fetch_assoc()) 
+                                    {
+                                        if($row['quantity'] <= 20)
+                                        {
+                                            $adminEmail=$row['email'];
+                                            $names = $row['productName'];
+                                            $subject = "Product Is Low";
+                                            $message = "Please Resupply product $names";
+                                            $sender = "From: NatsuDragneelxd42069@gmail.com";
+                                            if(mail($adminEmail, $subject, $message, $sender))
+                                            {
+                                            
+                                            }
+                                            else
+                                            {
+                                                
+                                            }    
+                                          
+                                        }
+
+                                        
+                                        }
+                                        
+
+                                    } 
+                                    else 
+                                    {
+                                        echo "0";
+                                    }
+                                    $conn->close();
+                                ?>
                 </div>
                <a href="../../Home Page/index.php"><p class="content"><br>Go to Home</p></a>
             </div>
