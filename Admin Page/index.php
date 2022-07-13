@@ -22,7 +22,7 @@ require_once('../Connection/Connection.php');
 
 
 
-require_once('../View Cart/Connection.php');;
+require_once('../Connection/Connection.php');;
 ?>
 
 <!DOCTYPE html>
