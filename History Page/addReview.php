@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../View Product/addproduct.php');
+include_once ('../Connection/addproduct.php');
 
 $invoiceID = $_POST['invoiceID'];
 $username = $_POST['username'];

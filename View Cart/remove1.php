@@ -1,6 +1,6 @@
 <?php
 
-include_once('Connection.php');
+include_once('../Connection/Connection.php');
 
 $userID = implode($_SESSION['userID']);
 

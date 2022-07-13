@@ -4,7 +4,7 @@
 <?php
 $servername = "sql.freedb.tech";
 $username = "freedb_FoodOnOurDoor";
-$password = "UsAQn@Q9N6Mw9?7";
+$password = "tU$7tjfK@greFWx";
 $dbname = "freedb_FoodOnOurDoor";
 
 //$servername = "remotemysql.com";

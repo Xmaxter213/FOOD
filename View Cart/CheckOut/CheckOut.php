@@ -1,6 +1,6 @@
 <?php
 
-require_once('../Connection.php');
+require_once('../../Connection/Connection.php');
     if(!isset($_SESSION['userlogin']))
     {
         $user1 = $_POST[$_SESSION['userlogin'] = $username];

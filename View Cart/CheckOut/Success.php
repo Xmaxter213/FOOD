@@ -1,6 +1,6 @@
 <?php
 
-require_once('../Connection.php');
+require_once('../../Connection/Connection.php');
 $Address = $_POST['address'];
 $Fname = $_POST['first_name'];
 $Lname = $_POST['last_name'];

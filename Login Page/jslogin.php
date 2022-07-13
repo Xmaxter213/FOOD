@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../config.php');
+require_once('../Connection/config.php');
 
 
 $email = $_POST['email'];

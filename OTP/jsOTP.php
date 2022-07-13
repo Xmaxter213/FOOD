@@ -1,5 +1,5 @@
 <?php 
-require_once('../config.php');
+require_once('../Connection/config.php');
 
 $code = $_POST['code'];
 

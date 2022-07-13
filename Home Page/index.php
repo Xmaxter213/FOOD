@@ -1,7 +1,7 @@
 <?php
 
-require_once('../View Cart/Connection.php');
-include_once ('quantity.php');
+require_once('../Connection/Connection.php');
+include_once ('../Connection/quantity.php');
 
     if(!isset($_SESSION['userlogin']))
     {
