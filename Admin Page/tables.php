@@ -19,16 +19,17 @@ if(isset($_POST['add']))
     $productBg = $_FILES["ProductBackground"]['name'];
     $description = $_POST['description'];
 
-    if(file_exists("../View Product/photos/" .$_FILES["productImg"]["name"]))
+    if(file_exists("../View Product/photos/" .$_FILES["productImg"]["name"])||file_exists("../View Product/photos/" .$_FILES["productImg2"]["name"])||file_exists("../View Product/photos/" .$_FILES["productImg3"]["name"])||file_exists("../View Product/photos/" .$_FILES["productImg4"]["name"]))
     {
         $store=$_FILES["productImg"]["name"];
         $_SESSION['status']= "Image already exists.'.$store.'";
+        
         header('Location: tables.php');
     }
 
     else
     {
-        $query = "INSERT INTO productTable (productID, productName, productPrice , quantity, portfolioNum, productImg, productImg2, productImg3, productImg4, productBg,description) VALUES ('$productID','$name', '$productPrice','$Quantity','$portfolioNum', '$productImg', '$productImg2', '$productImg3', '$productImg4', '$productBg','$description' )";
+        $query = "INSERT INTO productTable(productID, productName, productPrice , quantity, portfolioNum, productImg, productImg2, productImg3, productImg4, productBg,description) VALUES ('$productID','$name', '$productPrice','$Quantity','$portfolioNum', '$productImg', '$productImg2', '$productImg3', '$productImg4', '$productBg','$description' )";
         $query_run = mysqli_query($conn, $query);
 
         if($query_run)
