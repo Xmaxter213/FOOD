@@ -356,6 +356,7 @@ if(isset($_POST['save']))
                     <div class="card shadow mb-3">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
                         </div>
                         <div class="card-body">
                            
@@ -369,7 +370,7 @@ if(isset($_POST['save']))
                                                 echo "";
                                                 
                                                 ?>
-                                <a href= "addproduct.php" class="btn btn-primary float-end">Add</a>
+                                
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
