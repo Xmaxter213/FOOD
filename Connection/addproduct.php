@@ -10,7 +10,7 @@
 
     $servername = "sql.freedb.tech";
     $username = "freedb_FoodOnOurDoor";
-    $password = "#SR78Hh22Myv6ny";
+    $password = "YxEpqUZaMu*Uyd9";
     $dbname = "freedb_FoodOnOurDoor";
 
 
