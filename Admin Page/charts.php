@@ -5,69 +5,30 @@ require_once('../Connection/Connection.php');
 include('message.php');
 
 
-if(isset($_POST['add']))
-{
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
-    
-        $query = "INSERT INTO userTable (firstName, lastName, username , email, password, status, OTP) VALUES ('$firstName','$lastName', '$username','$email','$password', 'ADMIN', '1' )";
-        $query_run = mysqli_query($conn, $query);
-
-        if($query_run)
-        {
-            $_SESSION['message'] = "Catagory Added Successfully";
-            header('Location: add_admin.php');
-            exit(0);
-        }
-        else
-        {
-            $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: add_admin.php');
-            exit(0);
-        }
-    
-
-}
-
-
-
 if(isset($_POST['save']))
 {
-    $userID = $_POST['userID'];
-    $status = $_POST['status'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
+    $Invoice = $_POST['Invoice'];
+    $Status = $_POST['Status'];
+    
+        $query="UPDATE CustomerStatusTable SET Stat='$Status' WHERE Invoice='$Invoice' ";
+        $upd = $conn->query($query);
 
-        $query="UPDATE userTable SET firstName='$firstName', lastName ='$lastName', username='$username', email='$email', password='$password' WHERE userID='$userID' AND status ='$status' ";
-        $query_run = mysqli_query($conn, $query);
-
-        if($query_run)
-        {
-            
-           
-            $_SESSION['message'] = "Catagory Updated Successfully";
-            header('Location: add_admin.php');
-            exit(0);
-        }
-        else
-        {
-            $_SESSION['message'] = "Someting Went Wrong !";
-            header('Location: add_admin.php');
-            exit(0);
-        }
     
 } 
+if(isset($_GET['logout']))
+{
+    session_destroy();
+    unset($_SESSION);
+    header("location: ../Login Page/Login_new.php");
+}
 
+//EVERYTHING BELOW IS FOR PIE CHARTS
+$connect = mysqli_connect("sql.freedb.tech", "freedb_FoodOnOurDoor", "#!HmEcHX5Ued@*7", "freedb_FoodOnOurDoor");  
+$query = "SELECT productName, SUM(quantity) AS quantity FROM CustomerStatusTable GROUP BY productName;";  
+$result = mysqli_query($connect, $query);
 
-
-
-
+$query2 = "SELECT CustomerStatusTable.productName, SUM(productTable.productPrice * CustomerStatusTable.quantity) AS Sales FROM CustomerStatusTable, productTable WHERE CustomerStatusTable.productName = productTable.productName GROUP BY CustomerStatusTable.productName;";
+$result2 = mysqli_query($connect, $query2);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +42,7 @@ if(isset($_POST['save']))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>F.O.O.D - Tables</title>
+    <title>F.O.O.D - History Tables</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -94,6 +55,53 @@ if(isset($_POST['save']))
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- THIS IS FOR THE PIE CHARTS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+    <script type="text/javascript">  
+    google.charts.load('current', {'packages':['corechart']});  
+    google.charts.setOnLoadCallback(drawChart);  
+    function drawChart()  
+    {  
+        var data = google.visualization.arrayToDataTable([  
+            ['Product', 'quantity'],  
+            <?php  
+            while($row = mysqli_fetch_array($result))  
+            {  
+                echo "['".$row["productName"]."', ".$row["quantity"]."],";  
+            }  
+            ?>  
+        ]);  
+        var options = {  
+            title: 'Most Bought Fruit',  
+            //is3D:true,  
+            pieHole: 0.4  
+            };  
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
+        chart.draw(data, options);  
+    }
+
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2()  
+    {  
+        var data = google.visualization.arrayToDataTable([  
+            ['Product', 'Sales'],  
+            <?php  
+            while($row = mysqli_fetch_array($result2))  
+            {  
+                echo "['".$row["productName"]."', ".$row["Sales"]."],";  
+            }  
+            ?>  
+        ]);  
+        var options = {  
+            title: 'Most Revenue',  
+            //is3D:true,  
+            pieHole: 0.4  
+            };  
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));  
+        chart.draw(data, options);  
+    }  
+    </script> 
 
 </head>
 
@@ -116,11 +124,11 @@ if(isset($_POST['save']))
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-    
+            
             
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -139,7 +147,7 @@ if(isset($_POST['save']))
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="add_admin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Add Admin</span></a>
@@ -148,7 +156,7 @@ if(isset($_POST['save']))
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="charts.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Revenue</span></a>
@@ -260,102 +268,24 @@ if(isset($_POST['save']))
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Pie Charts</h1>
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            <a href= "adding_admin.php" class="btn btn-primary float-end">Add</a>
-                        </div>
-                        <div class="card-body">
-                           
-                            <div class="table-responsive"> 
+                            <div style="width:900px;">  
+                <h3></h3>  
+                <br/>  
+                <div id="piechart" style="width: 900px; height: 500px;"></div>  
+                </div><br>
 
-                             <?php
-                                            $count =0;
-                                            $sql = "SELECT * FROM userTable WHERE status = 'ADMIN' ";
-                                            $result = mysqli_query($conn, $sql);
-                                            if (mysqli_num_rows($result) > 0) {
-                                                echo "";
-                                                
-                                                ?>
-                                
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>UserID</th>
-                                            <th>FirstName</th>
-                                            <th>LastName</th>
-                                            <th>Username</th>
-                                            <th>E-mail</th>
-                                            <th>Status</th>
-                                            <th>Edit Admin</th>
-                                            <th>Remove Admin</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>UserID</th>
-                                            <th>FirstName</th>
-                                            <th>LastName</th>
-                                            <th>Username</th>
-                                            <th>E-mail</th>
-                                            <th>Status</th>
-                                            <th>Edit Admin</th>
-                                            <th>Remove Admin</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                                <?php
-                                                     while($row = mysqli_fetch_array($result)) 
-                                                     {   
-                                                         $count = $count + 1;
-                                                
-                                                ?>
-                                       
-                                            <tr>
-                                            <td><?php echo $row['userID'];?></td>
-                                            <td><?php echo $row['firstName'];?></td>
-                                            <td><?php echo $row['lastName'];?></td>
-                                            <td><?php echo $row['username'];?></td>
-                                            <td><?php echo $row['email'];?></td>
-                                            <td><?php echo $row['status'];?></td>
-                                            <td>
-                                                
-                                                    <a href="edit_admin.php?userID=<?= $row['userID'] ?>" class="btn btn-info">Edit</a>
-                                                
-                                            </td>
+                <div style="width:900px;">  
+                    <h3></h3>  
+                    <br />  
+                    <div id="piechart2" style="width: 900px; height: 500px;"></div>  
+                </div>  
 
-                                            <td>
-                                                    <form action="delete_admin.php" method="POST">
-                                                
-                                                    <button type="submit" name="admindelete" value="<?= $row['userID'] ?>" class="btn btn-danger">Delete</a>
-                                                    </form>
-                                            </td>
-                                            </tr>  
-                                            <?php
-                                               
-                                                }
-                                               
-                        
-                                            } 
-                                            else 
-                                            {
-                                                echo "No Record Found";
-                                            }
-                                        ?>
-                                       
-                                        
-                                    
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
                 <!-- /.container-fluid -->
