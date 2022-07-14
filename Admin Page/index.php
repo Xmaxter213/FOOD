@@ -23,6 +23,14 @@ require_once('../Connection/Connection.php');
 
 
 require_once('../Connection/Connection.php');;
+
+//EVERYTHING BELOW IS FOR PIE CHARTS
+$connect = mysqli_connect("sql.freedb.tech", "freedb_FoodOnOurDoor", "#!HmEcHX5Ued@*7", "freedb_FoodOnOurDoor");  
+$query = "SELECT productName, SUM(quantity) AS quantity FROM CustomerStatusTable GROUP BY productName;";  
+$result = mysqli_query($connect, $query);
+
+$query2 = "SELECT CustomerStatusTable.productName, SUM(productTable.productPrice * CustomerStatusTable.quantity) AS Sales FROM CustomerStatusTable, productTable WHERE CustomerStatusTable.productName = productTable.productName GROUP BY CustomerStatusTable.productName;";
+$result2 = mysqli_query($connect, $query2);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +57,52 @@ require_once('../Connection/Connection.php');;
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- THIS IS FOR THE PIE CHARTS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+        <script type="text/javascript">  
+        google.charts.load('current', {'packages':['corechart']});  
+        google.charts.setOnLoadCallback(drawChart);  
+        function drawChart()  
+        {  
+            var data = google.visualization.arrayToDataTable([  
+                ['Product', 'quantity'],  
+                <?php  
+                while($row = mysqli_fetch_array($result))  
+                {  
+                    echo "['".$row["productName"]."', ".$row["quantity"]."],";  
+                }  
+                ?>  
+            ]);  
+            var options = {  
+                title: 'Most Bought Fruit',  
+                //is3D:true,  
+                pieHole: 0.4  
+                };  
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
+            chart.draw(data, options);  
+        }
+
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2()  
+        {  
+            var data = google.visualization.arrayToDataTable([  
+                ['Product', 'Sales'],  
+                <?php  
+                while($row = mysqli_fetch_array($result2))  
+                {  
+                    echo "['".$row["productName"]."', ".$row["Sales"]."],";  
+                }  
+                ?>  
+            ]);  
+            var options = {  
+                title: 'Most Revenue',  
+                //is3D:true,  
+                pieHole: 0.4  
+                };  
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));  
+            chart.draw(data, options);  
+        }  
+        </script> 
 </head>
 
 <body id="page-top">
@@ -99,10 +153,22 @@ require_once('../Connection/Connection.php');;
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
+                <a class="nav-link" href="charts.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Sales Status Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
+
+
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -225,7 +291,20 @@ require_once('../Connection/Connection.php');;
                 </nav>
                 <!-- End of Topbar -->
 
-               
+            
+
+           <br/><br/>  
+           <div style="width:900px;">  
+                <h3></h3>  
+                <br/>  
+                <div id="piechart" style="width: 900px; height: 500px;"></div>  
+           </div><br>
+
+           <div style="width:900px;">  
+                <h3></h3>  
+                <br />  
+                <div id="piechart2" style="width: 900px; height: 500px;"></div>  
+           </div>  
                    
 
 
