@@ -25,7 +25,7 @@ require_once('../Connection/Connection.php');
 require_once('../Connection/Connection.php');;
 
 //EVERYTHING BELOW IS FOR PIE CHARTS
-$connect = mysqli_connect("sql.freedb.tech", "freedb_FoodOnOurDoor", "#!HmEcHX5Ued@*7", "freedb_FoodOnOurDoor");  
+$connect = mysqli_connect("remotemysql.com", "VnxQEuFWPf", "ljeJ4d6ptZ", "VnxQEuFWPf");  
 $query = "SELECT productName, SUM(quantity) AS quantity FROM CustomerStatusTable GROUP BY productName;";  
 $result = mysqli_query($connect, $query);
 
