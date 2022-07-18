@@ -53,7 +53,7 @@ require_once('../Connection/Connection.php');
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="../Home Page/index.php">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Product</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Home Page/index.php">Product</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>-->
                         <li class="nav-item "><a class="nav-link active" href="#contact">History</a></li>
