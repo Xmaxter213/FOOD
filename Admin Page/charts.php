@@ -42,7 +42,9 @@ $result2 = mysqli_query($connect, $query2);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>F.O.O.D - History Tables</title>
+     <!-- Favicon-->
+     <link rel="icon" type="image/x-icon" href="assets/FinalLogo.png" />
+    <title>F.O.O.D - Revenue Page</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
