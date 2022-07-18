@@ -153,26 +153,15 @@ $result2 = mysqli_query($connect, $query2);
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Sales Status Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
 
-
-            
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Nav Item -History Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="historyAdmin.php">
                     <i class="fas fa-fw fa-table"></i>
@@ -186,6 +175,15 @@ $result2 = mysqli_query($connect, $query2);
                 <a class="nav-link" href="add_admin.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Add Admin</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item">
+                <a class="nav-link" href="charts.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Revenue</span></a>
             </li>
 
             <!-- Divider -->
@@ -290,22 +288,6 @@ $result2 = mysqli_query($connect, $query2);
 
                 </nav>
                 <!-- End of Topbar -->
-
-            
-
-           <br/><br/>  
-           <div style="width:900px;">  
-                <h3></h3>  
-                <br/>  
-                <div id="piechart" style="width: 900px; height: 500px;"></div>  
-           </div><br>
-
-           <div style="width:900px;">  
-                <h3></h3>  
-                <br />  
-                <div id="piechart2" style="width: 900px; height: 500px;"></div>  
-           </div>  
-                   
 
 
         </div>
