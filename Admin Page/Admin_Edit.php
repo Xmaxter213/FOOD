@@ -65,6 +65,7 @@ require_once('../Connection/Connection.php');
     <label>PortfolioNumber</label>
     <input type="text" name="PortfolioNumber" value="<?php  echo $row['portfolioNum'] ?>" class="form-control" placeholder="Enter PortfolioNumber">
 </div>
+<h6>No need to add image if you wont change image</h6>
 <div>
     <label>ProductImage</label>
     <input type="hidden" name="oldimage" id="oldimage" value="<?php echo $row['productImg'] ?>" class="form-control">

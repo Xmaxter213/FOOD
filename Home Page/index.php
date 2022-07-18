@@ -335,8 +335,8 @@ require_once('ReviewCard.php')
             <label for = "Rating+">Sort By:</label>
             <input class="btn btn-primary btn text-uppercase" type="submit" value="Best Rating" name="Rating+">
             <input class="btn btn-primary btn text-uppercase" type="submit" value="Worse Rating" name="Rating-">
-            <input class="btn btn-primary btn text-uppercase" type="submit" value="Earlist Date" name="Date+">
-            <input class="btn btn-primary btn text-uppercase" type="submit" value="Latest Date" name="Date-"><br/><br/>
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Newest to Oldest" name="Date+">
+            <input class="btn btn-primary btn text-uppercase" type="submit" value="Oldest to Newest" name="Date-"><br/><br/>
 
             <?php
                     $sql = "SELECT username, rating, content, date FROM reviewTable";

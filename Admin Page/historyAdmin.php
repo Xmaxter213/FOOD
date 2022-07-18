@@ -251,8 +251,8 @@ if(isset($_GET['logout']))
                                             <th>Status</th>
                                             <th>Date</th>
 
-                                            <th>Edit Product</th>
-                                            <th>Remove Product</th>
+                                            <th>Edit Status</th>
+                                            <th>Remove Invoice</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -264,8 +264,8 @@ if(isset($_GET['logout']))
                                             <th>Status</th>
                                             <th>Date</th>
 
-                                            <th>Edit Product</th>
-                                            <th>Remove Product</th>
+                                            <th>Edit Status</th>
+                                            <th>Remove Invoice</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

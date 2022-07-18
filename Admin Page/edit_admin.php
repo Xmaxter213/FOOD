@@ -71,7 +71,7 @@ require_once('../Connection/Connection.php');
            
         </div>
         <div>
-            <label>Status</label>
+            
             <input type="hidden" name="status" value="<?=  $row['status'] ?>" class="form-control"  required>
         </div>
 

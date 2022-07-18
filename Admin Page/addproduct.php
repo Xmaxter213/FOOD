@@ -52,7 +52,7 @@ require_once('../Connection/Connection.php');
             <label>PortfolioNumber</label>
             <input type="text" name="PortfolioNumber" class="form-control" placeholder="Enter PortfolioNumber" required>
         </div>
-        <h6>No need to add image if you wont change image</h6>
+        
         <div>
             <label>ProductImage</label>
             <input type="file" name="productImg" id="image"  class="form-control" required>
