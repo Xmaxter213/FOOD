@@ -169,9 +169,14 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                                     // output data of each row
                                 while($row = $result->fetch_assoc()) 
                                 {      
-                                    echo "<div class=row", "<div class=col-md-10>", $row["quantity"]," ",$row["productName"] ," &nbsp&nbsp - &nbsp&nbsp ₱ ",$row["productPrice"],"<hr>";
+                                    $prodid = "SELECT productImg FROM productTable WHERE productName = '$row[productName]'";
+                                    $res = $conn->query($prodid);
+                                    $row1 = $res->fetch_assoc();
+                                    
+
+                                    echo "<div class=row", "<div class=col-md-10>",'<img src ="../../View Product/photos/'.$row1['productImg'].'" width="50px" height="50px">'," -", $row["quantity"]," ",$row["productName"] ," &nbsp&nbsp - &nbsp&nbsp ₱ ",$row["productPrice"],"<hr>";
                                     $message .= '<tr>';
-                                    $message .= '<td>' .$row["quantity"]. "x " . '</td>';
+                                    $message .= '<td>'.$row["quantity"]. "x " . '</td>';
                                     $message .= '<td>' .$row["productName"]. " " .'</td>';
                                     $message .= '<td>' ." - ₱ ".$row["productPrice"]. '</td>';
                                     $message .= '</tr>';
