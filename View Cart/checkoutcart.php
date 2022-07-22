@@ -23,7 +23,9 @@ require_once('../Connection/Connection.php');
   <div id = "addedProducts">
             <p>YOUR ADDED PRODUCTS</p>
             <?php
+
                 
+                   
             
             $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -31,11 +33,17 @@ require_once('../Connection/Connection.php');
                     // output data of each row
                 while($row = $result->fetch_assoc()) 
                 {
-                    echo "- ". $row["quantity"] . " x" ."- "  . $row["productName"]. ": ₱". $row["productPrice"]. "<br>";
-        
+                    $prodid = "SELECT productImg FROM productTable WHERE productName = '$row[productName]'";
+                    $res = $conn->query($prodid);
+                    $row1 = $res->fetch_assoc();
 
-                     }
-                } 
+                   
+
+                    echo '<img src ="../View Product/photos/'.$row1['productImg'].'" width="50px" height="50px">'."  - ". $row["quantity"] . " x" ."- "  . $row["productName"]. ": ₱". $row["productPrice"]. "<br>";
+                    }
+
+                }
+                
                 else 
                 {
                     echo "0 results";
